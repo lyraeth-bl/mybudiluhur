@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,7 +15,14 @@ class HomePageState extends State<HomePage> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [const Text('Home Page')],
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              context.read<AuthCubit>().logout();
+            },
+            child: Text("Logout"),
+          ),
+        ],
       ),
     );
   }
