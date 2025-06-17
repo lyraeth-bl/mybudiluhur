@@ -6,14 +6,14 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mybudiluhur/main.dart';
+import 'package:mybudiluhur/budiluhur_app.dart';
 
 void main() {
   testWidgets('Title MyBudiLuhur and home Home Page', (
     WidgetTester tester,
   ) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const BudiluhurApp());
 
     expect(find.text("MyBudiLuhur"), findsOne);
     expect(find.text("Home Page"), findsOne);

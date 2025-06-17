@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "538997606381",
+    "project_id": "mybudiluhur-prod",
+    "storage_bucket": "mybudiluhur-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538997606381:android:1a32fec12ec934334609e4",
+        "android_client_info": {
+          "package_name": "com.budiluhur.mybudiluhur"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ2o8fOia9FjS400HkX5zdT54owUIZHFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538997606381:android:2891e59651c686994609e4",
+        "android_client_info": {
+          "package_name": "com.example.mybudiluhur"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ2o8fOia9FjS400HkX5zdT54owUIZHFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

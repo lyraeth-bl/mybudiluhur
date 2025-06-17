@@ -13,7 +13,7 @@ class HomePageState extends State<HomePage> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[const Text('Home Page')],
+        children: [const Text('Home Page')],
       ),
     );
   }
