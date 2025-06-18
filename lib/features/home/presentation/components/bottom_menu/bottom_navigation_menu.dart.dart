@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 
 class BottomNavigationMenu extends StatefulWidget {
@@ -16,35 +15,26 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
     return BlocBuilder<BottomMenuBloc, BottomMenuState>(
       builder: (context, state) {
         return BottomNavigationBar(
+          backgroundColor: Colors.lightBlue[400],
+          showUnselectedLabels: false,
+          selectedFontSize: 15,
           elevation: 5,
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: Colors.white54,
           currentIndex: state.currentIndex,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
-          unselectedLabelStyle: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          selectedItemColor: Colors.blueAccent,
+          selectedItemColor: Colors.white,
           onTap: (index) {
             context.read<BottomMenuBloc>().add(BottomMenuChanged(index));
           },
           items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.bell),
+              icon: Icon(Icons.notifications),
               label: "Notification",
             ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-              label: "Search",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.user),
-              label: "Profile",
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
         );
       },
