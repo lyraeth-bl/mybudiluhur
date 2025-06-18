@@ -42,25 +42,26 @@ class AuthCubit extends Cubit<AuthState> {
   ///   Jika berhasil, state akan diubah menjadi [Authenticated], jika gagal akan mengeluarkan
   ///   [AuthError] dan [Unauthenticated].
   Future<void> login(String nis, String password) async {
-    emit(AuthLoading());
     try {
+      /// State berubah menjadi AuthLoading saat proses berlangsung.
+      emit(AuthLoading());
+
       final user = await apiAuthRepository.loginWithNisAndPassword(
         nis: nis,
         password: password,
       );
 
+      /// Jika login berhasil, state berubah menjadi Authenticated.
       if (user != null) {
         _currentUser = user;
-        await Future.delayed(Duration(milliseconds: 300));
         emit(Authenticated(user));
       } else {
+        /// Jika gagal, state berubah menjadi AuthError dan kemudian Unauthenticated.
         emit(AuthError("NIS atau Password salah"));
-        await Future.delayed(Duration(milliseconds: 300));
         emit(Unauthenticated());
       }
     } catch (e) {
       emit(AuthError(e.toString()));
-      await Future.delayed(Duration(milliseconds: 300));
       emit(Unauthenticated());
     }
   }
