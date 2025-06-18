@@ -24,7 +24,7 @@ class LoginButton extends StatelessWidget {
           children: [
             Text(text, style: TextStyle(fontSize: 16, color: Colors.white)),
             SizedBox(width: 8),
-            Icon(Icons.arrow_forward, color: Colors.white),
+            Icon(Icons.login, color: Colors.white),
           ],
         ),
       ),
