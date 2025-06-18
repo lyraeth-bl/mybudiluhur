@@ -10,14 +10,38 @@ class BudiLuhurAppEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, authState) {
+        // Jika user terauthentikasi
         if (authState is Authenticated) {
-          return HomeLayout();
-        } else if (authState is Unauthenticated) {
-          return AuthPage();
-        } else {
-          return Center(child: CircularProgressIndicator());
+          return const HomeLayout();
+        }
+        // Jika user tidak terauthentikasi
+        else if (authState is Unauthenticated) {
+          return const AuthPage();
+        }
+        // Loading...
+        else {
+          return const Scaffold(
+            backgroundColor: Color(0xFFF5F7FA),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 10),
+                  Text("Loading..."),
+                ],
+              ),
+            ),
+          );
+        }
+      },
+      listener: (context, state) {
+        if (state is AuthError) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
     );

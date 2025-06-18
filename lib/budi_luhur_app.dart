@@ -3,7 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/budi_luhur_app_entry.dart';
 import 'package:mybudiluhur/features/auth/data/api_auth_repository.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:mybudiluhur/features/home/data/api_home_user_repository.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/date_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/days_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/greetings_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 
 class BudiLuhurApp extends StatefulWidget {
   const BudiLuhurApp({super.key});
@@ -15,6 +20,7 @@ class BudiLuhurApp extends StatefulWidget {
 class _BudiLuhurAppState extends State<BudiLuhurApp> {
   // Repository
   final apiAuthRepository = ApiAuthRepository();
+  final apiHomeUserRepository = ApiHomeUserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +32,23 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
               AuthCubit(apiAuthRepository: apiAuthRepository)..checkAuth(),
         ),
 
-        // Bottom Menu Bloc
+        // Bottom Menu Bloc Providers
         BlocProvider(create: (context) => BottomMenuBloc()),
+
+        // Greetings Cubit Providers
+        BlocProvider(create: (context) => GreetingsCubit()),
+
+        // Days Cubit Providers
+        BlocProvider(create: (context) => DaysCubit()),
+
+        // getDate Cubit Providers
+        BlocProvider(create: (context) => DateCubit()),
+
+        // HomeUser Cubit Providers
+        BlocProvider(
+          create: (context) =>
+              HomeCubit(apiHomeUserRepository: apiHomeUserRepository),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
