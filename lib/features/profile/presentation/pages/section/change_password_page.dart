@@ -102,7 +102,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         // Change password page
         final isPasswordVerified = passwordState is PasswordCheckSuccess;
         return Scaffold(
-          appBar: AppBar(title: Text("Change Password"), centerTitle: true),
+          appBar: AppBar(
+            title: Text("Change Password"),
+            centerTitle: true,
+            backgroundColor: Colors.lightBlue[400],
+          ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Container(
@@ -110,6 +114,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 10),
                   MyText(text: "Old Password", bold: true),
                   SizedBox(height: 10),
                   Row(
