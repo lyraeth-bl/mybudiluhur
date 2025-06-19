@@ -9,6 +9,8 @@ import 'package:mybudiluhur/features/home/presentation/cubit/date_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/days_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/greetings_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
+import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 
 class BudiLuhurApp extends StatefulWidget {
   const BudiLuhurApp({super.key});
@@ -21,6 +23,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   // Repository
   final apiAuthRepository = ApiAuthRepository();
   final apiHomeUserRepository = ApiHomeUserRepository();
+  final apiProfileUserRepository = ApiProfileUserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,12 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) =>
               HomeCubit(apiHomeUserRepository: apiHomeUserRepository),
+        ),
+
+        // Profile Cubit Providers
+        BlocProvider(
+          create: (context) =>
+              ProfileCubit(apiProfileUserRepository: apiProfileUserRepository),
         ),
       ],
       child: MaterialApp(

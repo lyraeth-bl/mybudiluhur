@@ -54,7 +54,7 @@ class TodayAttendanceSection extends StatelessWidget {
                   destination: SizedBox(),
                   child: Icon(
                     Icons.arrow_circle_right,
-                    color: Colors.grey[700],
+                    color: Colors.lightBlue[400],
                   ),
                 ),
               ],
@@ -81,6 +81,7 @@ class TodayAttendanceSection extends StatelessWidget {
                 ),
               ],
             ),
+
             SizedBox(height: 20),
             MyText(
               text: "What a great day, See You Tomorrow!",

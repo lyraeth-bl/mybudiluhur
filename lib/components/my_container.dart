@@ -17,7 +17,7 @@ class MyContainer extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: color ?? Colors.black87,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: child,
     );

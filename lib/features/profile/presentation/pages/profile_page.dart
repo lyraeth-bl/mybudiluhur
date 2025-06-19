@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/my_text.dart';
+import 'package:mybudiluhur/features/profile/presentation/components/section/profile_logout_section.dart';
+import 'package:mybudiluhur/features/profile/presentation/components/section/profile_photo_section.dart';
+import 'package:mybudiluhur/features/profile/presentation/components/section/profile_student_card_section.dart';
+import 'package:mybudiluhur/features/profile/presentation/components/section/profile_summary_section.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/profile_state.dart';
+
+class ProfilePage extends StatefulWidget {
+  final String nis;
+  const ProfilePage({super.key, required this.nis});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  // Cubit
+  late final profileCubit = context.read<ProfileCubit>();
+
+  // Fetch profileUser waktu buka page
+  @override
+  void initState() {
+    super.initState();
+    profileCubit.fetchProfileUser();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      builder: (context, profileState) {
+        if (profileState is ProfileLoaded) {
+          return Stack(
+            children: [
+              CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    pinned: true,
+                    title: MyText(text: "Profile", bold: true),
+                    centerTitle: true,
+                    backgroundColor: Colors.lightBlue[400],
+                    foregroundColor: Colors.white,
+                  ),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 10)),
+
+                  // Student Card
+                  SliverToBoxAdapter(child: ProfileStudentCardSection()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+                  // Profile Photo
+                  SliverToBoxAdapter(child: ProfilePhotoSection()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+                  // Profile Summary
+                  SliverToBoxAdapter(child: ProfileSummarySection()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 30)),
+
+                  // Logout Button
+                  SliverToBoxAdapter(child: ProfileLogoutSection()),
+                ],
+              ),
+            ],
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+      listener: (context, state) {
+        if (state is ProfileError) {
+          showAboutDialog(
+            context: context,
+            applicationName: "MyBudiLuhur",
+            children: [Text(state.message)],
+          );
+        }
+      },
+    );
+  }
+}

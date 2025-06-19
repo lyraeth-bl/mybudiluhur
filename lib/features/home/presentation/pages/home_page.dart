@@ -40,14 +40,8 @@ class HomePageState extends State<HomePage> {
                 slivers: [
                   SliverAppBar(
                     pinned: true,
-                    flexibleSpace: FlexibleSpaceBar(
-                      title: MyText(
-                        text: "MyBudiLuhur",
-                        textColor: Colors.white,
-                        bold: true,
-                      ),
-                      centerTitle: true,
-                    ),
+                    title: MyText(text: "MyBudiLuhur", bold: true),
+                    centerTitle: true,
                     backgroundColor: Colors.lightBlue[400],
                     foregroundColor: Colors.white,
                   ),

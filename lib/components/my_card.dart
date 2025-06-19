@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
   final Widget child;
-  const MyCard({super.key, required this.child});
+  final Color? color;
+  const MyCard({super.key, required this.child, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,7 @@ class MyCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
+          color: color,
           border: BoxBorder.all(color: Colors.black87),
           borderRadius: BorderRadius.circular(12),
         ),
