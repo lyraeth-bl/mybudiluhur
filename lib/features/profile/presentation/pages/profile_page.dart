@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    profileCubit.fetchProfileUser();
+    profileCubit.fetchProfileUser(nis: widget.nis);
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 
 abstract class ProfileUserRepository {
-  Future<ProfileUser?> fetchProfileUser();
+  Future<ProfileUser?> fetchProfileUser(String nis);
   Future<void> editProfileUser(ProfileUser profileUser);
   Future<void> uploadProfileImage(
     ProfileUser profileUser,

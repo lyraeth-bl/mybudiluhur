@@ -26,29 +26,37 @@ class ApiProfileUserRepository implements ProfileUserRepository {
   }
 
   @override
-  Future<ProfileUser?> fetchProfileUser() async {
-    final passwordSiswa = await secureStorage.read(key: "password");
-    final dataSiswa = await secureStorage.read(key: "siswa");
+  Future<ProfileUser?> fetchProfileUser(String nis) async {
+    final token = await secureStorage.read(key: "token");
 
-    if (dataSiswa == null) {
+    try {
+      final response = await http.get(
+        Uri.parse('$_apiUrl/$nis'),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final passwordUser = await secureStorage.read(key: "password");
+
+        return ProfileUser(
+          nis: nis,
+          nisn: data['NISN'],
+          nama: data['Nama'],
+          password: passwordUser,
+          tempLahir: data['TempLahir'],
+          tglLahir: data['TglLahir'],
+          email: data['Email'],
+          kelasSaatIni: data['KelasSaatIni'],
+          aktif: data['Aktif'],
+          statLulus: data['Stat_lulus'],
+          profileImageUrl: data['profileImageUrl'] ?? '',
+        );
+      }
+      return null;
+    } catch (e) {
       return null;
     }
-
-    final siswa = jsonDecode(dataSiswa);
-
-    return ProfileUser(
-      nis: siswa['NIS'],
-      nisn: siswa['NISN'],
-      nama: siswa['Nama'],
-      password: passwordSiswa,
-      tempLahir: siswa['TempLahir'] ?? '',
-      tglLahir: siswa['TglLahir'] ?? '',
-      email: siswa['Email'] ?? '',
-      kelasSaatIni: siswa['KelasSaatIni'] ?? '',
-      aktif: siswa['Aktif'] ?? '',
-      statLulus: siswa['Stat_lulus'] ?? '',
-      profileImageUrl: siswa['profileImageUrl'] ?? '',
-    );
   }
 
   @override
@@ -71,6 +79,7 @@ class ApiProfileUserRepository implements ProfileUserRepository {
               filename: fileName,
             ),
           );
+
     try {
       await uploadImage.send();
     } catch (e) {

@@ -16,6 +16,11 @@ class ProfilePasswordRight extends ProfileState {
   ProfilePasswordRight(this.isCheckedRight);
 }
 
+class ProfilePickedImage extends ProfileState {
+  bool isPicked;
+  ProfilePickedImage(this.isPicked);
+}
+
 class ProfileError extends ProfileState {
   final String message;
   ProfileError(this.message);

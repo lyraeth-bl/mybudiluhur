@@ -13,10 +13,10 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   ProfileCubit({required this.apiProfileUserRepository})
     : super(ProfileInitial());
 
-  Future<void> fetchProfileUser() async {
+  Future<void> fetchProfileUser({required String nis}) async {
     emit(ProfileLoading());
     final ProfileUser? profileUser = await apiProfileUserRepository
-        .fetchProfileUser();
+        .fetchProfileUser(nis);
 
     if (profileUser != null) {
       _profileUser = profileUser;
@@ -32,7 +32,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     emit(ProfileLoading());
 
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser();
+      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
       if (currentUser == null) {
         emit(ProfileError("Failed to fetch user for profile update"));
         return;
@@ -52,7 +52,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
         );
       }
 
-      await fetchProfileUser();
+      await fetchProfileUser(nis: nis);
     } catch (e) {
       emit(ProfileError("Error updating profile"));
     }
@@ -64,7 +64,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   }) async {
     emit(ProfileLoading());
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser();
+      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
       if (currentUser == null) {
         emit(ProfileError("User not found for image upload"));
         return;
@@ -78,7 +78,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
         fileName,
       );
 
-      await fetchProfileUser();
+      await fetchProfileUser(nis: nis);
     } catch (e) {
       emit(ProfileError("Failed to upload image"));
     }
@@ -86,6 +86,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
 
   void setSelectedImage(File file) {
     selectedImageFile = file;
+    emit(ProfilePickedImage(true));
   }
 
   Future<void> checkPassword({
@@ -93,7 +94,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     required String password,
   }) async {
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser();
+      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
 
       if (currentUser == null) {
         emit(ProfileError("Failed to fetch user for profile update"));

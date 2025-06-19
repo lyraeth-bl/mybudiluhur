@@ -8,10 +8,13 @@ class PasswordCheckCubit extends Cubit<PasswordCheckState> {
   PasswordCheckCubit({required this.apiProfileUserRepository})
     : super(PasswordCheckInitial());
 
-  Future<void> checkPassword({required String password}) async {
+  Future<void> checkPassword({
+    required String nis,
+    required String password,
+  }) async {
     emit(PasswordCheckLoading());
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser();
+      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
 
       if (currentUser == null) {
         emit(PasswordCheckError("User tidak ditemukan."));

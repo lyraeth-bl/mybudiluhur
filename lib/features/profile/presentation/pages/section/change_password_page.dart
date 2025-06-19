@@ -69,7 +69,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   // Logic Check Password
   void checkPassword() async {
+    final nis = widget.profileUser.nis;
+
     await passwordCheckCubit.checkPassword(
+      nis: nis,
       password: oldPasswordController.text,
     );
   }
@@ -106,15 +109,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             title: Text("Change Password"),
             centerTitle: true,
             backgroundColor: Colors.lightBlue[400],
+            foregroundColor: Colors.white,
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Container(
               padding: const EdgeInsets.all(5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
                   MyText(text: "Old Password", bold: true),
                   SizedBox(height: 10),
                   Row(
