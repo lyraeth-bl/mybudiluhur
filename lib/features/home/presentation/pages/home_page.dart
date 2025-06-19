@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
+import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/section/greetings_section.dart';
@@ -61,15 +64,16 @@ class HomePageState extends State<HomePage> {
             ],
           );
         } else {
-          return Center(child: CircularProgressIndicator());
+          return MyLoadingScreen(text: "Loading your home...");
         }
       },
       listener: (context, state) {
         if (state is HomeError) {
-          showAboutDialog(
+          showCupertinoDialog(
             context: context,
-            applicationName: "MyBudiLuhur",
-            children: [Text(state.message)],
+            builder: (BuildContext context) {
+              return MyCupertinoAlertDialog(text: state.message);
+            },
           );
         }
       },

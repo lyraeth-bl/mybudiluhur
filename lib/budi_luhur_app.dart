@@ -11,6 +11,7 @@ import 'package:mybudiluhur/features/home/presentation/cubit/greetings_cubit.dar
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/section/password_check_cubit.dart';
 
 class BudiLuhurApp extends StatefulWidget {
   const BudiLuhurApp({super.key});
@@ -57,6 +58,13 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) =>
               ProfileCubit(apiProfileUserRepository: apiProfileUserRepository),
+        ),
+
+        // Password Check Cubit Providers
+        BlocProvider(
+          create: (context) => PasswordCheckCubit(
+            apiProfileUserRepository: apiProfileUserRepository,
+          ),
         ),
       ],
       child: MaterialApp(

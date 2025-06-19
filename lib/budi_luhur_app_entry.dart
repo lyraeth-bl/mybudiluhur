@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
+import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_state.dart';
 import 'package:mybudiluhur/features/auth/presentation/pages/auth_page.dart';
@@ -22,26 +24,17 @@ class BudiLuhurAppEntry extends StatelessWidget {
         }
         // Loading...
         else {
-          return const Scaffold(
-            backgroundColor: Color(0xFFF5F7FA),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 10),
-                  Text("Loading..."),
-                ],
-              ),
-            ),
-          );
+          return MyLoadingScreen(text: "Loading...");
         }
       },
       listener: (context, state) {
         if (state is AuthError) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          showCupertinoDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return MyCupertinoAlertDialog(text: state.message);
+            },
+          );
         }
       },
     );

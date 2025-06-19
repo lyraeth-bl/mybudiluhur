@@ -5,6 +5,7 @@ import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_page_transition.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/pages/section/change_password_page.dart';
 
 class ProfilePhotoSection extends StatelessWidget {
   const ProfilePhotoSection({super.key});
@@ -49,15 +50,14 @@ class ProfilePhotoSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyContainer(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 7,
-                ),
-                color: Colors.lightBlue[400],
-                child: MyPageTransition.left(
-                  // TODO : Buat Halaman Detail Profile
-                  destination: SizedBox(),
+              MyPageTransition.left(
+                destination: SizedBox(),
+                child: MyContainer(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 7,
+                  ),
+                  color: Colors.lightBlue[400],
                   child: MyText(
                     text: "Detail Profile",
                     textColor: Colors.white,
@@ -66,15 +66,14 @@ class ProfilePhotoSection extends StatelessWidget {
                   ),
                 ),
               ),
-              MyContainer(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 7,
-                ),
-                color: Colors.lightBlue[400],
-                child: MyPageTransition.left(
-                  // TODO : Buat Ganti Password
-                  destination: SizedBox(),
+              MyPageTransition.left(
+                destination: ChangePasswordPage(profileUser: profileUserData),
+                child: MyContainer(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 7,
+                  ),
+                  color: Colors.lightBlue[400],
                   child: MyText(
                     text: "Change Picture",
                     textColor: Colors.white,
@@ -83,15 +82,14 @@ class ProfilePhotoSection extends StatelessWidget {
                   ),
                 ),
               ),
-              MyContainer(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 7,
-                ),
-                color: Colors.lightBlue[400],
-                child: MyPageTransition.left(
-                  // TODO : Buat Ganti Profile Picture
-                  destination: SizedBox(),
+              MyPageTransition.left(
+                destination: ChangePasswordPage(profileUser: profileUserData),
+                child: MyContainer(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 7,
+                  ),
+                  color: Colors.lightBlue[400],
                   child: MyText(
                     text: "Change Password",
                     textColor: Colors.white,
