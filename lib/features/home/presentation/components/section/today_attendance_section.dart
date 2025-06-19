@@ -45,7 +45,7 @@ class TodayAttendanceSection extends StatelessWidget {
                   color: Colors.amber[300],
                   child: MyText(
                     text: "Today's Attendance!",
-                    textSize: 18,
+                    textSize: 16,
                     bold: true,
                     textColor: Colors.black,
                   ),

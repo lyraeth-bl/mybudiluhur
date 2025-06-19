@@ -30,13 +30,13 @@ class GreetingsSection extends StatelessWidget {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        MyText(text: '$state ', textSize: 18),
+                        MyText(text: '$state ', textSize: 16),
                         MyContainer(
                           color: Colors.amber[300],
                           child: MyText(
                             text: '${homeUser!.nama}!',
                             bold: true,
-                            textSize: 18,
+                            textSize: 16,
                             textColor: Colors.black,
                           ),
                         ),
