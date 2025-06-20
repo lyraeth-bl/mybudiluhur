@@ -79,7 +79,10 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           );
         } else {
-          return MyLoadingScreen(text: "Loading your profile...");
+          return MyLoadingScreen(
+            text: "Loading your profile...",
+            title: "Profile",
+          );
         }
       },
       listener: (context, state) {

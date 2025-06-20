@@ -3,12 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 
-class DrawerPhotoProfile extends StatelessWidget {
-  const DrawerPhotoProfile({super.key});
+class DrawerPhotoProfile extends StatefulWidget {
+  final String nis;
+  const DrawerPhotoProfile({super.key, required this.nis});
+
+  @override
+  State<DrawerPhotoProfile> createState() => _DrawerPhotoProfileState();
+}
+
+class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
+  // Cubit
+  late final homeCubit = context.read<HomeCubit>();
 
   @override
   Widget build(BuildContext context) {
-    final homeUserData = context.read<HomeCubit>().currentHomeUser;
+    final homeUserData = homeCubit.currentHomeUser;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       child: Column(

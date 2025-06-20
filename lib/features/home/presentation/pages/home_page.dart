@@ -61,7 +61,10 @@ class HomePageState extends State<HomePage> {
             ],
           );
         } else {
-          return MyLoadingScreen(text: "Loading your home...");
+          return MyLoadingScreen(
+            text: "Loading your home...",
+            title: "MyBudiLuhur",
+          );
         }
       },
       listener: (context, state) {
