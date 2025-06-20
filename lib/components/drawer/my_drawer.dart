@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/drawer/drawer_list_menu.dart';
 import 'package:mybudiluhur/components/drawer/drawer_photo_profile.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
-import 'package:mybudiluhur/components/my_text.dart';
-import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -24,13 +23,8 @@ class _MyDrawerState extends State<MyDrawer> {
           children: [
             // Photo Profile
             DrawerPhotoProfile(nis: homeUser!.nis),
-            MyDivider(),
-            ElevatedButton(
-              onPressed: () {
-                context.read<AuthCubit>().logout();
-              },
-              child: MyText(text: "Logout"),
-            ),
+            MyDivider(padding: EdgeInsets.all(0)),
+            Expanded(child: DrawerListMenu()),
           ],
         ),
       ),
