@@ -86,7 +86,6 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
 
   void setSelectedImage(File file) {
     selectedImageFile = file;
-    emit(ProfilePickedImage(true));
   }
 
   Future<void> checkPassword({

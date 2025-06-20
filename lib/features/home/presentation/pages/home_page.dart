@@ -5,15 +5,14 @@ import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
-import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/section/greetings_section.dart';
 import 'package:mybudiluhur/features/home/presentation/components/section/today_attendance_section.dart';
-import 'package:mybudiluhur/features/home/presentation/cubit/greetings_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_state.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String nis;
+  const HomePage({super.key, required this.nis});
 
   @override
   State<HomePage> createState() => HomePageState();
@@ -21,15 +20,13 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   // Cubit
-  late final authCubit = context.read<AuthCubit>();
-  late final greetingCubit = context.read<GreetingsCubit>();
   late final homeCubit = context.read<HomeCubit>();
 
   // ketika page dibuka fetch data
   @override
   void initState() {
     super.initState();
-    homeCubit.fetchHomeUser();
+    homeCubit.fetchHomeUser(nis: widget.nis);
   }
 
   @override

@@ -7,6 +7,7 @@ import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/pages/section/change_password_page.dart';
 import 'package:mybudiluhur/features/profile/presentation/pages/section/change_picture_page.dart';
+import 'package:mybudiluhur/features/profile/presentation/pages/section/detail_profile_page.dart';
 
 class ProfilePhotoSection extends StatelessWidget {
   const ProfilePhotoSection({super.key});
@@ -51,8 +52,8 @@ class ProfilePhotoSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyPageTransition.left(
-                destination: SizedBox(),
+              MyPageTransition.right(
+                destination: DetailProfilePage(),
                 child: MyContainer(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
@@ -67,7 +68,7 @@ class ProfilePhotoSection extends StatelessWidget {
                   ),
                 ),
               ),
-              MyPageTransition.left(
+              MyPageTransition.top(
                 destination: ChangePicturePage(profileUser: profileUserData),
                 child: MyContainer(
                   padding: const EdgeInsets.symmetric(

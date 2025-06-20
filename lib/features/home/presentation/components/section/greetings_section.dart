@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/home/domain/entities/home_user.dart';
-import 'package:mybudiluhur/features/home/presentation/cubit/greetings_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/section/greetings_cubit.dart';
 
 class GreetingsSection extends StatelessWidget {
   const GreetingsSection({super.key});

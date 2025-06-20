@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_page_transition.dart';
 import 'package:mybudiluhur/components/my_text.dart';
-import 'package:mybudiluhur/features/home/presentation/cubit/date_cubit.dart';
-import 'package:mybudiluhur/features/home/presentation/cubit/days_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/section/date_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/section/days_cubit.dart';
 
 class TodayAttendanceSection extends StatelessWidget {
   const TodayAttendanceSection({super.key});

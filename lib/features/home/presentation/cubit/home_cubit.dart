@@ -8,9 +8,11 @@ class HomeCubit extends HydratedCubit<HomeState> {
   HomeUser? _currentHomeUser;
   HomeCubit({required this.apiHomeUserRepository}) : super(HomeInitial());
 
-  void fetchHomeUser() async {
+  Future<void> fetchHomeUser({required String nis}) async {
     emit(HomeLoading());
-    final HomeUser? homeUser = await apiHomeUserRepository.fetchHomeUserData();
+    final HomeUser? homeUser = await apiHomeUserRepository.fetchHomeUserData(
+      nis,
+    );
 
     if (homeUser != null) {
       _currentHomeUser = homeUser;

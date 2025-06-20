@@ -11,6 +11,8 @@ import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_state.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_state.dart';
 
 class ChangePicturePage extends StatefulWidget {
   final ProfileUser profileUser;
@@ -23,6 +25,7 @@ class ChangePicturePage extends StatefulWidget {
 class _ChangePicturePageState extends State<ChangePicturePage> {
   // Cubit
   late final profileCubit = context.read<ProfileCubit>();
+  late final profilePictureCubit = context.read<ProfilePictureCubit>();
 
   // Logic Save Button
   void updateProfile() async {
@@ -60,18 +63,26 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
       if (!mounted) return;
 
       context.read<ProfileCubit>().setSelectedImage(file);
+      context.read<ProfilePictureCubit>().setSelectedImage();
     }
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<ProfilePictureCubit>().reset();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileCubit, ProfileState>(
-      builder: (context, profileState) {
+    return BlocConsumer<ProfilePictureCubit, ProfilePictureState>(
+      builder: (context, profilePictureState) {
+        final profileState = context.watch<ProfileCubit>().state;
         if (profileState is ProfileLoading) {
           return MyLoadingScreen(text: "Saving your profile picture...");
         }
 
-        final isPickedFile = profileState is ProfilePickedImage;
+        final isPickedFile = profilePictureState is ProfilePictureSuccess;
         return Scaffold(
           appBar: AppBar(
             title: MyText(text: "Edit Profile Picture"),
@@ -165,7 +176,7 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
         );
       },
       listener: (context, state) {
-        if (state is ProfileError) {
+        if (state is ProfilePictureError) {
           showCupertinoDialog(
             context: context,
             builder: (BuildContext context) {

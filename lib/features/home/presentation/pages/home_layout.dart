@@ -18,13 +18,15 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeLayoutState extends State<HomeLayout> {
+  // Cubit
+  late final user = context.read<AuthCubit>().currentUser;
+
   // getPage
   Widget getPage(int index) {
-    late final user = context.read<AuthCubit>().currentUser;
     late Widget page;
     switch (index) {
       case 0:
-        page = const HomePage();
+        page = HomePage(nis: user!.nis);
         break;
       case 1:
         page = const SizedBox();
@@ -36,15 +38,13 @@ class _HomeLayoutState extends State<HomeLayout> {
         page = ProfilePage(nis: user!.nis);
         break;
       default:
-        page = const HomePage();
+        page = HomePage(nis: user!.nis);
     }
     return page;
   }
 
   @override
   Widget build(BuildContext context) {
-    // Ambil data user login
-    late final user = context.read<AuthCubit>().currentUser;
     // ambil nis nya untuk QR Code
     String nis = user!.nis;
     return BlocBuilder<BottomMenuBloc, BottomMenuState>(
