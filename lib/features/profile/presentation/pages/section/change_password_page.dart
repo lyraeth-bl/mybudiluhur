@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
@@ -159,30 +160,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         )
                       : SizedBox.shrink(),
                   SizedBox(height: 20),
-                  isPasswordVerified
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: changePassword,
-                              child: MyContainer(
-                                color: Colors.lightBlue[400],
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 5,
-                                ),
-                                child: MyText(
-                                  text: "Save",
-                                  textColor: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : SizedBox.shrink(),
                 ],
               ),
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: changePassword,
+            backgroundColor: Colors.lightBlue[400],
+            foregroundColor: Colors.white,
+            child: FaIcon(FontAwesomeIcons.floppyDisk),
           ),
         );
       },

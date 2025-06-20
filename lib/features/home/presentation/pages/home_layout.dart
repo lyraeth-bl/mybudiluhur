@@ -62,6 +62,8 @@ class _HomeLayoutState extends State<HomeLayout> {
           // Icon / Tombol QR
           floatingActionButton: FloatingActionButton(
             elevation: 5,
+            backgroundColor: Colors.lightBlue[400],
+            foregroundColor: Colors.white,
             onPressed: () {
               showModalBottomSheet(
                 context: context,

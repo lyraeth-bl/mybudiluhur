@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
@@ -30,7 +30,14 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
   // Logic Save Button
   void updateProfile() async {
     final nis = widget.profileUser.nis;
-
+    if (_selectedImageFile == null) {
+      return showCupertinoDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return MyCupertinoAlertDialog(text: "Pick an Image first to save");
+        },
+      );
+    }
     await profileCubit.updateProfile(nis: nis);
 
     if (!mounted) return;
@@ -154,24 +161,14 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                   ],
                 ),
                 SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: updateProfile,
-                      child: MyContainer(
-                        color: Colors.lightBlue[400],
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 5,
-                        ),
-                        child: MyText(text: "Save", textColor: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: updateProfile,
+            backgroundColor: Colors.lightBlue[400],
+            foregroundColor: Colors.white,
+            child: FaIcon(FontAwesomeIcons.floppyDisk),
           ),
         );
       },
