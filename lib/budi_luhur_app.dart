@@ -10,7 +10,9 @@ import 'package:mybudiluhur/features/home/presentation/cubit/section/date_cubit.
 import 'package:mybudiluhur/features/home/presentation/cubit/section/days_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/section/greetings_cubit.dart';
 import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
+import 'package:mybudiluhur/features/profile/data/local_detail_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/section/detail_profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/password_check_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_cubit.dart';
 
@@ -26,6 +28,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   final apiAuthRepository = ApiAuthRepository();
   final apiHomeUserRepository = ApiHomeUserRepository();
   final apiProfileUserRepository = ApiProfileUserRepository();
+  final localDetailProfileUserRepository = LocalDetailProfileUserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,13 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) => PasswordCheckCubit(
             apiProfileUserRepository: apiProfileUserRepository,
+          ),
+        ),
+
+        // Detail Profile Cubit Providers
+        BlocProvider(
+          create: (context) => DetailProfileCubit(
+            localDetailProfileUserRepository: localDetailProfileUserRepository,
           ),
         ),
       ],

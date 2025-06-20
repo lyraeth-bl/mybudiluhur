@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
+import 'package:mybudiluhur/features/profile/presentation/components/section/profile_botton_edit.dart';
 import 'package:mybudiluhur/features/profile/presentation/components/section/profile_logout_section.dart';
 import 'package:mybudiluhur/features/profile/presentation/components/section/profile_photo_section.dart';
 import 'package:mybudiluhur/features/profile/presentation/components/section/profile_student_card_section.dart';
@@ -47,17 +48,22 @@ class _ProfilePageState extends State<ProfilePage> {
                     foregroundColor: Colors.white,
                   ),
 
-                  SliverToBoxAdapter(child: SizedBox(height: 10)),
-
-                  // Student Card
-                  SliverToBoxAdapter(child: ProfileStudentCardSection()),
-
-                  SliverToBoxAdapter(child: SizedBox(height: 20)),
+                  SliverToBoxAdapter(child: SizedBox(height: 50)),
 
                   // Profile Photo
                   SliverToBoxAdapter(child: ProfilePhotoSection()),
 
                   SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+                  // Change Profile and Password
+                  SliverToBoxAdapter(child: ProfileBottonEdit()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 40)),
+
+                  // Student Card
+                  SliverToBoxAdapter(child: ProfileStudentCardSection()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 40)),
 
                   // Profile Summary
                   SliverToBoxAdapter(child: ProfileSummarySection()),
@@ -66,6 +72,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   // Logout Button
                   SliverToBoxAdapter(child: ProfileLogoutSection()),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 30)),
                 ],
               ),
             ],

@@ -1,13 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mybudiluhur/components/my_container.dart';
-import 'package:mybudiluhur/components/my_page_transition.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
-import 'package:mybudiluhur/features/profile/presentation/pages/section/change_password_page.dart';
-import 'package:mybudiluhur/features/profile/presentation/pages/section/change_picture_page.dart';
-import 'package:mybudiluhur/features/profile/presentation/pages/section/detail_profile_page.dart';
 
 class ProfilePhotoSection extends StatelessWidget {
   const ProfilePhotoSection({super.key});
@@ -47,61 +42,18 @@ class ProfilePhotoSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyPageTransition.right(
-                destination: DetailProfilePage(),
-                child: MyContainer(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 7,
-                  ),
-                  color: Colors.lightBlue[400],
-                  child: MyText(
-                    text: "Detail Profile",
-                    textColor: Colors.white,
-                    bold: true,
-                    textSize: 15,
-                  ),
-                ),
-              ),
-              MyPageTransition.top(
-                destination: ChangePicturePage(profileUser: profileUserData),
-                child: MyContainer(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 7,
-                  ),
-                  color: Colors.lightBlue[400],
-                  child: MyText(
-                    text: "Change Picture",
-                    textColor: Colors.white,
-                    bold: true,
-                    textSize: 15,
-                  ),
-                ),
-              ),
-              MyPageTransition.left(
-                destination: ChangePasswordPage(profileUser: profileUserData),
-                child: MyContainer(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 7,
-                  ),
-                  color: Colors.lightBlue[400],
-                  child: MyText(
-                    text: "Change Password",
-                    textColor: Colors.white,
-                    bold: true,
-                    textSize: 15,
-                  ),
-                ),
-              ),
-            ],
-          ),
+        MyText(text: profileUserData.nama, bold: true, textSize: 25),
+        const SizedBox(height: 5),
+        MyText(
+          text: profileUserData.email,
+          textSize: 20,
+          textColor: Colors.grey[700],
+        ),
+        const SizedBox(height: 5),
+        MyText(
+          text: profileUserData.kelasSaatIni,
+          textSize: 20,
+          textColor: Colors.grey[700],
         ),
       ],
     );

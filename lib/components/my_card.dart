@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 class MyCard extends StatelessWidget {
   final Widget child;
   final Color? color;
-  const MyCard({super.key, required this.child, this.color});
+  final EdgeInsetsGeometry padding;
+  const MyCard({
+    super.key,
+    required this.child,
+    this.color,
+    this.padding = const EdgeInsets.symmetric(horizontal: 15),
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: padding,
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
