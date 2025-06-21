@@ -26,7 +26,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    homeCubit.fetchHomeUser(nis: widget.nis);
+    homeCubit.fetchData();
   }
 
   @override

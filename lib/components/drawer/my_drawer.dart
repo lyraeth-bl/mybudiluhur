@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/drawer/drawer_list_menu.dart';
 import 'package:mybudiluhur/components/drawer/drawer_photo_profile.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/home_state.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -11,20 +14,38 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  // Cubit
+  late final homeCubit = context.read<HomeCubit>();
+
+  // ketika page dibuka fetch data
+  @override
+  void initState() {
+    super.initState();
+    homeCubit.fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Photo Profile
-            DrawerPhotoProfile(),
-            MyDivider(padding: EdgeInsets.all(0)),
-            Expanded(child: DrawerListMenu()),
-          ],
-        ),
-      ),
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is HomeLoaded) {
+          final user = state.homeUser;
+          return Drawer(
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Photo Profile
+                  DrawerPhotoProfile(homeUser: user),
+                  MyDivider(padding: EdgeInsets.all(0)),
+                  Expanded(child: DrawerListMenu()),
+                ],
+              ),
+            ),
+          );
+        }
+        return Scaffold();
+      },
     );
   }
 }
