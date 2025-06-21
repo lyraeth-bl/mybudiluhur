@@ -10,22 +10,6 @@ class ApiProfileUserRepository implements ProfileUserRepository {
   final _apiUrl = ApiUrl.profileBaseUrl;
 
   @override
-  Future<void> editProfileUser(ProfileUser profileUser) async {
-    final token = await secureStorage.read(key: "token");
-
-    try {
-      await http.put(
-        Uri.parse('$_apiUrl/${profileUser.nis}'),
-        headers: {'Authorization': 'Bearer $token'},
-        body: {'Password': profileUser.password},
-      );
-      await secureStorage.write(key: "password", value: profileUser.password);
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  @override
   Future<ProfileUser?> fetchProfileUser() async {
     final dataSiswa = await secureStorage.read(key: "siswa");
 
@@ -47,6 +31,22 @@ class ApiProfileUserRepository implements ProfileUserRepository {
       statLulus: data['Stat_lulus'] ?? '',
       profileImageUrl: data['profileImageUrl'] ?? '',
     );
+  }
+
+  @override
+  Future<void> editProfileUser(ProfileUser profileUser) async {
+    final token = await secureStorage.read(key: "token");
+
+    try {
+      await http.put(
+        Uri.parse('$_apiUrl/${profileUser.nis}'),
+        headers: {'Authorization': 'Bearer $token'},
+        body: {'Password': profileUser.password},
+      );
+      await secureStorage.write(key: "password", value: profileUser.password);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   @override

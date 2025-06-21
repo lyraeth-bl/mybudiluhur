@@ -35,6 +35,15 @@ class HomeCubit extends HydratedCubit<HomeState> {
 
   HomeUser? get currentHomeUser => _currentHomeUser;
 
+  Future<void> refreshData(String nis) async {
+    emit(HomeLoading());
+    try {
+      await apiHomeUserRepository.refreshData(nis);
+    } catch (e) {
+      emit(HomeError(e.toString()));
+    }
+  }
+
   @override
   HomeState fromJson(Map<String, dynamic> json) {
     return HomeLoaded(HomeUser.fromMap(json));

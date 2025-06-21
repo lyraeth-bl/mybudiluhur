@@ -6,6 +6,7 @@ import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bottom_navigation_menu.dart.dart';
+import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/pages/home_page.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/pages/profile_page.dart';
@@ -19,9 +20,23 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeLayoutState extends State<HomeLayout> {
-  // Cubit
+  // Cubit for get data
   late final user = context.read<AuthCubit>().currentUser;
   late final profileUser = context.read<ProfileCubit>().currentProfileUser;
+
+  // Cubit
+  late final homeCubit = context.read<HomeCubit>();
+  late final profileCubit = context.read<ProfileCubit>();
+
+  // refresh function
+  Future<void> _refresh() async {
+    await homeCubit.clear();
+    await profileCubit.clear();
+    await homeCubit.refreshData(user!.nis);
+    await homeCubit.fetchData();
+    await profileCubit.fetchProfileUser();
+    return Future.delayed(Duration(seconds: 2));
+  }
 
   // getPage
   Widget getPage(int index) {
@@ -52,17 +67,16 @@ class _HomeLayoutState extends State<HomeLayout> {
     return BlocBuilder<BottomMenuBloc, BottomMenuState>(
       builder: (context, state) {
         return Scaffold(
-          // Body Page
-          body: getPage(state.currentIndex),
-
           // Body dengan refresh
-          // // TODO: Refresh masih error
-          // body: RefreshIndicator(
-          //   child: getPage(state.currentIndex),
-          //   onRefresh: () {
-          //     return onRefresh();
-          //   },
-          // ),
+          body: RefreshIndicator(
+            onRefresh: _refresh,
+            backgroundColor: Colors.lightBlue[400],
+            color: Colors.white,
+            strokeWidth: 3,
+            displacement: 95,
+            triggerMode: RefreshIndicatorTriggerMode.onEdge,
+            child: getPage(state.currentIndex),
+          ),
 
           // Botton Menu Navigation
           bottomNavigationBar: const BottomNavigationMenu(),
