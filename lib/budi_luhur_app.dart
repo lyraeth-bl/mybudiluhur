@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/budi_luhur_app_entry.dart';
@@ -83,6 +85,9 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: PointerDeviceKind.values.toSet(),
+        ),
         title: "MyBudiLuhur",
         theme: ThemeData(fontFamily: "Sniglet"),
         home: const BudiLuhurAppEntry(),

@@ -7,6 +7,7 @@ import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bottom_navigation_menu.dart.dart';
 import 'package:mybudiluhur/features/home/presentation/pages/home_page.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/pages/profile_page.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -20,6 +21,7 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   // Cubit
   late final user = context.read<AuthCubit>().currentUser;
+  late final profileUser = context.read<ProfileCubit>().currentProfileUser;
 
   // getPage
   Widget getPage(int index) {
@@ -35,7 +37,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         page = const SizedBox();
         break;
       case 3:
-        page = ProfilePage(nis: user!.nis);
+        page = ProfilePage();
         break;
       default:
         page = HomePage(nis: user!.nis);
@@ -50,8 +52,17 @@ class _HomeLayoutState extends State<HomeLayout> {
     return BlocBuilder<BottomMenuBloc, BottomMenuState>(
       builder: (context, state) {
         return Scaffold(
-          // Body tiap Page
+          // Body Page
           body: getPage(state.currentIndex),
+
+          // Body dengan refresh
+          // // TODO: Refresh masih error
+          // body: RefreshIndicator(
+          //   child: getPage(state.currentIndex),
+          //   onRefresh: () {
+          //     return onRefresh();
+          //   },
+          // ),
 
           // Botton Menu Navigation
           bottomNavigationBar: const BottomNavigationMenu(),

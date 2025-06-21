@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/components/login_button.dart';
 import 'package:mybudiluhur/features/auth/presentation/components/login_text_field.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
@@ -59,10 +60,7 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(height: 20),
 
               const SizedBox(height: 10),
-              Text(
-                "Selamat datang di MyBudiLuhur",
-                style: TextStyle(fontSize: 20),
-              ),
+              MyText(text: "Selamat datang di MyBudiLuhur", textSize: 20),
               const SizedBox(height: 20),
 
               Container(

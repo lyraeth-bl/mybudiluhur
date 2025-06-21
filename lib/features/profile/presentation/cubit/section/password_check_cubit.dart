@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/core/storage/flutter_secure_storage.dart';
 import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/password_check_state.dart';
 
@@ -14,17 +15,17 @@ class PasswordCheckCubit extends Cubit<PasswordCheckState> {
   }) async {
     emit(PasswordCheckLoading());
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
+      final passwordUser = await secureStorage.read(key: "password");
 
-      if (currentUser == null) {
+      if (passwordUser == null) {
         emit(PasswordCheckError("User tidak ditemukan."));
         return;
       }
 
-      if (password == currentUser.password) {
+      if (password == passwordUser) {
         emit(PasswordCheckSuccess());
       } else {
-        emit(PasswordCheckError("Password salah."));
+        emit(PasswordCheckError("Password tidak sama."));
       }
     } catch (e) {
       emit(PasswordCheckError("Gagal verifikasi password."));

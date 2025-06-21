@@ -3,9 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 
-class ProfileLogoutSection extends StatelessWidget {
+class ProfileLogoutSection extends StatefulWidget {
   const ProfileLogoutSection({super.key});
+
+  @override
+  State<ProfileLogoutSection> createState() => _ProfileLogoutSectionState();
+}
+
+class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
+  void logout() {
+    context.read<ProfileCubit>().clear();
+    context.read<AuthCubit>().logout();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +29,7 @@ class ProfileLogoutSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             color: Colors.red,
             child: GestureDetector(
-              onTap: () {
-                context.read<AuthCubit>().logout();
-              },
+              onTap: logout,
               child: MyText(text: "Logout", textColor: Colors.white),
             ),
           ),

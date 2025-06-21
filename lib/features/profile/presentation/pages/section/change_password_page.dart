@@ -82,7 +82,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   @override
   void initState() {
     super.initState();
-    context.read<PasswordCheckCubit>().reset();
+    passwordCheckCubit.reset();
   }
 
   // Dispose semua Text

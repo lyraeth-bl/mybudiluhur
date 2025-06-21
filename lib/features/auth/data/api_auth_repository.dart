@@ -51,7 +51,7 @@ class ApiAuthRepository implements AuthRepository {
         await secureStorage.write(key: "siswa", value: jsonEncode(dataSiswa));
 
         /// Menyimpan data ke [AppUser]
-        AppUser user = AppUser(nis: dataSiswa['NIS'], password: password);
+        AppUser user = AppUser(nis: dataSiswa['NIS']);
 
         return user;
       }
@@ -72,7 +72,6 @@ class ApiAuthRepository implements AuthRepository {
   @override
   Future<AppUser?> getCurrentUser() async {
     final siswa = await secureStorage.read(key: "siswa");
-    final passwordUser = await secureStorage.read(key: "password");
 
     if (siswa == null) {
       return null;
@@ -80,6 +79,6 @@ class ApiAuthRepository implements AuthRepository {
 
     final dataSiswa = jsonDecode(siswa);
 
-    return AppUser(nis: dataSiswa['NIS'], password: passwordUser);
+    return AppUser(nis: dataSiswa['NIS']);
   }
 }

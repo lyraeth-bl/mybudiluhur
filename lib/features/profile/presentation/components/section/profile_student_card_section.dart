@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_text.dart';
-import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 
-class ProfileStudentCardSection extends StatelessWidget {
-  const ProfileStudentCardSection({super.key});
+class ProfileStudentCardSection extends StatefulWidget {
+  final ProfileUser profileUser;
+  const ProfileStudentCardSection({super.key, required this.profileUser});
 
   @override
+  State<ProfileStudentCardSection> createState() =>
+      _ProfileStudentCardSectionState();
+}
+
+class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
+  @override
   Widget build(BuildContext context) {
-    final user = context.read<ProfileCubit>().currentProfileUser;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
@@ -55,7 +60,7 @@ class ProfileStudentCardSection extends StatelessWidget {
                   children: [
                     MyText(text: "Student Card", textSize: 25, bold: true),
                     SizedBox(height: 10),
-                    MyText(text: user!.nama, textSize: 15),
+                    MyText(text: widget.profileUser.nama, textSize: 15),
                     SizedBox(height: 15),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -71,12 +76,15 @@ class ProfileStudentCardSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MyText(
-                            text: 'NIS: ${user.nis}',
+                            text: 'NIS: ${widget.profileUser.nis}',
                             textColor: Colors.black,
                             bold: true,
                           ),
                           MyText(text: " | "),
-                          MyText(text: 'NISN: ${user.nisn}', bold: true),
+                          MyText(
+                            text: 'NISN: ${widget.profileUser.nisn}',
+                            bold: true,
+                          ),
                         ],
                       ),
                     ),

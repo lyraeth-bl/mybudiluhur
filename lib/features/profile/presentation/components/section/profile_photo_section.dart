@@ -1,15 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_text.dart';
-import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 
-class ProfilePhotoSection extends StatelessWidget {
-  const ProfilePhotoSection({super.key});
+class ProfilePhotoSection extends StatefulWidget {
+  final ProfileUser profileUser;
+  const ProfilePhotoSection({super.key, required this.profileUser});
 
   @override
+  State<ProfilePhotoSection> createState() => _ProfilePhotoSectionState();
+}
+
+class _ProfilePhotoSectionState extends State<ProfilePhotoSection> {
+  @override
   Widget build(BuildContext context) {
-    final profileUserData = context.read<ProfileCubit>().currentProfileUser;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,7 +32,7 @@ class ProfilePhotoSection extends StatelessWidget {
               child: ClipOval(
                 child: CachedNetworkImage(
                   imageUrl:
-                      'https://laravelbackend.jh-beon.cloud/smk/public/${profileUserData!.profileImageUrl}',
+                      'https://laravelbackend.jh-beon.cloud/smk/public/${widget.profileUser.profileImageUrl}',
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,
@@ -42,16 +46,16 @@ class ProfilePhotoSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        MyText(text: profileUserData.nama, bold: true, textSize: 25),
+        MyText(text: widget.profileUser.nama, bold: true, textSize: 25),
         const SizedBox(height: 5),
         MyText(
-          text: profileUserData.email,
+          text: widget.profileUser.email,
           textSize: 20,
           textColor: Colors.grey[700],
         ),
         const SizedBox(height: 5),
         MyText(
-          text: profileUserData.kelasSaatIni,
+          text: widget.profileUser.kelasSaatIni,
           textSize: 20,
           textColor: Colors.grey[700],
         ),

@@ -1,23 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 
 class DrawerPhotoProfile extends StatefulWidget {
-  final String nis;
-  const DrawerPhotoProfile({super.key, required this.nis});
+  const DrawerPhotoProfile({super.key});
 
   @override
   State<DrawerPhotoProfile> createState() => _DrawerPhotoProfileState();
 }
 
 class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
-  // Cubit
-  late final homeCubit = context.read<HomeCubit>();
-
   @override
   Widget build(BuildContext context) {
-    final homeUserData = homeCubit.currentHomeUser;
+    final homeUser = context.read<HomeCubit>().currentHomeUser;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       child: Column(
@@ -36,7 +33,7 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://laravelbackend.jh-beon.cloud/smk/public/${homeUserData!.profileImageUrl}',
+                        'https://laravelbackend.jh-beon.cloud/smk/public/${homeUser!.profileImageUrl}',
                     width: 120,
                     height: 120,
                     fit: BoxFit.cover,
@@ -50,7 +47,7 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
             ),
           ),
           const SizedBox(height: 20),
-          Text(homeUserData.nama, style: TextStyle(fontSize: 16)),
+          MyText(text: homeUser.nama, textSize: 16),
           const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -58,10 +55,7 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
               color: Colors.black87,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Text(
-              homeUserData.nis,
-              style: TextStyle(color: Colors.white),
-            ),
+            child: MyText(text: homeUser.nis, textColor: Colors.white),
           ),
         ],
       ),

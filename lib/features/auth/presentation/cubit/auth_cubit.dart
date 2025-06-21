@@ -69,14 +69,12 @@ class AuthCubit extends Cubit<AuthState> {
   /// - [logout]: Melakukan proses logout dan mengubah state menjadi [Unauthenticated].
   Future<void> logout() async {
     apiAuthRepository.logout();
-    await Future.delayed(Duration(milliseconds: 300));
     emit(Unauthenticated());
   }
 
   /// For Test [AuthCubitTest]
   Future<void> initialize() async {
     emit(AuthInitial());
-    await Future.delayed(Duration(milliseconds: 300));
     emit(Unauthenticated());
   }
 }

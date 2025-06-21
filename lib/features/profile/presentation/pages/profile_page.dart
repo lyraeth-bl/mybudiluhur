@@ -13,8 +13,7 @@ import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.da
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_state.dart';
 
 class ProfilePage extends StatefulWidget {
-  final String nis;
-  const ProfilePage({super.key, required this.nis});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -28,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    profileCubit.fetchProfileUser(nis: widget.nis);
+    profileCubit.fetchProfileUser();
   }
 
   @override
@@ -36,6 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocConsumer<ProfileCubit, ProfileState>(
       builder: (context, profileState) {
         if (profileState is ProfileLoaded) {
+          final user = profileState.profileUser;
           return Stack(
             children: [
               CustomScrollView(
@@ -51,23 +51,27 @@ class _ProfilePageState extends State<ProfilePage> {
                   SliverToBoxAdapter(child: SizedBox(height: 50)),
 
                   // Profile Photo
-                  SliverToBoxAdapter(child: ProfilePhotoSection()),
-
+                  SliverToBoxAdapter(
+                    child: ProfilePhotoSection(profileUser: user),
+                  ),
                   SliverToBoxAdapter(child: SizedBox(height: 20)),
 
                   // Change Profile and Password
-                  SliverToBoxAdapter(child: ProfileBottonEdit()),
-
+                  SliverToBoxAdapter(
+                    child: ProfileBottonEdit(profileUser: user),
+                  ),
                   SliverToBoxAdapter(child: SizedBox(height: 40)),
 
                   // Student Card
-                  SliverToBoxAdapter(child: ProfileStudentCardSection()),
-
+                  SliverToBoxAdapter(
+                    child: ProfileStudentCardSection(profileUser: user),
+                  ),
                   SliverToBoxAdapter(child: SizedBox(height: 40)),
 
                   // Profile Summary
-                  SliverToBoxAdapter(child: ProfileSummarySection()),
-
+                  SliverToBoxAdapter(
+                    child: ProfileSummarySection(profileUser: user),
+                  ),
                   SliverToBoxAdapter(child: SizedBox(height: 30)),
 
                   // Logout Button

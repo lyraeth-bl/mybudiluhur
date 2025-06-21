@@ -13,16 +13,25 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   ProfileCubit({required this.apiProfileUserRepository})
     : super(ProfileInitial());
 
-  Future<void> fetchProfileUser({required String nis}) async {
+  Future<void> fetchProfileUser() async {
     emit(ProfileLoading());
-    final ProfileUser? profileUser = await apiProfileUserRepository
-        .fetchProfileUser(nis);
-
-    if (profileUser != null) {
-      _profileUser = profileUser;
-      emit(ProfileLoaded(profileUser));
-    } else {
-      emit(ProfileError("Failed to fetch data ProfileUser"));
+    try {
+      final profileUser = await apiProfileUserRepository.fetchProfileUser();
+      if (profileUser != null) {
+        emit(ProfileLoaded(profileUser));
+      } else {
+        if (state is ProfileLoaded) {
+          emit(state);
+        } else {
+          emit(ProfileError("Data ProfileUser tidak ditemukan"));
+        }
+      }
+    } catch (e) {
+      if (state is ProfileLoaded) {
+        emit(state);
+      } else {
+        emit(ProfileError(e.toString()));
+      }
     }
   }
 
@@ -32,7 +41,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     emit(ProfileLoading());
 
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
+      final currentUser = await apiProfileUserRepository.fetchProfileUser();
       if (currentUser == null) {
         emit(ProfileError("Failed to fetch user for profile update"));
         return;
@@ -52,7 +61,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
         );
       }
 
-      await fetchProfileUser(nis: nis);
+      await fetchProfileUser();
     } catch (e) {
       emit(ProfileError("Error updating profile"));
     }
@@ -64,7 +73,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   }) async {
     emit(ProfileLoading());
     try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
+      final currentUser = await apiProfileUserRepository.fetchProfileUser();
       if (currentUser == null) {
         emit(ProfileError("User not found for image upload"));
         return;
@@ -78,7 +87,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
         fileName,
       );
 
-      await fetchProfileUser(nis: nis);
+      await fetchProfileUser();
     } catch (e) {
       emit(ProfileError("Failed to upload image"));
     }
@@ -88,41 +97,16 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     selectedImageFile = file;
   }
 
-  Future<void> checkPassword({
-    required String nis,
-    required String password,
-  }) async {
-    try {
-      final currentUser = await apiProfileUserRepository.fetchProfileUser(nis);
-
-      if (currentUser == null) {
-        emit(ProfileError("Failed to fetch user for profile update"));
-        return;
-      }
-
-      if (password == currentUser.password) {
-        return emit(ProfilePasswordRight(true));
-      } else {
-        return emit(ProfileError("Password not match"));
-      }
-    } catch (e) {
-      emit(ProfileError("Failed to check user password"));
-    }
+  @override
+  ProfileState fromJson(Map<String, dynamic> json) {
+    return ProfileLoaded(ProfileUser.fromMap(json));
   }
 
   @override
-  ProfileState? fromJson(Map<String, dynamic> json) {
-    if (json['profileUser'] != null) {
-      return ProfileLoaded(ProfileUser.fromMap(json['profileUser']));
-    }
-    return ProfileError("Failed to fetch user fromJson");
-  }
-
-  @override
-  Map<String, dynamic>? toJson(ProfileState state) {
+  Map<String, dynamic> toJson(ProfileState state) {
     if (state is ProfileLoaded) {
-      return {'profileUser': state.profileUser.toMap()};
+      return state.profileUser.toMap();
     }
-    return null;
+    return {};
   }
 }
