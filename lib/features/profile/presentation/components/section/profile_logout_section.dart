@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 
 class ProfileLogoutSection extends StatefulWidget {
@@ -15,6 +16,7 @@ class ProfileLogoutSection extends StatefulWidget {
 class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
   void logout() {
     context.read<ProfileCubit>().clear();
+    context.read<EkstrakulikulerCubit>().clear();
     context.read<AuthCubit>().logout();
   }
 

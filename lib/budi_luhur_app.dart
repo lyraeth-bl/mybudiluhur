@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/budi_luhur_app_entry.dart';
 import 'package:mybudiluhur/features/auth/data/api_auth_repository.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/data/api_ekstrakulikuler_user_repository.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/home/data/api_home_user_repository.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
@@ -30,6 +32,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   final apiAuthRepository = ApiAuthRepository();
   final apiHomeUserRepository = ApiHomeUserRepository();
   final apiProfileUserRepository = ApiProfileUserRepository();
+  final apiEkstrakulikulerUserRepository = ApiEkstrakulikulerUserRepository();
   final localDetailProfileUserRepository = LocalDetailProfileUserRepository();
 
   @override
@@ -80,6 +83,13 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) => DetailProfileCubit(
             localDetailProfileUserRepository: localDetailProfileUserRepository,
+          ),
+        ),
+
+        // Ekstrakulikuler Cubit Providers
+        BlocProvider(
+          create: (context) => EkstrakulikulerCubit(
+            apiEkstrakulikulerUserRepository: apiEkstrakulikulerUserRepository,
           ),
         ),
       ],

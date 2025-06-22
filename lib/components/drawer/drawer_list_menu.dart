@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_text.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/presentation/pages/ekstrakulikuler_layout.dart';
 
 class DrawerListMenu extends StatefulWidget {
   const DrawerListMenu({super.key});
@@ -16,7 +17,11 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
     {'title': 'Absensi', 'icon': Icon(Icons.date_range)},
     {'title': 'KHS', 'icon': Icon(Icons.school)},
     {'title': 'Pelajaran', 'icon': Icon(Icons.book)},
-    {'title': 'Ekstrakurikuler', 'icon': Icon(Icons.sports_soccer)},
+    {
+      'title': 'Ekstrakurikuler',
+      'icon': Icon(Icons.sports_soccer),
+      'destination': () => EkstrakulikulerLayout(),
+    },
   ];
   @override
   Widget build(BuildContext context) {

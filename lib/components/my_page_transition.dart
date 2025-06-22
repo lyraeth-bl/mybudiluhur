@@ -4,13 +4,13 @@ enum PageTransitionDirection { left, right, top, bottom }
 
 class MyPageTransition extends StatelessWidget {
   final Widget destination;
-  final Widget child;
+  final Widget? child;
   final PageTransitionDirection direction;
 
   const MyPageTransition._({
     super.key,
     required this.destination,
-    required this.child,
+    this.child,
     required this.direction,
   });
 
@@ -18,7 +18,7 @@ class MyPageTransition extends StatelessWidget {
   factory MyPageTransition.left({
     Key? key,
     required Widget destination,
-    required Widget child,
+    Widget? child,
   }) {
     return MyPageTransition._(
       key: key,
@@ -32,7 +32,7 @@ class MyPageTransition extends StatelessWidget {
   factory MyPageTransition.right({
     Key? key,
     required Widget destination,
-    required Widget child,
+    Widget? child,
   }) {
     return MyPageTransition._(
       key: key,
@@ -46,7 +46,7 @@ class MyPageTransition extends StatelessWidget {
   factory MyPageTransition.top({
     Key? key,
     required Widget destination,
-    required Widget child,
+    Widget? child,
   }) {
     return MyPageTransition._(
       key: key,
@@ -60,7 +60,7 @@ class MyPageTransition extends StatelessWidget {
   factory MyPageTransition.bottom({
     Key? key,
     required Widget destination,
-    required Widget child,
+    Widget? child,
   }) {
     return MyPageTransition._(
       key: key,

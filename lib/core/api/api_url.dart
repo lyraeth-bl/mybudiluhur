@@ -15,4 +15,6 @@ class ApiUrl {
       'https://laravelbackend.jh-beon.cloud/smk/public/api/siswa';
   static const absensiBaseUrl =
       'https://laravelbackend.jh-beon.cloud/smk/public/api/absensi/filter';
+  static const ekstrakulikulerBaseUrl =
+      "https://laravelbackend.jh-beon.cloud/smk/public/api/ekskul";
 }

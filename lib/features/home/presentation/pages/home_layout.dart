@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mybudiluhur/components/drawer/my_drawer.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bottom_navigation_menu.dart.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
@@ -27,15 +28,18 @@ class _HomeLayoutState extends State<HomeLayout> {
   // Cubit
   late final homeCubit = context.read<HomeCubit>();
   late final profileCubit = context.read<ProfileCubit>();
+  late final ekstrakulikulerCubit = context.read<EkstrakulikulerCubit>();
 
   // refresh function
   Future<void> _refresh() async {
     await homeCubit.clear();
     await profileCubit.clear();
+    await ekstrakulikulerCubit.clear();
     await homeCubit.refreshData(user!.nis);
     await homeCubit.fetchData();
     await profileCubit.fetchProfileUser();
-    return Future.delayed(Duration(seconds: 2));
+    await ekstrakulikulerCubit.refreshData(user!.nis);
+    return Future.delayed(Duration(seconds: 1));
   }
 
   // getPage
