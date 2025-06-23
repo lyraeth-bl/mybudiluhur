@@ -20,6 +20,8 @@ import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.da
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/detail_profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/password_check_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_cubit.dart';
+import 'package:mybudiluhur/features/settings/data/local_settings_user_repository.dart';
+import 'package:mybudiluhur/features/settings/presentation/cubits/cubit/settings_cubit.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -37,6 +39,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   final apiProfileUserRepository = ApiProfileUserRepository();
   final apiEkstrakulikulerUserRepository = ApiEkstrakulikulerUserRepository();
   final localDetailProfileUserRepository = LocalDetailProfileUserRepository();
+  final localSettingsUserRepository = LocalSettingsUserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +96,13 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) => EkstrakulikulerCubit(
             apiEkstrakulikulerUserRepository: apiEkstrakulikulerUserRepository,
+          ),
+        ),
+
+        // Settings Cubit Providers
+        BlocProvider(
+          create: (context) => SettingsCubit(
+            localSettingsUserRepository: localSettingsUserRepository,
           ),
         ),
       ],

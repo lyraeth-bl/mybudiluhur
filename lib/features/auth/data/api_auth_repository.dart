@@ -65,7 +65,10 @@ class ApiAuthRepository implements AuthRepository {
   /// Menghapus seluruh data yang tersimpan di secure storage (logout).
   @override
   Future<void> logout() async {
-    await secureStorage.deleteAll();
+    await secureStorage.delete(key: 'nis');
+    await secureStorage.delete(key: 'token');
+    await secureStorage.delete(key: 'password');
+    await secureStorage.delete(key: 'siswa');
   }
 
   /// Mengambil data pengguna yang sedang login dari secure storage.

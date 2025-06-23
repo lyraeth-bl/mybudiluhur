@@ -33,7 +33,6 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       builder: (context, state) {
-        print("Home State: $state");
         if (state is HomeLoaded) {
           return Stack(
             children: [

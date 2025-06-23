@@ -15,7 +15,6 @@ class EkstrakulikulerCubit extends HydratedCubit<EkstrakulikulerState> {
     // 1. Cek dulu apakah data udah ke-cache (HydratedCubit auto restore)
     if (state is EkstrakulikulerLoaded) {
       // Kalau sudah loaded dari cache, ga perlu fetch ulang
-      print('Using cached Ekstrakulikuler data.');
       return;
     }
     // 2. Kalau belum ada data, baru fetch ke API
@@ -58,7 +57,6 @@ class EkstrakulikulerCubit extends HydratedCubit<EkstrakulikulerState> {
             .toList(),
       );
     } catch (e) {
-      print("fromJson error: $e");
       // Bisa return initial/error state juga kalau mau
       return null;
     }

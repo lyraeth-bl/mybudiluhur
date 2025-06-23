@@ -34,7 +34,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileState>(
       builder: (context, profileState) {
-        print("Profile state: $profileState");
         if (profileState is ProfileLoaded) {
           final user = profileState.profileUser;
           return Stack(

@@ -32,7 +32,6 @@ class _EkstrakulikulerLayoutState extends State<EkstrakulikulerLayout> {
   Widget build(BuildContext context) {
     return BlocConsumer<EkstrakulikulerCubit, EkstrakulikulerState>(
       builder: (context, state) {
-        print("Ekstrakulikuler state : $state");
         if (state is EkstrakulikulerLoaded) {
           final data = state.ekstrakulikulerUser;
           return Scaffold(

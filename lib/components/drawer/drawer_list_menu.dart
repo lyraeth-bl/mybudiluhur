@@ -4,6 +4,7 @@ import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/pages/ekstrakulikuler_layout.dart';
+import 'package:mybudiluhur/features/settings/presentation/pages/settings_layout.dart';
 
 class DrawerListMenu extends StatefulWidget {
   const DrawerListMenu({super.key});
@@ -21,6 +22,11 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
       'title': 'Ekstrakurikuler',
       'icon': Icon(Icons.sports_soccer),
       'destination': () => EkstrakulikulerLayout(),
+    },
+    {
+      'title': 'Settings',
+      'icon': Icon(Icons.settings),
+      'destination': () => SettingsLayout(),
     },
   ];
   @override

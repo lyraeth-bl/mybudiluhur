@@ -12,6 +12,10 @@ class FirebaseApi {
     // Fetch FCM Token untuk device user
     final fCMToken = await _firebaseMessaging.getToken();
 
+    if (fCMToken != null) {
+      return;
+    }
+
     // Print token
     //
     // TODO: Token ini harusnya di store langsung ke DB

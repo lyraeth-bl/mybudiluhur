@@ -39,7 +39,6 @@ class _HomeLayoutState extends State<HomeLayout> {
     await homeCubit.fetchData();
     await profileCubit.fetchProfileUser();
     await ekstrakulikulerCubit.refreshData(user!.nis);
-    return Future.delayed(Duration(seconds: 1));
   }
 
   // getPage
