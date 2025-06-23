@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/auth/data/api_auth_repository.dart';
 import 'package:mybudiluhur/features/auth/domain/entities/app_user.dart';
@@ -43,6 +44,10 @@ class AuthCubit extends Cubit<AuthState> {
   ///   [AuthError] dan [Unauthenticated].
   Future<void> login(String nis, String password) async {
     try {
+      if (Get.isSnackbarOpen) {
+        return;
+      }
+
       /// State berubah menjadi AuthLoading saat proses berlangsung.
       emit(AuthLoading());
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/budi_luhur_app.dart';
 import 'package:mybudiluhur/core/api/firebase/firebase_api.dart';
+import 'package:mybudiluhur/core/dependency_injection.dart';
 import 'package:mybudiluhur/firebase_options.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,6 +32,7 @@ void main() async {
             (await getApplicationDocumentsDirectory()).path,
           ),
   );
+  DependencyInjection.init();
 
   runApp(const BudiLuhurApp());
 }

@@ -109,7 +109,6 @@ class _SettingsPageState extends State<SettingsPage> {
           trailing: Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            activeColor: color,
             inactiveThumbColor: Colors.grey[400],
           ),
         ),

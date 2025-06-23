@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/home/data/api_home_user_repository.dart';
 import 'package:mybudiluhur/features/home/domain/entities/home_user.dart';
@@ -38,6 +39,9 @@ class HomeCubit extends HydratedCubit<HomeState> {
   Future<void> refreshData(String nis) async {
     emit(HomeLoading());
     try {
+      if (Get.isSnackbarOpen) {
+        return;
+      }
       await apiHomeUserRepository.refreshData(nis);
     } catch (e) {
       emit(HomeError(e.toString()));

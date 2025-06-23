@@ -6,6 +6,7 @@ import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:mybudiluhur/features/settings/presentation/cubits/cubit/settings_cubit.dart';
 
 class ProfileLogoutSection extends StatefulWidget {
   const ProfileLogoutSection({super.key});
@@ -19,6 +20,7 @@ class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
     context.read<HomeCubit>().clear();
     context.read<ProfileCubit>().clear();
     context.read<EkstrakulikulerCubit>().clear();
+    context.read<SettingsCubit>().clear();
     context.read<AuthCubit>().logout();
   }
 

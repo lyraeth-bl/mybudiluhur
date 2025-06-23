@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
@@ -41,6 +42,9 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     emit(ProfileLoading());
 
     try {
+      if (Get.isSnackbarOpen) {
+        return;
+      }
       final currentUser = await apiProfileUserRepository.fetchProfileUser();
       if (currentUser == null) {
         emit(ProfileError("Failed to fetch user for profile update"));
@@ -73,6 +77,9 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   }) async {
     emit(ProfileLoading());
     try {
+      if (Get.isSnackbarOpen) {
+        return;
+      }
       final currentUser = await apiProfileUserRepository.fetchProfileUser();
       if (currentUser == null) {
         emit(ProfileError("User not found for image upload"));

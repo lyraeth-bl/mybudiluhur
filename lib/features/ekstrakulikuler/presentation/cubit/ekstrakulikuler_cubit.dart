@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/data/api_ekstrakulikuler_user_repository.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/domain/entities/ekstrakulikuler_user.dart';
@@ -20,6 +21,9 @@ class EkstrakulikulerCubit extends HydratedCubit<EkstrakulikulerState> {
     // 2. Kalau belum ada data, baru fetch ke API
     emit(EkstrakulikulerLoading());
     try {
+      if (Get.isSnackbarOpen) {
+        return;
+      }
       final data = await apiEkstrakulikulerUserRepository
           .fetchEkstrakulikulerUser(nis);
       if (data != null) {
