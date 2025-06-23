@@ -13,12 +13,15 @@ import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/section/date_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/section/days_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/section/greetings_cubit.dart';
+import 'package:mybudiluhur/features/notification/presentation/pages/notification_page.dart';
 import 'package:mybudiluhur/features/profile/data/api_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/data/local_detail_profile_user_repository.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/detail_profile_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/password_check_cubit.dart';
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_cubit.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class BudiLuhurApp extends StatefulWidget {
   const BudiLuhurApp({super.key});
@@ -101,6 +104,8 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         title: "MyBudiLuhur",
         theme: ThemeData(fontFamily: "Sniglet"),
         home: const BudiLuhurAppEntry(),
+        navigatorKey: navigatorKey,
+        routes: {'/notification_page': (context) => const NotificationPage()},
       ),
     );
   }
