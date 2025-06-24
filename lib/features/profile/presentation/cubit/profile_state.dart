@@ -11,6 +11,8 @@ class ProfileLoaded extends ProfileState {
   ProfileLoaded(this.profileUser);
 }
 
+class ProfileNull extends ProfileState {}
+
 class ProfilePasswordRight extends ProfileState {
   bool isCheckedRight;
   ProfilePasswordRight(this.isCheckedRight);

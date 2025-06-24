@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:mybudiluhur/components/my_text.dart';
 
 class MyCupertinoAlertDialog extends StatelessWidget {
   final String text;
@@ -7,8 +8,8 @@ class MyCupertinoAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: const Text("MyBudiLuhur"),
-      content: Text(text),
+      title: const MyText(text: "MyBudiLuhur"),
+      content: MyText(text: text),
       actions: [
         CupertinoDialogAction(
           onPressed: () {

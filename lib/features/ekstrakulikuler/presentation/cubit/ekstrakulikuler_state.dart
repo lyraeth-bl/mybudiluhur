@@ -11,6 +11,8 @@ class EkstrakulikulerLoaded extends EkstrakulikulerState {
   EkstrakulikulerLoaded(this.ekstrakulikulerUser);
 }
 
+class EkstrakulikulerNull extends EkstrakulikulerState {}
+
 class EkstrakulikulerError extends EkstrakulikulerState {
   final String message;
   EkstrakulikulerError(this.message);

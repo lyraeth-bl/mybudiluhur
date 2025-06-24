@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
+import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
+import 'package:mybudiluhur/components/my_null_data_page.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/presentation/components/section/profile_botton_edit.dart';
 import 'package:mybudiluhur/features/profile/presentation/components/section/profile_logout_section.dart';
@@ -81,6 +83,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ],
+          );
+        }
+        if (profileState is ProfileNull) {
+          return MyLayout(
+            title: "Profile",
+            body: MyNullDataPage(message: "Profile data not found..."),
           );
         } else {
           return MyLoadingScreen(

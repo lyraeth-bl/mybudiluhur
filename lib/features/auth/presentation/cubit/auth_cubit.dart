@@ -66,7 +66,6 @@ class AuthCubit extends Cubit<AuthState> {
         emit(Unauthenticated());
       }
     } catch (e) {
-      emit(AuthError(e.toString()));
       emit(Unauthenticated());
     }
   }

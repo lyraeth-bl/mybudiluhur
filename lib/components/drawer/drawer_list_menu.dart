@@ -42,7 +42,7 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
             if (destination != null && destination is Function) {
               Navigator.of(
                 context,
-              ).push(MaterialPageRoute(builder: (context) => destination()));
+              ).push(CupertinoPageRoute(builder: (context) => destination()));
             } else {
               showCupertinoDialog(
                 context: context,

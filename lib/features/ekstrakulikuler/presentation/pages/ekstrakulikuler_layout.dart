@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
+import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
+import 'package:mybudiluhur/components/my_null_data_page.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
@@ -32,6 +34,7 @@ class _EkstrakulikulerLayoutState extends State<EkstrakulikulerLayout> {
   Widget build(BuildContext context) {
     return BlocConsumer<EkstrakulikulerCubit, EkstrakulikulerState>(
       builder: (context, state) {
+        print("Ekstrakulikuler State : $state");
         if (state is EkstrakulikulerLoaded) {
           final data = state.ekstrakulikulerUser;
           return Scaffold(
@@ -42,6 +45,12 @@ class _EkstrakulikulerLayoutState extends State<EkstrakulikulerLayout> {
               foregroundColor: Colors.white,
             ),
             body: EkstrakulikulerPage(ekstrakulikulerUser: data),
+          );
+        }
+        if (state is EkstrakulikulerNull) {
+          return MyLayout(
+            title: "Ekstrakulikuler",
+            body: MyNullDataPage(message: "Ekstrakulikuler data not found..."),
           );
         }
         return MyLoadingScreen(

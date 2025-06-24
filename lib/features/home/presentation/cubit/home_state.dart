@@ -11,6 +11,8 @@ class HomeLoaded extends HomeState {
   HomeLoaded(this.homeUser);
 }
 
+class HomeNull extends HomeState {}
+
 class HomeError extends HomeState {
   final String message;
   HomeError(this.message);

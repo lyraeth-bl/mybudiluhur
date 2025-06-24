@@ -43,11 +43,12 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
     if (!mounted) return;
 
     Navigator.of(context).pop();
-    showCupertinoDialog(
+    showCupertinoModalPopup(
       context: context,
       builder: (BuildContext context) {
         return MyCupertinoAlertDialog(
-          text: "Profile image successfully change",
+          text:
+              "Profile image successfully change, please refresh to take effect",
         );
       },
     );

@@ -24,7 +24,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
         if (state is ProfileLoaded) {
           emit(state);
         } else {
-          emit(ProfileError("Data ProfileUser tidak ditemukan"));
+          emit(ProfileNull());
         }
       }
     } catch (e) {

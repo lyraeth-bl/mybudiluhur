@@ -22,7 +22,7 @@ class HomeCubit extends HydratedCubit<HomeState> {
         if (state is HomeLoaded) {
           emit(state);
         } else {
-          emit(HomeError("Data HomeUser tidak ditemukan"));
+          emit(HomeNull());
         }
       }
     } catch (e) {

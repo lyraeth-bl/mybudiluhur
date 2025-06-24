@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
+import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
+import 'package:mybudiluhur/components/my_null_data_page.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/home/presentation/components/section/greetings_section.dart';
 import 'package:mybudiluhur/features/home/presentation/components/section/today_attendance_section.dart';
@@ -59,6 +61,12 @@ class HomePageState extends State<HomePage> {
                 ],
               ),
             ],
+          );
+        }
+        if (state is HomeNull) {
+          return MyLayout(
+            title: "MyBudiLuhur",
+            body: MyNullDataPage(message: "Home data not found..."),
           );
         } else {
           return MyLoadingScreen(

@@ -32,7 +32,7 @@ class EkstrakulikulerCubit extends HydratedCubit<EkstrakulikulerState> {
         emit(EkstrakulikulerError("Data Ekstrakulikuler tidak ditemukan"));
       }
     } catch (e) {
-      emit(EkstrakulikulerError("Gagal fetch data: $e"));
+      emit(EkstrakulikulerError("Gagal fetch data"));
     }
   }
 
