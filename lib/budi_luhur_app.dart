@@ -26,6 +26,7 @@ import 'package:mybudiluhur/features/profile/presentation/cubit/section/password
 import 'package:mybudiluhur/features/profile/presentation/cubit/section/profile_picture_cubit.dart';
 import 'package:mybudiluhur/features/settings/data/local_settings_user_repository.dart';
 import 'package:mybudiluhur/features/settings/presentation/cubits/cubit/settings_cubit.dart';
+import 'package:mybudiluhur/theme/cubit/theme_cubit.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -50,6 +51,9 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // Theme Cubit Providers
+        BlocProvider(create: (context) => ThemeCubit()),
+
         // Auth Cubit Providers
         BlocProvider(
           create: (context) =>
@@ -121,20 +125,21 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            scrollBehavior: const MaterialScrollBehavior().copyWith(
-              dragDevices: PointerDeviceKind.values.toSet(),
-            ),
-            title: "MyBudiLuhur",
-            theme: ThemeData(
-              fontFamily: "Rubik",
-              textTheme: Typography.englishLike2021.apply(fontSizeFactor: 1.sp),
-            ),
-            home: child,
-            navigatorKey: navigatorKey,
-            routes: {
-              '/notification_page': (context) => const NotificationPage(),
+          return BlocBuilder<ThemeCubit, ThemeData>(
+            builder: (context, state) {
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                scrollBehavior: const MaterialScrollBehavior().copyWith(
+                  dragDevices: PointerDeviceKind.values.toSet(),
+                ),
+                title: "MyBudiLuhur",
+                theme: state,
+                home: child,
+                navigatorKey: navigatorKey,
+                routes: {
+                  '/notification_page': (context) => const NotificationPage(),
+                },
+              );
             },
           );
         },

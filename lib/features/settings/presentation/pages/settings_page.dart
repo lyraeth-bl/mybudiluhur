@@ -5,6 +5,7 @@ import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/settings/presentation/cubits/cubit/settings_cubit.dart';
 import 'package:mybudiluhur/features/settings/presentation/cubits/cubit/settings_state.dart';
+import 'package:mybudiluhur/theme/cubit/theme_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -26,6 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.watch<ThemeCubit>();
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         if (state is SettingsLoading) {
@@ -46,8 +48,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: "Mode Gelap",
                 subtitle: isDark ? "Tema gelap aktif" : "Tema terang aktif",
                 value: isDark,
-                onChanged: (_) =>
-                    context.read<SettingsCubit>().changeThemeMode(),
+                onChanged: (_) {
+                  context.read<SettingsCubit>().changeThemeMode();
+                  themeCubit.toggleTheme();
+                },
                 color: Colors.indigoAccent,
               ),
               const SizedBox(height: 18),
