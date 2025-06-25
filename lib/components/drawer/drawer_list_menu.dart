@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_text.dart';
+import 'package:mybudiluhur/features/absensi_khs/presentation/pages/absensi_khs_layout.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/pages/ekstrakulikuler_layout.dart';
 import 'package:mybudiluhur/features/settings/presentation/pages/settings_layout.dart';
 
@@ -15,8 +16,11 @@ class DrawerListMenu extends StatefulWidget {
 
 class _DrawerListMenuState extends State<DrawerListMenu> {
   List<Map<String, dynamic>> listMenu = [
-    {'title': 'Absensi', 'icon': Icon(Icons.date_range)},
-    {'title': 'KHS', 'icon': Icon(Icons.school)},
+    {
+      'title': 'Absensi & KHS',
+      'icon': Icon(Icons.date_range),
+      'destination': () => AbsensiKhsLayout(),
+    },
     {'title': 'Pelajaran', 'icon': Icon(Icons.book)},
     {
       'title': 'Ekstrakurikuler',

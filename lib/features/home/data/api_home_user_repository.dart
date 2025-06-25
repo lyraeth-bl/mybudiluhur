@@ -22,7 +22,7 @@ class ApiHomeUserRepository implements HomeUserRepository {
     return HomeUser(
       nis: homeUser['NIS'],
       nama: homeUser['Nama'],
-      profileImageUrl: homeUser['profileImageUrl'],
+      profileImageUrl: homeUser['profileImageUrl'] ?? '',
     );
   }
 

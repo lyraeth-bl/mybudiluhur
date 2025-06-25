@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
+import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_cubit.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
@@ -21,6 +22,7 @@ class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
     context.read<ProfileCubit>().clear();
     context.read<EkstrakulikulerCubit>().clear();
     context.read<SettingsCubit>().clear();
+    context.read<AbsensiCubit>().clear();
     context.read<AuthCubit>().logout();
   }
 

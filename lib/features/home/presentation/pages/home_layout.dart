@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/drawer/my_drawer.dart';
+import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_cubit.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
@@ -27,16 +28,19 @@ class _HomeLayoutState extends State<HomeLayout> {
   late final homeCubit = context.read<HomeCubit>();
   late final profileCubit = context.read<ProfileCubit>();
   late final ekstrakulikulerCubit = context.read<EkstrakulikulerCubit>();
+  late final absensiCubit = context.read<AbsensiCubit>();
 
   // refresh function
   Future<void> _refresh() async {
     await homeCubit.clear();
     await profileCubit.clear();
     await ekstrakulikulerCubit.clear();
+    await absensiCubit.clear();
     await homeCubit.refreshData(user!.nis);
     await homeCubit.fetchData();
     await profileCubit.fetchProfileUser();
     await ekstrakulikulerCubit.refreshData(user!.nis);
+    await absensiCubit.refreshData(user!.nis);
   }
 
   int prevIndex = 0;

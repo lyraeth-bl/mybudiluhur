@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:mybudiluhur/budi_luhur_app_entry.dart';
+import 'package:mybudiluhur/features/absensi_khs/data/api_absensi_user_repository.dart';
+import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_cubit.dart';
 import 'package:mybudiluhur/features/auth/data/api_auth_repository.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/data/api_ekstrakulikuler_user_repository.dart';
@@ -41,6 +43,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   final apiEkstrakulikulerUserRepository = ApiEkstrakulikulerUserRepository();
   final localDetailProfileUserRepository = LocalDetailProfileUserRepository();
   final localSettingsUserRepository = LocalSettingsUserRepository();
+  final apiAbsensiUserRepository = ApiAbsensiUserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +108,11 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
           create: (context) => SettingsCubit(
             localSettingsUserRepository: localSettingsUserRepository,
           ),
+        ),
+
+        BlocProvider(
+          create: (context) =>
+              AbsensiCubit(apiAbsensiUserRepository: apiAbsensiUserRepository),
         ),
       ],
       child: GetMaterialApp(
