@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/components/login_button.dart';
 import 'package:mybudiluhur/features/auth/presentation/components/login_text_field.dart';
@@ -34,7 +36,14 @@ class _AuthPageState extends State<AuthPage> {
     // kasih error kalo ada field yang kosong
     else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Masukkan NIS dan Password!")),
+        const SnackBar(
+          content: Text("Masukkan NIS dan Password!"),
+          duration: Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+          dismissDirection: DismissDirection.down,
+          margin: EdgeInsets.only(right: 25, left: 25, bottom: 20),
+          showCloseIcon: true,
+        ),
       );
     }
   }
@@ -46,65 +55,81 @@ class _AuthPageState extends State<AuthPage> {
     passwordController.dispose();
   }
 
+  bool isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25).r,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo BL
-              Image.asset("assets/image/bl_logo.png", width: 200, height: 200),
-              const SizedBox(height: 20),
-
-              const SizedBox(height: 10),
-              MyText(text: "Selamat datang di MyBudiLuhur", textSize: 20),
-              const SizedBox(height: 20),
+              Image.asset(
+                "assets/image/bl_logo.png",
+                width: 180.w,
+                height: 180.h,
+              ),
+              SizedBox(height: 20.h),
+              MyText(
+                text: "Selamat datang di MyBudiLuhur",
+                textSize: 20.sp,
+                textColor: Colors.lightBlue[400],
+                bold: true,
+              ),
+              SizedBox(height: 20.h),
 
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30).r,
                 child: Column(
                   children: [
                     // NIS Text Field
                     LoginTextField(
                       controller: nisController,
-                      hintText: "NIS",
+                      labelText: "NIS",
                       obscureText: false,
-                      suffixIcon: Icons.person_outline,
-                      suffixIconColor: Theme.of(context).colorScheme.primary,
+                      suffixIcon: LucideIcons.user,
+                      suffixIconColor: Colors.lightBlue[400],
                     ),
 
-                    const SizedBox(height: 5),
+                    SizedBox(height: 10.h),
 
                     // Password Text Field
                     LoginTextField(
                       controller: passwordController,
-                      hintText: "Password",
-                      obscureText: true,
-                      suffixIcon: Icons.password,
-                      suffixIconColor: Colors.green[600],
+                      labelText: "Password",
+                      obscureText: isVisible ? true : false,
+                      suffixIcon: isVisible
+                          ? LucideIcons.eye
+                          : LucideIcons.eyeClosed,
+                      onTap: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      },
+                      suffixIconColor: Colors.green[400],
                     ),
+
+                    SizedBox(height: 10.h),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Column(
                           children: [
-                            Text(
-                              "Forget Password?",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[500],
-                              ),
+                            MyText(
+                              text: "Forget Password?",
+                              textSize: 12.sp,
+                              textColor: Colors.grey[700],
                             ),
-                            SizedBox(height: 30),
-                            LoginButton(onPressed: _handleLogin, text: "Login"),
+                            SizedBox(height: 20.h),
                           ],
                         ),
                       ],
                     ),
+                    LoginButton(onPressed: _handleLogin, text: "Login"),
                   ],
                 ),
               ),
