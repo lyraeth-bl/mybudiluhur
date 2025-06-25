@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/home/domain/entities/home_user.dart';
 
@@ -15,46 +16,57 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25).r,
       child: Column(
         children: [
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.grey[700],
+              color: Theme.of(context).colorScheme.onSurface,
             ),
-            height: 120,
-            width: 120,
+            height: 120.h,
+            width: 120.w,
             child: Center(
               child: CircleAvatar(
-                radius: 55,
-                backgroundColor: Colors.white,
+                radius: 55.r,
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl:
                         'https://laravelbackend.jh-beon.cloud/smk/public/${widget.homeUser.profileImageUrl}',
-                    width: 120,
-                    height: 120,
+                    width: 120.w,
+                    height: 120.h,
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
                         const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error, size: 56, color: Colors.red),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 56,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          MyText(text: widget.homeUser.nama, textSize: 16),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
+          MyText(
+            text: widget.homeUser.nama,
+            textSize: 20.sp,
+            bold: true,
+            textColor: Theme.of(context).colorScheme.tertiary,
+          ),
+          SizedBox(height: 10.h),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5).w,
             decoration: BoxDecoration(
               color: Colors.black87,
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(15).r,
             ),
-            child: MyText(text: widget.homeUser.nis, textColor: Colors.white),
+            child: MyText(
+              text: 'NIS : ${widget.homeUser.nis}',
+              textColor: Colors.white,
+              textSize: 14.sp,
+            ),
           ),
         ],
       ),

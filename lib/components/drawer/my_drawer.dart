@@ -37,14 +37,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 children: [
                   // Photo Profile
                   DrawerPhotoProfile(homeUser: user),
-                  MyDivider(padding: EdgeInsets.all(0)),
+                  MyDivider(padding: EdgeInsets.zero),
                   Expanded(child: DrawerListMenu()),
                 ],
               ),
             ),
           );
         }
-        return Scaffold();
+        return SizedBox.shrink();
       },
     );
   }

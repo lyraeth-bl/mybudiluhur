@@ -39,8 +39,14 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
       itemBuilder: (context, index) {
         return ListTile(
           leading: listMenu[index]['icon'],
-          trailing: Icon(Icons.arrow_circle_right),
-          title: MyText(text: listMenu[index]['title']),
+          trailing: Icon(
+            Icons.arrow_circle_right,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          title: MyText(
+            text: listMenu[index]['title'],
+            textColor: Theme.of(context).colorScheme.onSurface,
+          ),
           onTap: () {
             final destination = listMenu[index]['destination'];
             if (destination != null && destination is Function) {
@@ -59,7 +65,7 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
         );
       },
       separatorBuilder: (context, index) =>
-          const MyDivider(padding: EdgeInsets.all(0)),
+          const MyDivider(padding: EdgeInsets.zero),
       itemCount: listMenu.length,
     );
   }
