@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
@@ -46,40 +47,40 @@ class _ProfilePageState extends State<ProfilePage> {
                     pinned: true,
                     title: MyText(text: "Profile", bold: true),
                     centerTitle: true,
-                    backgroundColor: Colors.lightBlue[400],
-                    foregroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
 
-                  SliverToBoxAdapter(child: SizedBox(height: 50)),
+                  SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
                   // Profile Photo
                   SliverToBoxAdapter(
                     child: ProfilePhotoSection(profileUser: user),
                   ),
-                  SliverToBoxAdapter(child: SizedBox(height: 20)),
+                  SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
                   // Change Profile and Password
                   SliverToBoxAdapter(
                     child: ProfileBottonEdit(profileUser: user),
                   ),
-                  SliverToBoxAdapter(child: SizedBox(height: 40)),
+                  SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
                   // Student Card
                   SliverToBoxAdapter(
                     child: ProfileStudentCardSection(profileUser: user),
                   ),
-                  SliverToBoxAdapter(child: SizedBox(height: 40)),
+                  SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
                   // Profile Summary
                   SliverToBoxAdapter(
                     child: ProfileSummarySection(profileUser: user),
                   ),
-                  SliverToBoxAdapter(child: SizedBox(height: 30)),
+                  SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
                   // Logout Button
                   SliverToBoxAdapter(child: ProfileLogoutSection()),
 
-                  SliverToBoxAdapter(child: SizedBox(height: 30)),
+                  SliverToBoxAdapter(child: SizedBox(height: 30.h)),
                 ],
               ),
             ],

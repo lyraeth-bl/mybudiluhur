@@ -22,7 +22,7 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Theme.of(context).colorScheme.onSurface,
+              color: Theme.of(context).colorScheme.primary,
             ),
             height: 120.h,
             width: 120.w,
@@ -59,13 +59,14 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5).w,
             decoration: BoxDecoration(
-              color: Colors.black87,
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(15).r,
             ),
             child: MyText(
               text: 'NIS : ${widget.homeUser.nis}',
-              textColor: Colors.white,
+              textColor: Theme.of(context).colorScheme.onPrimary,
               textSize: 14.sp,
+              bold: true,
             ),
           ),
         ],

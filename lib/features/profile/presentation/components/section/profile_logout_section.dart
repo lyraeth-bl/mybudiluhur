@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_cubit.dart';
@@ -29,16 +30,20 @@ class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0).r,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           MyContainer(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            color: Colors.red,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10).r,
+            color: Theme.of(context).colorScheme.error,
             child: GestureDetector(
               onTap: logout,
-              child: MyText(text: "Logout", textColor: Colors.white),
+              child: MyText(
+                text: "Logout",
+                textColor: Theme.of(context).colorScheme.onError,
+                textSize: 16.sp,
+              ),
             ),
           ),
         ],

@@ -18,18 +18,21 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
   List<Map<String, dynamic>> listMenu = [
     {
       'title': 'Absensi & KHS',
-      'icon': Icon(Icons.date_range),
+      'icon': Icon(Icons.date_range, color: Colors.blueGrey[400]),
       'destination': () => AbsensiKhsLayout(),
     },
-    {'title': 'Pelajaran', 'icon': Icon(Icons.book)},
+    {
+      'title': 'Pelajaran',
+      'icon': Icon(Icons.book, color: Colors.blueGrey[400]),
+    },
     {
       'title': 'Ekstrakurikuler',
-      'icon': Icon(Icons.sports_soccer),
+      'icon': Icon(Icons.sports_soccer, color: Colors.blueGrey[400]),
       'destination': () => EkstrakulikulerLayout(),
     },
     {
       'title': 'Settings',
-      'icon': Icon(Icons.settings),
+      'icon': Icon(Icons.settings, color: Colors.blueGrey[400]),
       'destination': () => SettingsLayout(),
     },
   ];
@@ -39,13 +42,11 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
       itemBuilder: (context, index) {
         return ListTile(
           leading: listMenu[index]['icon'],
-          trailing: Icon(
-            Icons.arrow_circle_right,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          trailing: Icon(Icons.arrow_circle_right, color: Colors.blueGrey[400]),
           title: MyText(
             text: listMenu[index]['title'],
             textColor: Theme.of(context).colorScheme.onSurface,
+            bold: true,
           ),
           onTap: () {
             final destination = listMenu[index]['destination'];

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
@@ -95,25 +96,24 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
           appBar: AppBar(
             title: MyText(text: "Edit Profile Picture"),
             centerTitle: true,
-            backgroundColor: Colors.lightBlue[400],
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).r,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyText(text: "Your Profile Picture", bold: true),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CircleAvatar(
-                      radius: 55,
-                      backgroundColor: Colors.grey[700],
+                      radius: 55.r,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       child: ClipOval(
                         child: CircleAvatar(
-                          radius: 50,
+                          radius: 50.r,
                           backgroundImage:
                               widget.profileUser.profileImageUrl.isNotEmpty
                               ? NetworkImage(
@@ -127,11 +127,11 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                     GestureDetector(
                       onTap: pickImage,
                       child: CircleAvatar(
-                        radius: 55,
-                        backgroundColor: Colors.grey[700],
+                        radius: 55.r,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                         child: ClipOval(
                           child: CircleAvatar(
-                            radius: 50,
+                            radius: 50.r,
                             backgroundImage: _selectedImageFile != null
                                 ? FileImage(_selectedImageFile!)
                                 : (widget.profileUser.profileImageUrl.isNotEmpty
@@ -148,27 +148,33 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    MyText(text: "Your last profile picture"),
+                    MyText(
+                      text: "Your last profile picture",
+                      textColor: Theme.of(context).colorScheme.onSurface,
+                      textSize: 12.sp,
+                    ),
                     MyText(
                       text: isPickedFile
                           ? "Preview your profile image"
                           : "You haven't picked new picture",
                       bold: true,
+                      textColor: Theme.of(context).colorScheme.onSurface,
+                      textSize: 12.sp,
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: updateProfile,
-            backgroundColor: Colors.lightBlue[400],
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             child: FaIcon(FontAwesomeIcons.floppyDisk),
           ),
         );

@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyTextField extends StatelessWidget {
-  final TextEditingController? controller;
-  final String hintText;
+  final TextEditingController controller;
+  final String labelText;
   final bool obscureText;
+  final IconData? suffixIcon;
+  final Color? suffixIconColor;
+  final void Function()? onTap;
+
   const MyTextField({
     super.key,
-    this.controller,
-    required this.hintText,
+    required this.controller,
+    required this.labelText,
     required this.obscureText,
+    this.suffixIcon,
+    this.suffixIconColor,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12).r,
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
-            blurRadius: 10,
+            blurRadius: 10.r,
             offset: Offset(0, 4),
           ),
         ],
       ),
       child: TextField(
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           // Border ketika tidak dipilih
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.surface,
-            ),
-            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(12).r,
           ),
 
           // Border ketika dipilih
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Color(0xFF81D4FA)),
+            borderRadius: BorderRadius.circular(12).r,
           ),
-          hintText: hintText,
-          hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-          fillColor: Theme.of(context).colorScheme.onPrimary,
+          fillColor: Colors.white70,
           filled: true,
+          suffixIcon: GestureDetector(onTap: onTap, child: Icon(suffixIcon)),
+          suffixIconColor: suffixIconColor,
+          labelStyle: TextStyle(color: Colors.black),
+          labelText: labelText,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
         ),
       ),
     );

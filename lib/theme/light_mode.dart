@@ -41,5 +41,8 @@ ThemeData lightMode = ThemeData(
 
     /// * warna border
     surface: Color(0xFFF5F5F5),
+
+    /// * warna lightblue
+    onTertiary: Color(0xFF78909C),
   ),
 );

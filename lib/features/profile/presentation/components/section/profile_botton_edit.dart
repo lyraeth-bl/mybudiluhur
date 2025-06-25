@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_page_transition.dart';
 import 'package:mybudiluhur/components/my_text.dart';
@@ -18,33 +19,39 @@ class _ProfileBottonEditState extends State<ProfileBottonEdit> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0).r,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           MyPageTransition.left(
             destination: ChangePicturePage(profileUser: widget.profileUser),
             child: MyContainer(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-              color: Colors.lightBlue[400],
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 7,
+              ).r,
+              color: Theme.of(context).colorScheme.primary,
               child: MyText(
                 text: "Change Picture",
-                textColor: Colors.white,
+                textColor: Theme.of(context).colorScheme.onPrimary,
                 bold: true,
-                textSize: 15,
+                textSize: 15.sp,
               ),
             ),
           ),
           MyPageTransition.left(
             destination: ChangePasswordPage(profileUser: widget.profileUser),
             child: MyContainer(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-              color: Colors.lightBlue[400],
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 7,
+              ).w,
+              color: Theme.of(context).colorScheme.primary,
               child: MyText(
                 text: "Change Password",
-                textColor: Colors.white,
+                textColor: Theme.of(context).colorScheme.onPrimary,
                 bold: true,
-                textSize: 15,
+                textSize: 15.sp,
               ),
             ),
           ),

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
@@ -107,39 +109,38 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         final isPasswordVerified = passwordState is PasswordCheckSuccess;
         return Scaffold(
           appBar: AppBar(
-            title: Text("Change Password"),
+            title: MyText(text: "Change Password", bold: true),
             centerTitle: true,
-            backgroundColor: Colors.lightBlue[400],
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10).r,
             child: Container(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5).r,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MyText(text: "Old Password", bold: true),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Row(
                     children: [
                       Expanded(
                         child: MyTextField(
                           controller: oldPasswordController,
-                          hintText: "Old Password",
+                          labelText: "Old Password",
                           obscureText: true,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(5.0).r,
                         child: GestureDetector(
                           onTap: checkPassword,
                           child: MyContainer(
-                            color: Colors.lightBlue[400],
-                            padding: const EdgeInsets.all(10),
+                            color: Theme.of(context).colorScheme.primary,
+                            padding: const EdgeInsets.all(10).r,
                             child: Icon(
-                              Icons.check_box,
-                              color: Colors.white,
+                              LucideIcons.check,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               size: 30,
                             ),
                           ),
@@ -147,27 +148,23 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  isPasswordVerified
-                      ? MyText(text: "New Password", bold: true)
-                      : SizedBox.shrink(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20.h),
                   isPasswordVerified
                       ? MyTextField(
                           controller: newPasswordController,
-                          hintText: "New Password",
+                          labelText: "New Password",
                           obscureText: true,
                         )
                       : SizedBox.shrink(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                 ],
               ),
             ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: changePassword,
-            backgroundColor: Colors.lightBlue[400],
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             child: FaIcon(FontAwesomeIcons.floppyDisk),
           ),
         );

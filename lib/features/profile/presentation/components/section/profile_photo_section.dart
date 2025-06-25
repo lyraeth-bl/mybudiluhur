@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 
@@ -21,43 +22,50 @@ class _ProfilePhotoSectionState extends State<ProfilePhotoSection> {
         Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.grey[700],
+            color: Theme.of(context).colorScheme.primary,
           ),
-          height: 120,
-          width: 120,
+          height: 100.h,
+          width: 120.w,
           child: Center(
             child: CircleAvatar(
-              radius: 55,
-              backgroundColor: Colors.white,
+              radius: 55.r,
               child: ClipOval(
                 child: CachedNetworkImage(
                   imageUrl:
                       'https://laravelbackend.jh-beon.cloud/smk/public/${widget.profileUser.profileImageUrl}',
-                  width: 120,
-                  height: 120,
+                  width: 120.w,
+                  height: 120.h,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.error, size: 56, color: Colors.red),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.error,
+                    size: 56,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
                 ),
               ),
             ),
           ),
         ),
-        const SizedBox(height: 20),
-        MyText(text: widget.profileUser.nama, bold: true, textSize: 25),
-        const SizedBox(height: 5),
+        SizedBox(height: 20.h),
+        MyText(
+          text: widget.profileUser.nama,
+          bold: true,
+          textSize: 25.sp,
+          textColor: Theme.of(context).colorScheme.tertiary,
+        ),
+        SizedBox(height: 5.h),
         MyText(
           text: widget.profileUser.email,
-          textSize: 20,
-          textColor: Colors.grey[700],
+          textSize: 20.sp,
+          textColor: Theme.of(context).colorScheme.tertiary,
         ),
-        const SizedBox(height: 5),
+        SizedBox(height: 5.h),
         MyText(
           text: widget.profileUser.kelasSaatIni,
-          textSize: 20,
-          textColor: Colors.grey[700],
+          textSize: 20.sp,
+          textColor: Theme.of(context).colorScheme.tertiary,
         ),
       ],
     );

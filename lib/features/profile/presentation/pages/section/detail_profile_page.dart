@@ -36,8 +36,8 @@ class _DetailProfilePageState extends State<DetailProfilePage> {
             appBar: AppBar(
               title: MyText(text: "Detail Profile", bold: true),
               centerTitle: true,
-              backgroundColor: Colors.lightBlue[400],
-              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
             ),
             body: DetailProfileData(detailProfileUser: detailUser),
           );

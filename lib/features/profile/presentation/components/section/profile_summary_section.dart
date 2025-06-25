@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_card.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
@@ -22,7 +23,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15).r,
           child: MyPageTransition.left(
             destination: DetailProfilePage(),
             child: Row(
@@ -32,93 +33,103 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
                     vertical: 7,
-                  ),
-                  color: Colors.lightBlue[400],
+                  ).r,
+                  color: Theme.of(context).colorScheme.primary,
                   child: MyText(
                     text: "Detail Profile",
-                    textColor: Colors.white,
+                    textColor: Theme.of(context).colorScheme.onPrimary,
                     bold: true,
-                    textSize: 15,
+                    textSize: 15.sp,
                   ),
                 ),
-                Icon(Icons.arrow_circle_right, color: Colors.lightBlue[400]),
+                Icon(
+                  Icons.arrow_circle_right,
+                  size: 30,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10.h),
         MyCard(
+          color: Colors.grey[200],
+          borderColor: Colors.grey[300],
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                padding: const EdgeInsets.symmetric(vertical: 5.0).r,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MyText(text: "NIS / NISN", textColor: Colors.grey[700]),
+                    MyText(
+                      text: "NIS / NISN",
+                      textColor: Theme.of(context).colorScheme.tertiary,
+                    ),
                     MyText(
                       text:
                           '${widget.profileUser.nis} / ${widget.profileUser.nisn}',
                       bold: true,
+                      textColor: Theme.of(context).colorScheme.onSurface,
                     ),
                   ],
                 ),
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(title: "Nama", body: widget.profileUser.nama),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Tempat Lahir",
                 body: widget.profileUser.tempLahir,
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Tanggal Lahir",
                 body: widget.profileUser.tglLahir,
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Email",
                 body: widget.profileUser.email,
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Kelas",
                 body: widget.profileUser.kelasSaatIni,
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Aktif",
                 body: widget.profileUser.aktif,
               ),
               MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15).r,
               ),
               ProfileSummaryText(
                 title: "Status",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/profile/domain/entities/profile_user.dart';
 
@@ -15,9 +16,9 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0).r,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10).r,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -29,8 +30,8 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
           gradient: LinearGradient(
             colors: [Color(0xFFFBC02D), Color(0xFFFFF176)],
           ),
-          border: BoxBorder.all(color: Colors.amber),
-          borderRadius: BorderRadius.circular(15),
+          border: BoxBorder.all(color: Theme.of(context).colorScheme.secondary),
+          borderRadius: BorderRadius.circular(15).r,
         ),
         child: Column(
           children: [
@@ -38,16 +39,16 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10).r,
                   child: Center(
                     child: CircleAvatar(
-                      radius: 55,
                       backgroundColor: Colors.transparent,
+                      radius: 55,
                       child: ClipOval(
                         child: Image.asset(
                           'assets/image/bl_logo.png',
-                          width: 90,
-                          height: 90,
+                          width: 90.w,
+                          height: 90.h,
                         ),
                       ),
                     ),
@@ -58,18 +59,29 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    MyText(text: "Student Card", textSize: 25, bold: true),
-                    SizedBox(height: 10),
-                    MyText(text: widget.profileUser.nama, textSize: 15),
-                    SizedBox(height: 15),
+                    MyText(
+                      text: "Student Card",
+                      textSize: 25.sp,
+                      bold: true,
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                    SizedBox(height: 10.h),
+                    MyText(
+                      text: widget.profileUser.nama,
+                      textSize: 15.sp,
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                    SizedBox(height: 15.h),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 5,
-                      ),
+                      ).r,
                       decoration: BoxDecoration(
-                        border: BoxBorder.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
+                        border: BoxBorder.all(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                        borderRadius: BorderRadius.circular(12).r,
                         color: Colors.white70,
                       ),
                       child: Row(
@@ -77,13 +89,20 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                         children: [
                           MyText(
                             text: 'NIS: ${widget.profileUser.nis}',
-                            textColor: Colors.black,
+                            textColor: Theme.of(context).colorScheme.tertiary,
                             bold: true,
+                            textSize: 14.sp,
                           ),
-                          MyText(text: " | "),
+                          MyText(
+                            text: " | ",
+                            textColor: Theme.of(context).colorScheme.tertiary,
+                            textSize: 14.sp,
+                          ),
                           MyText(
                             text: 'NISN: ${widget.profileUser.nisn}',
                             bold: true,
+                            textSize: 14.sp,
+                            textColor: Theme.of(context).colorScheme.tertiary,
                           ),
                         ],
                       ),
