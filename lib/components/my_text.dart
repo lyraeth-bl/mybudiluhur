@@ -5,12 +5,14 @@ class MyText extends StatelessWidget {
   final Color? textColor;
   final bool bold;
   final double? textSize;
+  final TextAlign? textAlign;
   const MyText({
     super.key,
     required this.text,
     this.textColor,
     this.bold = false,
     this.textSize,
+    this.textAlign,
   });
 
   @override
@@ -22,6 +24,7 @@ class MyText extends StatelessWidget {
         fontWeight: bold ? FontWeight.bold : null,
         fontSize: textSize,
       ),
+      textAlign: textAlign,
     );
   }
 }

@@ -51,9 +51,10 @@ class _DrawerPhotoProfileState extends State<DrawerPhotoProfile> {
           SizedBox(height: 10.h),
           MyText(
             text: widget.homeUser.nama,
-            textSize: 20.sp,
+            textSize: 16.sp,
             bold: true,
             textColor: Theme.of(context).colorScheme.tertiary,
+            textAlign: TextAlign.center,
           ),
           SizedBox(height: 10.h),
           Container(

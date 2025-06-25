@@ -38,18 +38,15 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
-                  padding: EdgeInsets.all(10).r,
-                  child: Center(
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 55,
-                      child: ClipOval(
-                        child: Image.asset(
-                          'assets/image/bl_logo.png',
-                          width: 90.w,
-                          height: 90.h,
-                        ),
+                Center(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 55,
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/image/bl_logo.png',
+                        width: 75.w,
+                        height: 75.h,
                       ),
                     ),
                   ),
@@ -61,14 +58,14 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                   children: [
                     MyText(
                       text: "Student Card",
-                      textSize: 25.sp,
+                      textSize: 20.sp,
                       bold: true,
                       textColor: Theme.of(context).colorScheme.onSecondary,
                     ),
                     SizedBox(height: 10.h),
                     MyText(
                       text: widget.profileUser.nama,
-                      textSize: 15.sp,
+                      textSize: 14.sp,
                       textColor: Theme.of(context).colorScheme.onSecondary,
                     ),
                     SizedBox(height: 15.h),
@@ -82,27 +79,27 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
                         borderRadius: BorderRadius.circular(12).r,
-                        color: Colors.white70,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MyText(
                             text: 'NIS: ${widget.profileUser.nis}',
-                            textColor: Theme.of(context).colorScheme.tertiary,
+                            textColor: Theme.of(context).colorScheme.onSurface,
                             bold: true,
-                            textSize: 14.sp,
+                            textSize: 12.sp,
                           ),
                           MyText(
                             text: " | ",
-                            textColor: Theme.of(context).colorScheme.tertiary,
-                            textSize: 14.sp,
+                            textColor: Theme.of(context).colorScheme.onSurface,
+                            textSize: 12.sp,
                           ),
                           MyText(
                             text: 'NISN: ${widget.profileUser.nisn}',
                             bold: true,
-                            textSize: 14.sp,
-                            textColor: Theme.of(context).colorScheme.tertiary,
+                            textSize: 12.sp,
+                            textColor: Theme.of(context).colorScheme.onSurface,
                           ),
                         ],
                       ),

@@ -34,6 +34,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(360, 690));
     return BlocConsumer<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoaded) {
