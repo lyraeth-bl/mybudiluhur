@@ -2,35 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData lightMode = ThemeData(
-  // Fonts
+  /// * Fonts
   fontFamily: "Rubik",
 
-  // brighness
+  /// * brighness
   brightness: Brightness.light,
 
-  // Theme Text
+  /// * Theme Text
   textTheme: Typography.englishLike2021.apply(fontSizeFactor: 1.sp),
 
-  // Background dari [Scaffold], atau bisa juga background dari isi body
+  /// * Background dari [Scaffold], atau bisa juga background dari isi body
   scaffoldBackgroundColor: Colors.white,
 
   colorScheme: ColorScheme.light(
-    // Warna utama, biru langit
+    /// * Warna utama, biru langit
     primary: Color(0xFF29B6F6),
 
-    // Warna teks diatas warna biru langit
+    /// * Warna teks diatas warna biru langit
     onPrimary: Colors.white,
 
-    // Warna utama kedua, kuning ke orenan
+    /// * Warna utama kedua, kuning ke orenan
     secondary: Color(0xFFFFD54F),
 
-    // Warna teks diatas warna kuning ke orenan
+    /// * Warna teks diatas warna kuning ke orenan
     onSecondary: Colors.black,
 
-    // Warna teks abu-abu
+    /// * Warna teks abu-abu
     tertiary: Color(0xFF616161),
 
-    // warna merah, biasanya untuk error
+    /// * warna merah, biasanya untuk error
     error: Colors.red,
+
+    /// * warna teks diatas warna error
+    onError: Colors.white,
+
+    /// * warna teks diatas warna [Scaffold]
+    onSurface: Color(0xFF212121),
+
+    /// * warna border
+    surface: Color(0xFFF5F5F5),
   ),
 );

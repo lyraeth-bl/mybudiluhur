@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -21,8 +22,8 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
     String nis = user!.nis;
     return FloatingActionButton(
       elevation: 5,
-      backgroundColor: Colors.lightBlue[400],
-      foregroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
       onPressed: () {
         showCupertinoSheet(
           context: context,
@@ -30,10 +31,10 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(15).r,
+                  topRight: Radius.circular(15).r,
                 ),
-                color: Colors.grey[100],
+                color: Theme.of(context).colorScheme.surface,
               ),
               child: Center(
                 child: Column(
@@ -43,8 +44,8 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
                     QrImageView(
                       data: nis,
                       version: QrVersions.auto,
-                      size: 220.0,
-                      padding: const EdgeInsets.all(12),
+                      size: 250.0.r,
+                      padding: const EdgeInsets.all(12).r,
                     ),
                   ],
                 ),
@@ -55,7 +56,7 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
       },
 
       // Logo Botton QR
-      child: FaIcon(FontAwesomeIcons.qrcode),
+      child: Icon(LucideIcons.qrCode),
     );
   }
 }

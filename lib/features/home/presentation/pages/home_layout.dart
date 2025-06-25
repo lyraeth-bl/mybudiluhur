@@ -55,7 +55,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           // Body dengan refresh
           body: RefreshIndicator(
             onRefresh: _refresh,
-            backgroundColor: Colors.lightBlue[400],
+            backgroundColor: Theme.of(context).colorScheme.primary,
             color: Colors.white,
             strokeWidth: 3,
             displacement: 95,

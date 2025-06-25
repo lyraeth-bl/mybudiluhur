@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_layout.dart';
@@ -44,18 +45,29 @@ class HomePageState extends State<HomePage> {
                     pinned: true,
                     title: MyText(text: "MyBudiLuhur", bold: true),
                     centerTitle: true,
-                    backgroundColor: Colors.lightBlue[400],
-                    foregroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
-                  SliverToBoxAdapter(child: SizedBox(height: 10)),
 
                   // Greetings Section
-                  SliverToBoxAdapter(child: GreetingsSection()),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      child: GreetingsSection(),
+                    ),
+                  ),
 
-                  SliverToBoxAdapter(child: MyDivider()),
+                  SliverToBoxAdapter(
+                    child: MyDivider(padding: EdgeInsetsGeometry.zero),
+                  ),
 
                   // Checkin & Checkout Section
-                  SliverToBoxAdapter(child: TodayAttendanceSection()),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      child: TodayAttendanceSection(),
+                    ),
+                  ),
 
                   SliverToBoxAdapter(child: MyDivider()),
                 ],

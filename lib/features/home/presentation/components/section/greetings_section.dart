@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/home/domain/entities/home_user.dart';
@@ -13,14 +15,14 @@ class GreetingsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeUser? homeUser = context.read<HomeCubit>().currentHomeUser;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15).r,
       child: Container(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5).r,
         // decoration: BoxDecoration(border: Border.all(color: Colors.black87)),
         child: Row(
           children: [
             AnimatedWavingHand(),
-            SizedBox(width: 10),
+            SizedBox(width: 10.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -30,22 +32,32 @@ class GreetingsSection extends StatelessWidget {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        MyText(text: '$state ', textSize: 16),
+                        MyText(
+                          text: '$state ',
+                          textSize: 14.sp,
+                          textColor: Theme.of(context).colorScheme.onSurface,
+                        ),
                         MyContainer(
-                          color: Colors.amber[300],
+                          color: Theme.of(context).colorScheme.secondary,
                           child: MyText(
                             text: '${homeUser!.nama}!',
                             bold: true,
-                            textSize: 16,
-                            textColor: Colors.black,
+                            textSize: 14.sp,
+                            textColor: Theme.of(
+                              context,
+                            ).colorScheme.onSecondary,
                           ),
                         ),
                       ],
                     );
                   },
                 ),
-                SizedBox(height: 5),
-                MyText(text: "Welcome back!, What's next?", textSize: 16),
+                SizedBox(height: 5.h),
+                MyText(
+                  text: "Welcome back!, What's next?",
+                  textSize: 12.sp,
+                  textColor: Theme.of(context).colorScheme.onSurface,
+                ),
               ],
             ),
           ],
@@ -101,7 +113,7 @@ class _AnimatedWavingHandState extends State<AnimatedWavingHand>
           angle: _animation.value * 0.5, // Adjust rotation angle as needed
           child: Transform.flip(
             flipX: true,
-            child: Icon(Icons.waving_hand_outlined, size: 40),
+            child: Icon(LucideIcons.hand, size: 35.r),
           ),
         );
       },

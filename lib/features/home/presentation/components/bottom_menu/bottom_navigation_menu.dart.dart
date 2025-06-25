@@ -15,7 +15,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
     return BlocBuilder<BottomMenuBloc, BottomMenuState>(
       builder: (context, state) {
         return BottomNavigationBar(
-          backgroundColor: Colors.lightBlue[400],
+          backgroundColor: Theme.of(context).colorScheme.primary,
           showUnselectedLabels: false,
           selectedFontSize: 15,
           elevation: 5,
@@ -23,7 +23,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
           currentIndex: state.currentIndex,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
-          selectedItemColor: Colors.white,
+          selectedItemColor: Theme.of(context).colorScheme.onPrimary,
           onTap: (index) {
             context.read<BottomMenuBloc>().add(BottomMenuChanged(index));
           },
