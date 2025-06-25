@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mybudiluhur/budi_luhur_app_entry.dart';
 import 'package:mybudiluhur/features/absensi_khs/data/api_absensi_user_repository.dart';
@@ -115,16 +116,29 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
               AbsensiCubit(apiAbsensiUserRepository: apiAbsensiUserRepository),
         ),
       ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        scrollBehavior: const MaterialScrollBehavior().copyWith(
-          dragDevices: PointerDeviceKind.values.toSet(),
-        ),
-        title: "MyBudiLuhur",
-        theme: ThemeData(fontFamily: "Sniglet"),
-        home: const BudiLuhurAppEntry(),
-        navigatorKey: navigatorKey,
-        routes: {'/notification_page': (context) => const NotificationPage()},
+      child: ScreenUtilInit(
+        designSize: const Size(390, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            scrollBehavior: const MaterialScrollBehavior().copyWith(
+              dragDevices: PointerDeviceKind.values.toSet(),
+            ),
+            title: "MyBudiLuhur",
+            theme: ThemeData(
+              fontFamily: "Rubik",
+              textTheme: Typography.englishLike2021.apply(fontSizeFactor: 1.sp),
+            ),
+            home: child,
+            navigatorKey: navigatorKey,
+            routes: {
+              '/notification_page': (context) => const NotificationPage(),
+            },
+          );
+        },
+        child: const BudiLuhurAppEntry(),
       ),
     );
   }

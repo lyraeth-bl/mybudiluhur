@@ -31,6 +31,7 @@ dependencies:
     get: ^4.7.2
     animations: ^2.0.11
     flutter_local_notifications: ^19.3.0
+    flutter_screenutil: ^5.9.3
 
 dev_dependencies:
     flutter_test:
@@ -44,11 +45,15 @@ flutter:
     assets:
         - assets/image/
     fonts:
-        - family: Sniglet
+        - family: Rubik
           fonts:
-              - asset: assets/fonts/Sniglet-Regular.ttf
-        - family: SnigletBold
+              - asset: assets/fonts/Rubik-Regular.ttf
+        - family: RubikBold
           fonts:
-              - asset: assets/fonts/Sniglet-Regular.ttf
-              - asset: assets/fonts/Sniglet-ExtraBold.ttf
+              - asset: assets/fonts/Rubik-Regular.ttf
+              - asset: assets/fonts/Rubik-Bold.ttf
                 weight: 700
+        - family: RubikItalic
+          fonts:
+              - asset: assets/fonts/Rubik-Regular.ttf
+              - asset: assets/fonts/Rubik-Italic.ttf
