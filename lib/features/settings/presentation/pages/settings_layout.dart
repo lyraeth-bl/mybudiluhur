@@ -11,8 +11,8 @@ class SettingsLayout extends StatelessWidget {
       appBar: AppBar(
         title: MyText(text: "Settings", bold: true),
         centerTitle: true,
-        backgroundColor: Colors.lightBlue[400],
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
       body: SettingsPage(),
     );

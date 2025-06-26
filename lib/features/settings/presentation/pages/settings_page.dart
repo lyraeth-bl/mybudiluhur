@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
@@ -41,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
           bool isNotif = state.settingsUser.notification == "true";
 
           return ListView(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15).r,
             children: [
               _buildAnimatedCard(
                 icon: Icons.dark_mode,
@@ -54,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
                 color: Colors.indigoAccent,
               ),
-              const SizedBox(height: 18),
+              SizedBox(height: 5.h),
               _buildAnimatedCard(
                 icon: Icons.notifications_active,
                 title: "Notifikasi",
@@ -64,12 +66,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     context.read<SettingsCubit>().changeNotification(),
                 color: Colors.orangeAccent,
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
               Center(
                 child: MyText(
                   text: "Stay awesome, Budi Luhur squad! 😎",
-                  textSize: 15,
+                  textSize: 15.sp,
                   bold: true,
+                  textColor: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ],
@@ -98,22 +101,20 @@ class _SettingsPageState extends State<SettingsPage> {
       curve: Curves.elasticOut,
       builder: (context, scale, child) =>
           Transform.scale(scale: scale, child: child),
-      child: Card(
-        elevation: 7,
-        color: color.withValues(),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: MyContainer(
+        color: Theme.of(context).colorScheme.surface,
         child: ListTile(
           leading: CircleAvatar(
             backgroundColor: color,
-            child: Icon(icon, color: Colors.white),
+            child: Icon(icon, color: Theme.of(context).colorScheme.onPrimary),
           ),
-          title: MyText(text: title, textSize: 18, bold: true),
+          title: MyText(text: title, textSize: 20.sp, bold: true),
 
-          subtitle: MyText(text: subtitle, textSize: 14),
+          subtitle: MyText(text: subtitle, textSize: 12.sp),
           trailing: Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            inactiveThumbColor: Colors.grey[400],
+            inactiveThumbColor: Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ),
