@@ -23,42 +23,44 @@ class GreetingsSection extends StatelessWidget {
           children: [
             AnimatedWavingHand(),
             SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                BlocBuilder<GreetingsCubit, String>(
-                  builder: (context, state) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        MyText(
-                          text: '$state ',
-                          textSize: 18.sp,
-                          textColor: Theme.of(context).colorScheme.onSurface,
-                        ),
-                        MyContainer(
-                          color: Theme.of(context).colorScheme.secondary,
-                          child: MyText(
-                            text: '${homeUser!.nama.split(" ").first}!',
-                            bold: true,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  BlocBuilder<GreetingsCubit, String>(
+                    builder: (context, state) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          MyText(
+                            text: '$state ',
                             textSize: 18.sp,
-                            textColor: Theme.of(
-                              context,
-                            ).colorScheme.onSecondary,
+                            textColor: Theme.of(context).colorScheme.onSurface,
                           ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                SizedBox(height: 5.h),
-                MyText(
-                  text: "Welcome back!, What's next?",
-                  textSize: 14.sp,
-                  textColor: Theme.of(context).colorScheme.onSurface,
-                ),
-              ],
+                          MyContainer(
+                            color: Theme.of(context).colorScheme.secondary,
+                            child: MyText(
+                              text: '${homeUser!.nama.split(" ").first}!',
+                              bold: true,
+                              textSize: 18.sp,
+                              textColor: Theme.of(
+                                context,
+                              ).colorScheme.onSecondary,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  SizedBox(height: 5.h),
+                  MyText(
+                    text: "Welcome back!, What's next?",
+                    textSize: 14.sp,
+                    textColor: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

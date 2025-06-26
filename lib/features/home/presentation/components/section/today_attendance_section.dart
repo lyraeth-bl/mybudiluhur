@@ -31,7 +31,9 @@ class TodayAttendanceSection extends StatelessWidget {
             ),
           ],
           color: Theme.of(context).colorScheme.surface,
-          border: BoxBorder.all(color: Theme.of(context).colorScheme.surface),
+          border: BoxBorder.all(
+            color: Theme.of(context).colorScheme.onInverseSurface,
+          ),
           borderRadius: BorderRadius.circular(15).r,
         ),
 
@@ -90,6 +92,11 @@ class TodayAttendanceSection extends StatelessWidget {
             ),
 
             SizedBox(height: 20.h),
+            // TODO : Buat cubit untuk text ini
+            // 1. Belum checkin
+            // 2. sudah checkin
+            // 3. belum checkout
+            // 4. sudah checkout
             MyText(
               text: "What a great day, See You Tomorrow!",
               bold: true,
