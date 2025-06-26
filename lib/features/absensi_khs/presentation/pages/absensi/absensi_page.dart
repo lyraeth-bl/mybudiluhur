@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart'; // pastikan sudah import intl di pubspec.yaml
 import 'package:mybudiluhur/components/my_card.dart';
 import 'package:mybudiluhur/components/my_container.dart';
@@ -43,112 +44,125 @@ class _AbsensiPageState extends State<AbsensiPage> {
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('dd MMM yyyy');
 
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      children: [
-        for (final entry in groupedAbsensi.entries) ...[
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10, top: 10),
-            child: Row(
-              children: [
-                MyContainer(
-                  color: Colors.blueGrey[100],
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 10,
-                  ),
-                  child: MyText(
-                    text: entry.key,
-                    bold: true,
-                    textSize: 16,
-                    textColor: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ...entry.value.map((absensiUser) {
-            final dateText = DateTime.tryParse(absensiUser.tanggal) != null
-                ? dateFormat.format(DateTime.parse(absensiUser.tanggal))
-                : absensiUser.tanggal;
-
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: MyCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        MyContainer(
-                          color: _getStatusColor(
-                            absensiUser.alasanKetidakhadiran,
-                          ),
-                          child: MyText(
-                            text: absensiUser.alasanKetidakhadiran,
-                            bold: true,
-                            textColor: Colors.white,
-                            textSize: 20,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        MyText(text: dateText, textSize: 18, bold: true),
-                        const Spacer(),
-                        MyText(
-                          text: absensiUser.kelas,
-                          textColor: Colors.grey[700],
-                          textSize: 18,
-                        ),
-                      ],
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 15).r,
+        children: [
+          for (final entry in groupedAbsensi.entries) ...[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, top: 10).r,
+              child: Row(
+                children: [
+                  MyContainer(
+                    color: Colors.blueGrey[100],
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 10,
+                    ).r,
+                    child: MyText(
+                      text: entry.key,
+                      bold: true,
+                      textSize: 14.sp,
+                      textColor: Colors.black,
                     ),
-                    const SizedBox(height: 10),
-                    if (absensiUser.keterangan.isNotEmpty ||
-                        absensiUser.jamTerlambat.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Row(
-                          children: [
-                            if (absensiUser.keterangan.isNotEmpty)
-                              Text(
-                                "Ket: ${absensiUser.keterangan}",
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                  fontSize: 16,
-                                ),
-                              ),
-                            if (absensiUser.jamTerlambat.isNotEmpty) ...[
-                              const SizedBox(width: 16),
-                              Text(
-                                "Terlambat: ${absensiUser.jamTerlambat}",
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+            ...entry.value.map((absensiUser) {
+              final dateText = DateTime.tryParse(absensiUser.tanggal) != null
+                  ? dateFormat.format(DateTime.parse(absensiUser.tanggal))
+                  : absensiUser.tanggal;
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10.0).r,
+                child: MyCard(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderColor: Theme.of(context).colorScheme.onInverseSurface,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          MyContainer(
+                            color: _getStatusColor(
+                              absensiUser.alasanKetidakhadiran,
+                            ),
+                            child: MyText(
+                              text: absensiUser.alasanKetidakhadiran,
+                              bold: true,
+                              textColor: Colors.white,
+                              textSize: 16.sp,
+                            ),
+                          ),
+                          SizedBox(width: 15.w),
+                          MyText(
+                            text: dateText,
+                            textSize: 16.sp,
+                            bold: true,
+                            textColor: Theme.of(context).colorScheme.tertiary,
+                          ),
+                          const Spacer(),
+                          MyText(
+                            text: absensiUser.kelas,
+                            textColor: Theme.of(context).colorScheme.onSurface,
+                            textSize: 16.sp,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      if (absensiUser.keterangan.isNotEmpty ||
+                          absensiUser.jamTerlambat.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0).r,
+                          child: Row(
+                            children: [
+                              if (absensiUser.keterangan.isNotEmpty)
+                                Text(
+                                  "Ket: ${absensiUser.keterangan}",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.tertiary,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              if (absensiUser.jamTerlambat.isNotEmpty) ...[
+                                SizedBox(width: 16.w),
+                                Text(
+                                  "Terlambat: ${absensiUser.jamTerlambat}",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.tertiary,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ],
         ],
-      ],
+      ),
     );
   }
 
   Color _getStatusColor(String alasan) {
     switch (alasan.toLowerCase()) {
       case 'alpha':
-        return Colors.red;
+        return Colors.redAccent.shade200;
       case 'izin':
-        return Colors.orange;
+        return Colors.orange.shade400;
       case 'sakit':
-        return Colors.blue;
+        return Colors.blue.shade400;
       case 'telat':
-        return Colors.redAccent;
+        return Colors.red.shade400;
       default:
         return Colors.grey;
     }

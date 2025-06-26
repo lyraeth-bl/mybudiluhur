@@ -21,7 +21,7 @@ class AbsensiKhsLayout extends StatelessWidget {
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           bottom: TabBar(
             tabs: myTabs,
-            labelColor: Colors.white,
+            labelColor: Theme.of(context).colorScheme.onPrimary,
             labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
             indicatorColor: Theme.of(context).colorScheme.surface,
             indicatorWeight: 5,
