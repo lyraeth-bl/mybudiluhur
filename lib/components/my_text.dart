@@ -6,6 +6,8 @@ class MyText extends StatelessWidget {
   final bool bold;
   final double? textSize;
   final TextAlign? textAlign;
+  final TextOverflow? textOverflow;
+  final int? maxLines;
   const MyText({
     super.key,
     required this.text,
@@ -13,6 +15,8 @@ class MyText extends StatelessWidget {
     this.bold = false,
     this.textSize,
     this.textAlign,
+    this.textOverflow,
+    this.maxLines,
   });
 
   @override
@@ -25,6 +29,8 @@ class MyText extends StatelessWidget {
         fontSize: textSize,
       ),
       textAlign: textAlign,
+      overflow: textOverflow ?? TextOverflow.ellipsis,
+      maxLines: maxLines,
     );
   }
 }

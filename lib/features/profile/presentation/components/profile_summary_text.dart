@@ -15,21 +15,23 @@ class ProfileSummaryText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0).r,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          MyText(
-            text: title,
-            textColor: Theme.of(context).colorScheme.tertiary,
-            textSize: 14.sp,
-          ),
-          MyText(
-            text: body,
-            bold: true,
-            textColor: Theme.of(context).colorScheme.onSurface,
-            textSize: 14.sp,
-          ),
-        ],
+      child: Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            MyText(
+              text: title,
+              textColor: Theme.of(context).colorScheme.tertiary,
+              textSize: 14.sp,
+            ),
+            MyText(
+              text: body,
+              bold: true,
+              textColor: Theme.of(context).colorScheme.onSurface,
+              textSize: 14.sp,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -18,6 +18,7 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0).r,
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(10).r,
         decoration: BoxDecoration(
           boxShadow: [
@@ -36,12 +37,12 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
         child: Column(
           children: [
             Row(
-              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
-                    radius: 55,
+                    radius: 55.r,
                     child: ClipOval(
                       child: Image.asset(
                         'assets/image/bl_logo.png',
@@ -51,60 +52,66 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    MyText(
-                      text: "Student Card",
-                      textSize: 20.sp,
-                      bold: true,
-                      textColor: Theme.of(context).colorScheme.onSecondary,
-                    ),
-                    SizedBox(height: 10.h),
-                    MyText(
-                      text: widget.profileUser.nama,
-                      textSize: 14.sp,
-                      textColor: Theme.of(context).colorScheme.onSecondary,
-                    ),
-                    SizedBox(height: 15.h),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ).r,
-                      decoration: BoxDecoration(
-                        border: BoxBorder.all(
-                          color: Theme.of(context).colorScheme.tertiary,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MyText(
+                        text: "Student Card",
+                        textSize: 22.sp,
+                        bold: true,
+                        textColor: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                      SizedBox(height: 10.h),
+                      MyText(
+                        text: widget.profileUser.nama,
+                        textSize: 14.sp,
+                        textColor: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                      SizedBox(height: 15.h),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 5,
+                        ).r,
+                        decoration: BoxDecoration(
+                          border: BoxBorder.all(
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                          borderRadius: BorderRadius.circular(12).r,
+                          color: Colors.grey[200],
                         ),
-                        borderRadius: BorderRadius.circular(12).r,
-                        color: Theme.of(context).colorScheme.surface,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MyText(
+                              text: 'NIS: ${widget.profileUser.nis}',
+                              textColor: Theme.of(
+                                context,
+                              ).colorScheme.onSurface,
+                              bold: true,
+                              textSize: 12.sp,
+                            ),
+                            MyText(
+                              text: " | ",
+                              textColor: Theme.of(
+                                context,
+                              ).colorScheme.onSurface,
+                              textSize: 12.sp,
+                            ),
+                            MyText(
+                              text: 'NISN: ${widget.profileUser.nisn}',
+                              bold: true,
+                              textSize: 12.sp,
+                              textColor: Theme.of(
+                                context,
+                              ).colorScheme.onSurface,
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            text: 'NIS: ${widget.profileUser.nis}',
-                            textColor: Theme.of(context).colorScheme.onSurface,
-                            bold: true,
-                            textSize: 12.sp,
-                          ),
-                          MyText(
-                            text: " | ",
-                            textColor: Theme.of(context).colorScheme.onSurface,
-                            textSize: 12.sp,
-                          ),
-                          MyText(
-                            text: 'NISN: ${widget.profileUser.nisn}',
-                            bold: true,
-                            textSize: 12.sp,
-                            textColor: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

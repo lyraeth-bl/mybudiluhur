@@ -23,7 +23,6 @@ class _DetailProfileDataState extends State<DetailProfileData> {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10.h),
                 MyText(
                   text: widget.detailProfileUser.toMap().keys.elementAt(index),
                   bold: true,
@@ -33,9 +32,9 @@ class _DetailProfileDataState extends State<DetailProfileData> {
               ],
             ),
             subtitle: MyCard(
-              padding: EdgeInsetsGeometry.zero,
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               color: Theme.of(context).colorScheme.surface,
-              borderColor: Colors.grey[300],
+              borderColor: Theme.of(context).colorScheme.onInverseSurface,
               child: MyText(
                 text:
                     widget.detailProfileUser
@@ -46,6 +45,8 @@ class _DetailProfileDataState extends State<DetailProfileData> {
                     '-',
                 bold: true,
                 textColor: Theme.of(context).colorScheme.onSurface,
+                textOverflow: TextOverflow.visible,
+                maxLines: null,
               ),
             ),
           ),

@@ -5,12 +5,16 @@ class MyCard extends StatelessWidget {
   final Color? color;
   final Color? borderColor;
   final EdgeInsetsGeometry padding;
+  final double? width;
+  final double? height;
   const MyCard({
     super.key,
     required this.child,
     this.color,
     this.padding = const EdgeInsets.symmetric(horizontal: 15),
     this.borderColor,
+    this.width,
+    this.height,
   });
 
   @override
@@ -18,6 +22,8 @@ class MyCard extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Container(
+        width: width,
+        height: height,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: color,
