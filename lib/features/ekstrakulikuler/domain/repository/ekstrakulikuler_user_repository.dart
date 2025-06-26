@@ -1,7 +1,6 @@
 import 'package:mybudiluhur/features/ekstrakulikuler/domain/entities/ekstrakulikuler_user.dart';
 
 abstract class EkstrakulikulerUserRepository {
-  Future<List<EkstrakulikulerUser>?> fetchEkstrakulikulerUser(String nis);
   Future<List<EkstrakulikulerUser>?> fetchEkstrakulikuler();
   Future<List<EkstrakulikulerUser>?> refreshData(String nis);
 

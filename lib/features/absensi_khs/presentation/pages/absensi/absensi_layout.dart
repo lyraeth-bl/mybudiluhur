@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
-import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_null_data_page.dart';
 import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_cubit.dart';
 import 'package:mybudiluhur/features/absensi_khs/presentation/cubit/absensi_state.dart';
@@ -36,10 +35,7 @@ class _AbsensiLayoutState extends State<AbsensiLayout> {
           return AbsensiPage(absensiUser: absensi);
         }
         if (state is AbsensiNull) {
-          return MyLayout(
-            title: "Absensi & KHS",
-            body: MyNullDataPage(message: "Data absensi not found..."),
-          );
+          return MyNullDataPage(message: "Data absensi not found...");
         } else {
           return Center(child: CircularProgressIndicator());
         }

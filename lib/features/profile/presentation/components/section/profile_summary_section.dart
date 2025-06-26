@@ -20,117 +20,111 @@ class ProfileSummarySection extends StatefulWidget {
 class _ProfileSummarySectionState extends State<ProfileSummarySection> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15).r,
-            child: MyPageTransition.left(
-              destination: DetailProfilePage(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MyContainer(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 7,
-                    ).r,
-                    color: Theme.of(context).colorScheme.primary,
-                    child: MyText(
-                      text: "Detail Profile",
-                      textColor: Theme.of(context).colorScheme.onPrimary,
-                      bold: true,
-                      textSize: 15.sp,
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_circle_right,
-                    size: 30,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          MyCard(
-            color: Colors.grey[200],
-            borderColor: Theme.of(context).colorScheme.onInverseSurface,
-            child: Column(
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15).r,
+          child: MyPageTransition.left(
+            destination: DetailProfilePage(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProfileSummaryText(
-                  title: "NIS / NISN",
-                  body:
-                      '${widget.profileUser.nis} / ${widget.profileUser.nisn}',
+                MyContainer(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 7,
+                  ).r,
+                  color: Theme.of(context).colorScheme.primary,
+                  child: MyText(
+                    text: "Detail Profile",
+                    textColor: Theme.of(context).colorScheme.onPrimary,
+                    bold: true,
+                    textSize: 15.sp,
+                  ),
                 ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Nama",
-                  body: widget.profileUser.nama,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Tempat Lahir",
-                  body: widget.profileUser.tempLahir,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Tanggal Lahir",
-                  body: widget.profileUser.tglLahir,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Email",
-                  body: widget.profileUser.email,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Kelas",
-                  body: widget.profileUser.kelasSaatIni,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Aktif",
-                  body: widget.profileUser.aktif,
-                ),
-                MyDivider(
-                  padding: const EdgeInsets.symmetric(vertical: 3).r,
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(15).r,
-                ),
-                ProfileSummaryText(
-                  title: "Status",
-                  body: widget.profileUser.statLulus,
+                Icon(
+                  Icons.arrow_circle_right,
+                  size: 30,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+        SizedBox(height: 10.h),
+        MyCard(
+          color: Colors.grey[200],
+          borderColor: Theme.of(context).colorScheme.onInverseSurface,
+          child: Column(
+            children: [
+              ProfileSummaryText(
+                title: "NIS / NISN",
+                body: '${widget.profileUser.nis} / ${widget.profileUser.nisn}',
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(title: "Nama", body: widget.profileUser.nama),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Tempat Lahir",
+                body: widget.profileUser.tempLahir,
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Tanggal Lahir",
+                body: widget.profileUser.tglLahir,
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Email",
+                body: widget.profileUser.email,
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Kelas",
+                body: widget.profileUser.kelasSaatIni,
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Aktif",
+                body: widget.profileUser.aktif,
+              ),
+              MyDivider(
+                padding: const EdgeInsets.symmetric(vertical: 3).r,
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15).r,
+              ),
+              ProfileSummaryText(
+                title: "Status",
+                body: widget.profileUser.statLulus,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

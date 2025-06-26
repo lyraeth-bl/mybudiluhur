@@ -10,31 +10,6 @@ class ApiAbsensiUserRepository implements AbsensiUserRepository {
   final _apiUrl = ApiUrl.absensiBaseUrl;
 
   @override
-  Future<List<AbsensiUser>?> fetchAbsensiUser(String nis) async {
-    final token = await secureStorage.read(key: "token");
-
-    try {
-      final response = await http.get(
-        Uri.parse('$_apiUrl/$nis'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-
-        await secureStorage.write(key: "absensi", value: jsonEncode(data));
-
-        return (data as List)
-            .map((item) => AbsensiUser.fromJson(item))
-            .toList();
-      }
-      return null;
-    } catch (e) {
-      throw Exception("Failed to fetch data absensi : $e");
-    }
-  }
-
-  @override
   Future<List<AbsensiUser>?> fetchAbsensi() async {
     final absensiUser = await secureStorage.read(key: "absensi");
 
@@ -42,10 +17,12 @@ class ApiAbsensiUserRepository implements AbsensiUserRepository {
       return null;
     }
 
-    return (absensiUser as List)
+    final absensi = jsonDecode(absensiUser);
+
+    return (absensi as List)
         .map(
           (item) => AbsensiUser(
-            id: item['id'],
+            id: item['id'].toString(),
             nis: item['NIS'],
             kelas: item['Kelas'],
             alasanKetidakhadiran: item['AlasanKetidakhadiran'],

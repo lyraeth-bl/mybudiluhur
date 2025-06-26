@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/data/api_ekstrakulikuler_user_repository.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/domain/entities/ekstrakulikuler_user.dart';
@@ -13,26 +12,25 @@ class EkstrakulikulerCubit extends HydratedCubit<EkstrakulikulerState> {
   EkstrakulikulerUser? _ekstrakulikulerUser;
 
   Future<void> fetchData(String nis) async {
-    // 1. Cek dulu apakah data udah ke-cache (HydratedCubit auto restore)
-    if (state is EkstrakulikulerLoaded) {
-      // Kalau sudah loaded dari cache, ga perlu fetch ulang
-      return;
-    }
-    // 2. Kalau belum ada data, baru fetch ke API
     emit(EkstrakulikulerLoading());
     try {
-      if (Get.isSnackbarOpen) {
-        return;
-      }
-      final data = await apiEkstrakulikulerUserRepository
-          .fetchEkstrakulikulerUser(nis);
-      if (data != null) {
-        emit(EkstrakulikulerLoaded(data));
+      final ekstrakulikulerUser = await apiEkstrakulikulerUserRepository
+          .fetchEkstrakulikuler();
+      if (ekstrakulikulerUser != null) {
+        emit(EkstrakulikulerLoaded(ekstrakulikulerUser));
       } else {
-        emit(EkstrakulikulerError("Data Ekstrakulikuler tidak ditemukan"));
+        if (state is EkstrakulikulerLoaded) {
+          emit(state);
+        } else {
+          emit(EkstrakulikulerNull());
+        }
       }
     } catch (e) {
-      emit(EkstrakulikulerError("Gagal fetch data"));
+      if (state is EkstrakulikulerLoaded) {
+        emit(state);
+      } else {
+        emit(EkstrakulikulerError(e.toString()));
+      }
     }
   }
 

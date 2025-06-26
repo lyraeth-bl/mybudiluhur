@@ -11,36 +11,6 @@ class ApiEkstrakulikulerUserRepository
   final _apiUrl = ApiUrl.ekstrakulikulerBaseUrl;
 
   @override
-  Future<List<EkstrakulikulerUser>?> fetchEkstrakulikulerUser(
-    String nis,
-  ) async {
-    final token = await secureStorage.read(key: "token");
-
-    try {
-      final response = await http.get(
-        Uri.parse('$_apiUrl/$nis'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-
-        await secureStorage.write(
-          key: "ekstrakulikuler",
-          value: jsonEncode(data),
-        );
-
-        return (data as List)
-            .map((item) => EkstrakulikulerUser.fromJson(item))
-            .toList();
-      }
-      return null;
-    } catch (e) {
-      throw Exception("Failed to fetch data ekstrakulikuler : $e");
-    }
-  }
-
-  @override
   Future<List<EkstrakulikulerUser>?> fetchEkstrakulikuler() async {
     final ekstrakulikulerUser = await secureStorage.read(
       key: "ekstrakulikuler",
@@ -50,10 +20,12 @@ class ApiEkstrakulikulerUserRepository
       return null;
     }
 
-    return (ekstrakulikulerUser as List)
+    final ekstrakulikuler = jsonDecode(ekstrakulikulerUser);
+
+    return (ekstrakulikuler as List)
         .map(
           (item) => EkstrakulikulerUser(
-            id: item['id'],
+            id: item['id'].toString(),
             nis: item['NIS'],
             kelas: item['Kelas'],
             nomorKelas: item['NomorKelas'],

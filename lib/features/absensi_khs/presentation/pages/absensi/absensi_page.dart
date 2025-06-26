@@ -133,7 +133,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
                 ),
               ),
             );
-          }).toList(),
+          }),
         ],
       ],
     );

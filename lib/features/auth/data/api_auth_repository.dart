@@ -4,8 +4,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:mybudiluhur/core/api/api_url.dart';
 import 'package:mybudiluhur/core/storage/flutter_secure_storage.dart';
+import 'package:mybudiluhur/features/absensi_khs/domain/entities/absensi_user.dart';
 import 'package:mybudiluhur/features/auth/domain/entities/app_user.dart';
 import 'package:mybudiluhur/features/auth/domain/repository/auth_repository.dart';
+import 'package:mybudiluhur/features/ekstrakulikuler/domain/entities/ekstrakulikuler_user.dart';
 
 /// [ApiAuthRepository] adalah implementasi dari [AuthRepository]
 /// yang menangani autentikasi pengguna melalui
@@ -14,7 +16,9 @@ import 'package:mybudiluhur/features/auth/domain/repository/auth_repository.dart
 class ApiAuthRepository implements AuthRepository {
   /// URL endpoint API untuk login.
   /// mengambil dari class [ApiUrl]
-  final _apiUrl = ApiUrl.authBaseUrl;
+  final _apiAuthUrl = ApiUrl.authBaseUrl;
+  final _apiAbsensiUrl = ApiUrl.absensiBaseUrl;
+  final _apiEkstrakulikulerUrl = ApiUrl.ekstrakulikulerBaseUrl;
 
   /// Melakukan login ke API menggunakan NIS dan password.
   @override
@@ -25,7 +29,7 @@ class ApiAuthRepository implements AuthRepository {
     try {
       // Post ke API
       final response = await http.post(
-        Uri.parse(_apiUrl),
+        Uri.parse(_apiAuthUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'nis': nis, 'password': password}),
       );
@@ -53,6 +57,41 @@ class ApiAuthRepository implements AuthRepository {
         /// Menyimpan data ke [AppUser]
         AppUser user = AppUser(nis: dataSiswa['NIS']);
 
+        try {
+          final absensi = await http.get(
+            Uri.parse('$_apiAbsensiUrl/$nis'),
+            headers: {'Authorization': 'Bearer $accessToken'},
+          );
+
+          final data = jsonDecode(absensi.body);
+
+          await secureStorage.write(key: "absensi", value: jsonEncode(data));
+
+          (data as List).map((item) => AbsensiUser.fromJson(item)).toList();
+        } catch (e) {
+          throw Exception("Fetch data Absensi gagal");
+        }
+
+        try {
+          final ekstrakulikuler = await http.get(
+            Uri.parse('$_apiEkstrakulikulerUrl/$nis'),
+            headers: {'Authorization': 'Bearer $accessToken'},
+          );
+
+          final data = jsonDecode(ekstrakulikuler.body);
+
+          await secureStorage.write(
+            key: "ekstrakulikuler",
+            value: jsonEncode(data),
+          );
+
+          (data as List)
+              .map((item) => EkstrakulikulerUser.fromJson(item))
+              .toList();
+        } catch (e) {
+          throw Exception("Fetch data Ekstrakulikuler gagal");
+        }
+
         return user;
       }
     } catch (e) {
@@ -69,6 +108,8 @@ class ApiAuthRepository implements AuthRepository {
     await secureStorage.delete(key: 'token');
     await secureStorage.delete(key: 'password');
     await secureStorage.delete(key: 'siswa');
+    await secureStorage.delete(key: 'absensi');
+    await secureStorage.delete(key: 'ekstrakulikuler');
   }
 
   /// Mengambil data pengguna yang sedang login dari secure storage.

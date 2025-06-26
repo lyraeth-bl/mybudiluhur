@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mybudiluhur/features/absensi_khs/data/api_absensi_user_repository.dart';
 import 'package:mybudiluhur/features/absensi_khs/domain/entities/absensi_user.dart';
@@ -13,25 +12,24 @@ class AbsensiCubit extends HydratedCubit<AbsensiState> {
   AbsensiUser? _absensiUser;
 
   Future<void> fetchData(String nis) async {
-    // 1. Cek dulu apakah data udah ke-cache (HydratedCubit auto restore)
-    if (state is AbsensiLoaded) {
-      // Kalau sudah loaded dari cache, ga perlu fetch ulang
-      return;
-    }
-    // 2. Kalau belum ada data, baru fetch ke API
     emit(AbsensiLoading());
     try {
-      if (Get.isSnackbarOpen) {
-        return;
-      }
-      final data = await apiAbsensiUserRepository.fetchAbsensiUser(nis);
-      if (data != null) {
-        emit(AbsensiLoaded(data));
+      final absensiUser = await apiAbsensiUserRepository.fetchAbsensi();
+      if (absensiUser != null) {
+        emit(AbsensiLoaded(absensiUser));
       } else {
-        emit(AbsensiError("Data Ekstrakulikuler tidak ditemukan"));
+        if (state is AbsensiLoaded) {
+          emit(state);
+        } else {
+          emit(AbsensiNull());
+        }
       }
     } catch (e) {
-      emit(AbsensiError("Gagal fetch data : $e"));
+      if (state is AbsensiLoaded) {
+        emit(state);
+      } else {
+        emit(AbsensiError(e.toString()));
+      }
     }
   }
 
