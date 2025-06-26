@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_card.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/domain/entities/ekstrakulikuler_user.dart';
@@ -15,60 +16,68 @@ class _EkstrakulikulerPageState extends State<EkstrakulikulerPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20).r,
       itemCount: widget.ekstrakulikulerUser.length,
       itemBuilder: (context, index) {
         final ekstrakulikuler = widget.ekstrakulikulerUser[index];
         // Card
         return MyCard(
-          borderColor: Colors.grey,
+          color: Theme.of(context).colorScheme.surface,
+          borderColor: Theme.of(context).colorScheme.onInverseSurface,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0).r,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    // Icon
-                    Icon(
-                      _getIconByKegiatan(ekstrakulikuler.namaKegiatan),
-                      size: 50,
-                      color: Colors.lightBlue[400],
-                    ),
-                    SizedBox(width: 10),
+                Expanded(
+                  child: Row(
+                    children: [
+                      // Icon
+                      Icon(
+                        _getIconByKegiatan(ekstrakulikuler.namaKegiatan),
+                        size: 50,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      SizedBox(width: 10.w),
 
-                    // Nama
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 5),
-                        MyText(
-                          text: ekstrakulikuler.namaKegiatan,
-                          bold: true,
-                          textSize: 20,
-                          textColor: Colors.lightBlue[400],
-                        ),
-                        const SizedBox(height: 8),
+                      // Nama
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(width: 5.w),
+                          MyText(
+                            text: ekstrakulikuler.namaKegiatan,
+                            bold: true,
+                            textSize: 20.sp,
+                            textColor: Theme.of(context).colorScheme.primary,
+                          ),
+                          SizedBox(height: 8.h),
 
-                        // Kelas
-                        MyText(
-                          text:
-                              '${ekstrakulikuler.nomorKelas} ${ekstrakulikuler.kelas}',
-                          textSize: 15,
-                          textColor: Colors.black54,
-                        ),
-                        const SizedBox(width: 20),
-                      ],
-                    ),
-                  ],
+                          // Kelas
+                          MyText(
+                            text:
+                                '${ekstrakulikuler.nomorKelas} ${ekstrakulikuler.kelas}',
+                            textSize: 15.sp,
+                            textColor: Theme.of(context).colorScheme.onSurface,
+                          ),
+                          SizedBox(width: 20.w),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                MyText(text: ekstrakulikuler.nilai, textSize: 30, bold: true),
+                MyText(
+                  text: ekstrakulikuler.nilai,
+                  textSize: 30.sp,
+                  bold: true,
+                  textColor: Theme.of(context).colorScheme.onSurface,
+                ),
               ],
             ),
           ),
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(height: 10),
+      separatorBuilder: (context, index) => SizedBox(height: 10.h),
     );
   }
 
