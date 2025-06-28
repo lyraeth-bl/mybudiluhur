@@ -15,14 +15,14 @@ class AbsensiKhsLayout extends StatelessWidget {
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: MyText(text: "Absensi & KHS", bold: true),
+          title: MyText(text: "Absensi & KHS", bold: true, textSize: 20.r),
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           bottom: TabBar(
             tabs: myTabs,
             labelColor: Theme.of(context).colorScheme.onPrimary,
-            labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
+            labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.r),
             indicatorColor: Theme.of(context).colorScheme.surface,
             indicatorWeight: 5,
             automaticIndicatorColorAdjustment: true,
