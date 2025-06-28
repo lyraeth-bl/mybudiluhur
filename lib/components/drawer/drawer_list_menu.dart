@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_text.dart';
@@ -19,22 +20,26 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
   List<Map<String, dynamic>> listMenu = [
     {
       'title': 'Absensi & KHS',
-      'icon': Icon(Icons.date_range, color: Colors.blueGrey[400]),
+      'icon': Icon(Icons.date_range, color: Colors.blueGrey[400], size: 25.r),
       'destination': () => AbsensiKhsLayout(),
     },
     {
       'title': 'Forum',
-      'icon': Icon(Icons.forum, color: Colors.blueGrey[400]),
+      'icon': Icon(Icons.forum, color: Colors.blueGrey[400], size: 25.r),
       'destination': () => ForumPage(),
     },
     {
       'title': 'Ekstrakurikuler',
-      'icon': Icon(Icons.sports_soccer, color: Colors.blueGrey[400]),
+      'icon': Icon(
+        Icons.sports_soccer,
+        color: Colors.blueGrey[400],
+        size: 25.r,
+      ),
       'destination': () => EkstrakulikulerLayout(),
     },
     {
       'title': 'Settings',
-      'icon': Icon(Icons.settings, color: Colors.blueGrey[400]),
+      'icon': Icon(Icons.settings, color: Colors.blueGrey[400], size: 25.r),
       'destination': () => SettingsLayout(),
     },
   ];
@@ -43,13 +48,24 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
     return ListView.separated(
       itemBuilder: (context, index) {
         return ListTile(
+          // * Icon di kiri
           leading: listMenu[index]['icon'],
-          trailing: Icon(Icons.arrow_circle_right, color: Colors.blueGrey[400]),
+
+          // * Title
           title: MyText(
             text: listMenu[index]['title'],
             textColor: Theme.of(context).colorScheme.onSurface,
             bold: true,
+            textSize: 16.r,
           ),
+
+          // * Icon di kanan
+          trailing: Icon(
+            Icons.arrow_circle_right,
+            color: Colors.blueGrey[400],
+            size: 25.r,
+          ),
+
           onTap: () {
             final destination = listMenu[index]['destination'];
             if (destination != null && destination is Function) {

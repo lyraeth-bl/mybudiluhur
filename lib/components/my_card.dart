@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCard extends StatelessWidget {
   final Widget child;
@@ -24,11 +25,11 @@ class MyCard extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10).r,
         decoration: BoxDecoration(
           color: color,
           border: Border.all(color: borderColor ?? Colors.black87),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12).r,
         ),
         child: child,
       ),

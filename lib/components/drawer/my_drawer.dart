@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mybudiluhur/components/drawer/drawer_list_menu.dart';
 import 'package:mybudiluhur/components/drawer/drawer_photo_profile.dart';
@@ -51,11 +52,16 @@ class _MyDrawerState extends State<MyDrawer> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Photo Profile
+                  // * Photo Profile
                   DrawerPhotoProfile(homeUser: user),
+
                   MyDivider(padding: EdgeInsets.zero),
+
+                  // * List Menu on Drawer
                   Expanded(child: DrawerListMenu()),
                   Spacer(),
+
+                  // * Logout
                   ListTile(
                     leading: Icon(
                       LucideIcons.logOut,
@@ -65,6 +71,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       text: "Logout",
                       textColor: Theme.of(context).colorScheme.error,
                       bold: true,
+                      textSize: 16.r,
                     ),
                     onTap: logout,
                   ),
