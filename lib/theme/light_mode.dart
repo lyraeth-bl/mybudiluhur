@@ -9,7 +9,7 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
 
   /// * Theme Text
-  textTheme: Typography.englishLike2021.apply(fontSizeFactor: 1.sp),
+  textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
 
   /// * Background dari [Scaffold], atau bisa juga background dari isi body
   scaffoldBackgroundColor: Colors.white,

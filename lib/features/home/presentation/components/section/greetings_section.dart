@@ -35,7 +35,7 @@ class GreetingsSection extends StatelessWidget {
                         children: [
                           MyText(
                             text: '$state ',
-                            textSize: 18.sp,
+                            textSize: 18.r,
                             textColor: Theme.of(context).colorScheme.onSurface,
                           ),
                           MyContainer(
@@ -43,7 +43,7 @@ class GreetingsSection extends StatelessWidget {
                             child: MyText(
                               text: '${homeUser!.nama.split(" ").first}!',
                               bold: true,
-                              textSize: 18.sp,
+                              textSize: 18.r,
                               textColor: Theme.of(
                                 context,
                               ).colorScheme.onSecondary,
@@ -56,7 +56,7 @@ class GreetingsSection extends StatelessWidget {
                   SizedBox(height: 5.h),
                   MyText(
                     text: "Welcome back!, What's next?",
-                    textSize: 14.sp,
+                    textSize: 14.r,
                     textColor: Theme.of(context).colorScheme.onSurface,
                   ),
                 ],

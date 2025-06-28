@@ -5,6 +5,7 @@ import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 import 'package:mybudiluhur/features/absensi_khs/presentation/pages/absensi_khs_layout.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/pages/ekstrakulikuler_layout.dart';
+import 'package:mybudiluhur/features/forum/presentation/pages/forum_page.dart';
 import 'package:mybudiluhur/features/settings/presentation/pages/settings_layout.dart';
 
 class DrawerListMenu extends StatefulWidget {
@@ -22,8 +23,9 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
       'destination': () => AbsensiKhsLayout(),
     },
     {
-      'title': 'Pelajaran',
-      'icon': Icon(Icons.book, color: Colors.blueGrey[400]),
+      'title': 'Forum',
+      'icon': Icon(Icons.forum, color: Colors.blueGrey[400]),
+      'destination': () => ForumPage(),
     },
     {
       'title': 'Ekstrakurikuler',

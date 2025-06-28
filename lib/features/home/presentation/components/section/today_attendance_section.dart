@@ -49,7 +49,7 @@ class TodayAttendanceSection extends StatelessWidget {
                   color: Theme.of(context).colorScheme.secondary,
                   child: MyText(
                     text: "Today's Attendance!",
-                    textSize: 14.sp,
+                    textSize: 18.r,
                     bold: true,
                     textColor: Theme.of(context).colorScheme.onSecondary,
                   ),
@@ -59,6 +59,7 @@ class TodayAttendanceSection extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_circle_right,
                     color: Theme.of(context).colorScheme.primary,
+                    size: 30.r,
                   ),
                 ),
               ],
@@ -67,6 +68,7 @@ class TodayAttendanceSection extends StatelessWidget {
             MyText(
               text: '$days, $date',
               textColor: Theme.of(context).colorScheme.onSurface,
+              textSize: 14.r,
             ),
             SizedBox(height: 10.h),
 
@@ -100,7 +102,7 @@ class TodayAttendanceSection extends StatelessWidget {
             MyText(
               text: "What a great day, See You Tomorrow!",
               bold: true,
-              textSize: 12.sp,
+              textSize: 12.r,
               textColor: Theme.of(context).colorScheme.tertiary,
             ),
           ],
@@ -138,7 +140,7 @@ class CheckInOutBox extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon),
+          Icon(icon, size: 20.r),
           SizedBox(width: 10.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,13 +149,13 @@ class CheckInOutBox extends StatelessWidget {
                 text: text,
                 textColor: Theme.of(context).colorScheme.tertiary,
                 bold: true,
-                textSize: 12.sp,
+                textSize: 12.r,
               ),
               SizedBox(height: 5.h),
               MyText(
                 text: time,
                 textColor: Theme.of(context).colorScheme.tertiary,
-                textSize: 14.sp,
+                textSize: 14.r,
               ),
             ],
           ),

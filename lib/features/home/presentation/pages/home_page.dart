@@ -34,7 +34,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(360, 690));
     return BlocConsumer<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoaded) {
@@ -44,7 +43,11 @@ class HomePageState extends State<HomePage> {
                 slivers: [
                   SliverAppBar(
                     pinned: true,
-                    title: MyText(text: "MyBudiLuhur", bold: true),
+                    title: MyText(
+                      text: "MyBudiLuhur",
+                      bold: true,
+                      textSize: 20.r,
+                    ),
                     centerTitle: true,
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -53,7 +56,7 @@ class HomePageState extends State<HomePage> {
                   // Greetings Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      padding: const EdgeInsets.symmetric(vertical: 10).r,
                       child: GreetingsSection(),
                     ),
                   ),
@@ -65,7 +68,7 @@ class HomePageState extends State<HomePage> {
                   // Checkin & Checkout Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      padding: const EdgeInsets.symmetric(vertical: 10).r,
                       child: TodayAttendanceSection(),
                     ),
                   ),
