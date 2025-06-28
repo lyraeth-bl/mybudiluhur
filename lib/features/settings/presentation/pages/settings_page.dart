@@ -70,7 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Center(
                 child: MyText(
                   text: "Stay awesome, Budi Luhur squad! 😎",
-                  textSize: 15.sp,
+                  textSize: 15.r,
                   bold: true,
                   textColor: Theme.of(context).colorScheme.onSurface,
                 ),
@@ -108,9 +108,9 @@ class _SettingsPageState extends State<SettingsPage> {
             backgroundColor: color,
             child: Icon(icon, color: Theme.of(context).colorScheme.onPrimary),
           ),
-          title: MyText(text: title, textSize: 20.sp, bold: true),
+          title: MyText(text: title, textSize: 20.r, bold: true),
 
-          subtitle: MyText(text: subtitle, textSize: 12.sp),
+          subtitle: MyText(text: subtitle, textSize: 12.r),
           trailing: Switch.adaptive(
             value: value,
             onChanged: onChanged,
