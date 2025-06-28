@@ -56,7 +56,8 @@ class _DetailProfileDataState extends State<DetailProfileData> {
           ),
         );
       },
-      separatorBuilder: (context, index) => const MyDivider(),
+      separatorBuilder: (context, index) =>
+          MyDivider(color: Theme.of(context).colorScheme.onInverseSurface),
       itemCount: widget.detailProfileUser.toMap().length,
     );
   }

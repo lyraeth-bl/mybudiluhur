@@ -55,7 +55,10 @@ class _MyDrawerState extends State<MyDrawer> {
                   // * Photo Profile
                   DrawerPhotoProfile(homeUser: user),
 
-                  MyDivider(padding: EdgeInsets.zero),
+                  MyDivider(
+                    padding: EdgeInsets.zero,
+                    color: Theme.of(context).colorScheme.onInverseSurface,
+                  ),
 
                   // * List Menu on Drawer
                   Expanded(child: DrawerListMenu()),

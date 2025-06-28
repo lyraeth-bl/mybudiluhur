@@ -34,7 +34,7 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
                   topLeft: Radius.circular(15).r,
                   topRight: Radius.circular(15).r,
                 ),
-                color: Theme.of(context).colorScheme.surface,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               child: Center(
                 child: Column(

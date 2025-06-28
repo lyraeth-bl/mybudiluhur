@@ -8,6 +8,9 @@ class MyTextField extends StatelessWidget {
   final IconData? suffixIcon;
   final Color? suffixIconColor;
   final void Function()? onTap;
+  final TextInputType? keyboardType;
+  final String? hintText;
+  final int? maxLines;
 
   const MyTextField({
     super.key,
@@ -17,45 +20,87 @@ class MyTextField extends StatelessWidget {
     this.suffixIcon,
     this.suffixIconColor,
     this.onTap,
+    this.keyboardType,
+    this.hintText,
+    this.maxLines = 1,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDarkMode
+            ? Theme.of(context).colorScheme.surface
+            : Colors.white,
         borderRadius: BorderRadius.circular(12).r,
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
+            color: isDarkMode ? Colors.black87 : Colors.black12,
             blurRadius: 10.r,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: TextField(
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+          fontWeight: FontWeight.bold,
+        ),
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType,
+        maxLines: maxLines,
         decoration: InputDecoration(
-          // Border ketika tidak dipilih
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(
+              color: isDarkMode
+                  ? Theme.of(context).colorScheme.onInverseSurface
+                  : Colors.grey.shade400,
+            ),
             borderRadius: BorderRadius.circular(12).r,
           ),
-
-          // Border ketika dipilih
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF81D4FA)),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+              width: 2,
+            ),
             borderRadius: BorderRadius.circular(12).r,
           ),
-          fillColor: Colors.white70,
+          fillColor: isDarkMode
+              ? Theme.of(context).colorScheme.onInverseSurface
+              : Colors.white,
           filled: true,
-          suffixIcon: GestureDetector(onTap: onTap, child: Icon(suffixIcon)),
-          suffixIconColor: suffixIconColor,
-          labelStyle: TextStyle(color: Colors.black, fontSize: 14.r),
+          suffixIcon: suffixIcon != null
+              ? GestureDetector(
+                  onTap: onTap,
+                  child: Icon(
+                    suffixIcon,
+                    color:
+                        suffixIconColor ??
+                        Theme.of(context).colorScheme.primary,
+                  ),
+                )
+              : null,
+          labelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: 14.sp,
+          ),
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontSize: 14.sp,
+          ),
           labelText: labelText,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
+          floatingLabelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: maxLines == 1 ? 16.h : 12.h,
+          ),
         ),
       ),
     );

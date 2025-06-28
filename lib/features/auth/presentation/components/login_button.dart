@@ -11,11 +11,11 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyContainer(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      color: Theme.of(context).colorScheme.primary,
-      child: GestureDetector(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: MyContainer(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        color: Theme.of(context).colorScheme.primary,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

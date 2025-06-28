@@ -46,7 +46,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
 
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15).r,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
         children: [
           for (final entry in groupedAbsensi.entries) ...[
             Padding(
@@ -54,7 +54,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
               child: Row(
                 children: [
                   MyContainer(
-                    color: Colors.blueGrey[100],
+                    color: Theme.of(context).colorScheme.surface,
                     padding: const EdgeInsets.symmetric(
                       vertical: 5,
                       horizontal: 10,
@@ -77,6 +77,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10.0).r,
                 child: MyCard(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   color: Theme.of(context).colorScheme.surface,
                   borderColor: Theme.of(context).colorScheme.onInverseSurface,
                   child: Column(

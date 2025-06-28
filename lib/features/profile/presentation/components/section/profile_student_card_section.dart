@@ -15,23 +15,38 @@ class ProfileStudentCardSection extends StatefulWidget {
 class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0).r,
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(10).r,
+        padding: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black45,
-              offset: Offset(0.0, 1.0),
+              color: isDarkMode
+                  ? Colors.black.withOpacity(0.7)
+                  : Colors.black45,
+              offset: const Offset(0.0, 1.0),
               blurRadius: 5,
             ),
           ],
           gradient: LinearGradient(
-            colors: [Color(0xFFFBC02D), Color(0xFFFFF176)],
+            colors: isDarkMode
+                ? [
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.8),
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                  ]
+                : [
+                    Color(0xFFFBC02D),
+                    Color(0xFFFFF176),
+                  ], // Tetap kuning untuk light mode
           ),
-          border: BoxBorder.all(color: Theme.of(context).colorScheme.secondary),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.secondary,
+            width: 1.5,
+          ),
           borderRadius: BorderRadius.circular(15).r,
         ),
         child: Column(
@@ -62,7 +77,10 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                         text: "Student Card",
                         textSize: 25.r,
                         bold: true,
-                        textColor: Theme.of(context).colorScheme.onSecondary,
+                        textColor: isDarkMode
+                            ? Colors
+                                  .black // Tetap hitam di dark mode karena background kuning
+                            : Theme.of(context).colorScheme.onSecondary,
                       ),
                       SizedBox(height: 10.h),
 
@@ -70,48 +88,53 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                       MyText(
                         text: widget.profileUser.nama,
                         textSize: 14.r,
-                        textColor: Theme.of(context).colorScheme.onSecondary,
+                        textColor: isDarkMode
+                            ? Colors
+                                  .black // Tetap hitam di dark mode karena background kuning
+                            : Theme.of(context).colorScheme.onSecondary,
                       ),
                       SizedBox(height: 15.h),
 
                       // * NIS dan NISN
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 5,
-                        ).r,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 5.h,
+                        ),
                         decoration: BoxDecoration(
-                          border: BoxBorder.all(
+                          border: Border.all(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
                           borderRadius: BorderRadius.circular(12).r,
-                          color: Theme.of(context).colorScheme.surface,
+                          color: isDarkMode
+                              ? Colors.black.withOpacity(0.3)
+                              : Theme.of(context).colorScheme.surface,
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyText(
                               text: 'NIS: ${widget.profileUser.nis}',
-                              textColor: Theme.of(
-                                context,
-                              ).colorScheme.onSurface,
+                              textColor: isDarkMode
+                                  ? Colors.white
+                                  : Theme.of(context).colorScheme.onSurface,
                               bold: true,
                               textSize: 12.r,
                             ),
                             MyText(
                               text: " | ",
-                              textColor: Theme.of(
-                                context,
-                              ).colorScheme.onSurface,
+                              textColor: isDarkMode
+                                  ? Colors.white
+                                  : Theme.of(context).colorScheme.onSurface,
                               textSize: 12.r,
                             ),
                             MyText(
                               text: 'NISN: ${widget.profileUser.nisn}',
                               bold: true,
                               textSize: 12.r,
-                              textColor: Theme.of(
-                                context,
-                              ).colorScheme.onSurface,
+                              textColor: isDarkMode
+                                  ? Colors.white
+                                  : Theme.of(context).colorScheme.onSurface,
                             ),
                           ],
                         ),

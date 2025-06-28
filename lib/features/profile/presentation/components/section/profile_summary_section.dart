@@ -56,7 +56,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
 
         // * Card Summary Profile
         MyCard(
-          color: Colors.grey[200],
+          color: Theme.of(context).colorScheme.surface,
           borderColor: Theme.of(context).colorScheme.onInverseSurface,
           child: Column(
             children: [
@@ -67,7 +67,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 
@@ -75,7 +75,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ProfileSummaryText(title: "Nama", body: widget.profileUser.nama),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 
@@ -87,7 +87,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 
@@ -98,7 +98,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 
@@ -109,7 +109,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 
@@ -120,7 +120,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.onInverseSurface,
                 borderRadius: BorderRadius.circular(15).r,
               ),
 

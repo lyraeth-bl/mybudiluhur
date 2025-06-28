@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
-import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_null_data_page.dart';
@@ -53,27 +52,27 @@ class HomePageState extends State<HomePage> {
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
 
-                  // Greetings Section
+                  // * Greetings Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).r,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ).r,
                       child: GreetingsSection(),
                     ),
                   ),
 
-                  SliverToBoxAdapter(
-                    child: MyDivider(padding: EdgeInsetsGeometry.zero),
-                  ),
-
-                  // Checkin & Checkout Section
+                  // * Checkin & Checkout Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).r,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ).r,
                       child: TodayAttendanceSection(),
                     ),
                   ),
-
-                  SliverToBoxAdapter(child: MyDivider()),
                 ],
               ),
             ],

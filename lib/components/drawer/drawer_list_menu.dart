@@ -83,8 +83,10 @@ class _DrawerListMenuState extends State<DrawerListMenu> {
           },
         );
       },
-      separatorBuilder: (context, index) =>
-          const MyDivider(padding: EdgeInsets.zero),
+      separatorBuilder: (context, index) => MyDivider(
+        padding: EdgeInsets.zero,
+        color: Theme.of(context).colorScheme.onInverseSurface,
+      ),
       itemCount: listMenu.length,
     );
   }

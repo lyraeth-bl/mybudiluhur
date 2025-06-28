@@ -10,7 +10,12 @@ class MyCupertinoAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
       title: MyText(text: "MyBudiLuhur", bold: true, textSize: 20.r),
-      content: MyText(text: text, textSize: 14.r),
+      content: Column(
+        children: [
+          SizedBox(height: 10.h),
+          MyText(text: text, textSize: 14.r, maxLines: 3),
+        ],
+      ),
       actions: [
         CupertinoDialogAction(
           onPressed: () {
