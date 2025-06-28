@@ -42,6 +42,7 @@ class _ForumPageState extends State<ForumPage> {
                   // Header dengan author info
                   Row(
                     children: [
+                      // * Image Author
                       CircleAvatar(
                         backgroundImage: AssetImage(forum['authorImageUrl']),
                         radius: 20.r,
@@ -51,20 +52,26 @@ class _ForumPageState extends State<ForumPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // * Nama
                           MyText(
                             text: forum['authorName'],
                             bold: true,
                             textSize: 18.r,
                             textColor: Theme.of(context).colorScheme.onSurface,
                           ),
+
+                          // * Waktu
+                          SizedBox(height: 5.h),
                           MyText(
                             text: forum['timePostForum'],
-                            textSize: 14.r,
+                            textSize: 12.r,
                             textColor: Theme.of(context).colorScheme.tertiary,
                           ),
                         ],
                       ),
                       const Spacer(),
+
+                      // * Tags
                       MyContainer(
                         color: Theme.of(context).colorScheme.primary,
                         child: MyText(
@@ -77,9 +84,16 @@ class _ForumPageState extends State<ForumPage> {
                   ),
                   SizedBox(height: 16.h),
 
-                  // Konten forum
-                  MyText(text: forum['titleForum'], bold: true, textSize: 16.r),
+                  // * Judul Konten forum
+                  MyText(
+                    text: forum['titleForum'],
+                    bold: true,
+                    textSize: 16.r,
+                    textColor: Theme.of(context).colorScheme.onSurface,
+                  ),
                   SizedBox(height: 8.h),
+
+                  // * Konten Forum
                   MyText(
                     text: forum['bodyForum'],
                     maxLines: 3,
@@ -89,7 +103,7 @@ class _ForumPageState extends State<ForumPage> {
                   ),
                   SizedBox(height: 16.h),
 
-                  // Footer dengan like dan comment
+                  // * Footer dengan like dan comment
                   Row(
                     children: [
                       IconButton(
@@ -101,6 +115,7 @@ class _ForumPageState extends State<ForumPage> {
                       MyText(
                         text: forum['likesForum'].toString(),
                         textSize: 12.r,
+                        textColor: Theme.of(context).colorScheme.tertiary,
                       ),
                       SizedBox(width: 16.h),
                       IconButton(
@@ -112,6 +127,7 @@ class _ForumPageState extends State<ForumPage> {
                       MyText(
                         text: forum['commentsForum'].toString(),
                         textSize: 12.r,
+                        textColor: Theme.of(context).colorScheme.tertiary,
                       ),
                       const Spacer(),
                       TextButton(
@@ -131,12 +147,6 @@ class _ForumPageState extends State<ForumPage> {
           );
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Aksi untuk membuat post baru
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
@@ -191,7 +201,7 @@ class _ForumPageState extends State<ForumPage> {
     },
     {
       'id': 5,
-      'authorName': "Budi Luhur",
+      'authorName': "Mahsa Nurfarhan Hidayat",
       'authorImageUrl': 'assets/image/bl_logo.png',
       'tagsForum': 'Teknologi',
       'titleForum': "Cloud Computing untuk UMKM",
