@@ -21,13 +21,13 @@ class ProfileSummaryText extends StatelessWidget {
           MyText(
             text: title,
             textColor: Theme.of(context).colorScheme.tertiary,
-            textSize: 14.sp,
+            textSize: 14.r,
           ),
           MyText(
             text: body,
             bold: true,
             textColor: Theme.of(context).colorScheme.onSurface,
-            textSize: 14.sp,
+            textSize: 14.r,
           ),
         ],
       ),

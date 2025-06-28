@@ -29,6 +29,7 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // * Navigation Detail Profile
                 MyContainer(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
@@ -39,12 +40,12 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                     text: "Detail Profile",
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     bold: true,
-                    textSize: 15.sp,
+                    textSize: 14.r,
                   ),
                 ),
                 Icon(
                   Icons.arrow_circle_right,
-                  size: 30,
+                  size: 30.r,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ],
@@ -52,11 +53,14 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
           ),
         ),
         SizedBox(height: 10.h),
+
+        // * Card Summary Profile
         MyCard(
           color: Colors.grey[200],
           borderColor: Theme.of(context).colorScheme.onInverseSurface,
           child: Column(
             children: [
+              // * NIS dan NISN
               ProfileSummaryText(
                 title: "NIS / NISN",
                 body: '${widget.profileUser.nis} / ${widget.profileUser.nisn}',
@@ -66,30 +70,28 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
+
+              // * Nama
               ProfileSummaryText(title: "Nama", body: widget.profileUser.nama),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
+
+              // * Tempat dan Tanggal Lahir
               ProfileSummaryText(
-                title: "Tempat Lahir",
-                body: widget.profileUser.tempLahir,
+                title: "Tempat dan Tanggal Lahir",
+                body:
+                    '${widget.profileUser.tempLahir}, ${widget.profileUser.tglLahir}',
               ),
               MyDivider(
                 padding: const EdgeInsets.symmetric(vertical: 3).r,
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
-              ProfileSummaryText(
-                title: "Tanggal Lahir",
-                body: widget.profileUser.tglLahir,
-              ),
-              MyDivider(
-                padding: const EdgeInsets.symmetric(vertical: 3).r,
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(15).r,
-              ),
+
+              // * Email
               ProfileSummaryText(
                 title: "Email",
                 body: widget.profileUser.email,
@@ -99,6 +101,8 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
+
+              // * Kelas
               ProfileSummaryText(
                 title: "Kelas",
                 body: widget.profileUser.kelasSaatIni,
@@ -108,6 +112,8 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
+
+              // * Aktif
               ProfileSummaryText(
                 title: "Aktif",
                 body: widget.profileUser.aktif,
@@ -117,6 +123,8 @@ class _ProfileSummarySectionState extends State<ProfileSummarySection> {
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(15).r,
               ),
+
+              // * Status
               ProfileSummaryText(
                 title: "Status",
                 body: widget.profileUser.statLulus,

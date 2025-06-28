@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_text.dart';
@@ -34,7 +35,7 @@ class _DetailProfilePageState extends State<DetailProfilePage> {
           final detailUser = state.detailProfileUser;
           return Scaffold(
             appBar: AppBar(
-              title: MyText(text: "Detail Profile", bold: true),
+              title: MyText(text: "Detail Profile", bold: true, textSize: 20.r),
               centerTitle: true,
               backgroundColor: Theme.of(context).colorScheme.primary,
               foregroundColor: Theme.of(context).colorScheme.onPrimary,

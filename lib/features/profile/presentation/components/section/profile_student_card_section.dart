@@ -39,6 +39,7 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // * BL Logo
                 Center(
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
@@ -46,8 +47,8 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                     child: ClipOval(
                       child: Image.asset(
                         'assets/image/bl_logo.png',
-                        width: 75.w,
-                        height: 75.h,
+                        width: 75.r,
+                        height: 75.r,
                       ),
                     ),
                   ),
@@ -56,19 +57,24 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // * Title : Student Card
                       MyText(
                         text: "Student Card",
-                        textSize: 22.sp,
+                        textSize: 25.r,
                         bold: true,
                         textColor: Theme.of(context).colorScheme.onSecondary,
                       ),
                       SizedBox(height: 10.h),
+
+                      // * Nama
                       MyText(
                         text: widget.profileUser.nama,
-                        textSize: 14.sp,
+                        textSize: 14.r,
                         textColor: Theme.of(context).colorScheme.onSecondary,
                       ),
                       SizedBox(height: 15.h),
+
+                      // * NIS dan NISN
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 10,
@@ -79,7 +85,7 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
                           borderRadius: BorderRadius.circular(12).r,
-                          color: Colors.grey[200],
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,19 +96,19 @@ class _ProfileStudentCardSectionState extends State<ProfileStudentCardSection> {
                                 context,
                               ).colorScheme.onSurface,
                               bold: true,
-                              textSize: 12.sp,
+                              textSize: 12.r,
                             ),
                             MyText(
                               text: " | ",
                               textColor: Theme.of(
                                 context,
                               ).colorScheme.onSurface,
-                              textSize: 12.sp,
+                              textSize: 12.r,
                             ),
                             MyText(
                               text: 'NISN: ${widget.profileUser.nisn}',
                               bold: true,
-                              textSize: 12.sp,
+                              textSize: 12.r,
                               textColor: Theme.of(
                                 context,
                               ).colorScheme.onSurface,

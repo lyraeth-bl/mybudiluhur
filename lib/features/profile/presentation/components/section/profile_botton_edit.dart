@@ -23,6 +23,7 @@ class _ProfileBottonEditState extends State<ProfileBottonEdit> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          // * Change Picture
           MyPageTransition.left(
             destination: ChangePicturePage(profileUser: widget.profileUser),
             child: MyContainer(
@@ -35,23 +36,25 @@ class _ProfileBottonEditState extends State<ProfileBottonEdit> {
                 text: "Change Picture",
                 textColor: Theme.of(context).colorScheme.onPrimary,
                 bold: true,
-                textSize: 15.sp,
+                textSize: 14.r,
               ),
             ),
           ),
+
+          // * Change Password
           MyPageTransition.left(
             destination: ChangePasswordPage(profileUser: widget.profileUser),
             child: MyContainer(
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 7,
-              ).w,
+              ).r,
               color: Theme.of(context).colorScheme.primary,
               child: MyText(
                 text: "Change Password",
                 textColor: Theme.of(context).colorScheme.onPrimary,
                 bold: true,
-                textSize: 15.sp,
+                textSize: 14.r,
               ),
             ),
           ),
