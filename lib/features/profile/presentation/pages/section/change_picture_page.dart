@@ -94,7 +94,11 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
         final isPickedFile = profilePictureState is ProfilePictureSuccess;
         return Scaffold(
           appBar: AppBar(
-            title: MyText(text: "Edit Profile Picture"),
+            title: MyText(
+              text: "Edit Profile Picture",
+              bold: true,
+              textSize: 20.r,
+            ),
             centerTitle: true,
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -108,6 +112,7 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // * Last Profile Picture
                     CircleAvatar(
                       radius: 55.r,
                       backgroundColor: Theme.of(context).colorScheme.primary,
@@ -124,6 +129,8 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                         ),
                       ),
                     ),
+
+                    // * Picked New Profile Picture
                     GestureDetector(
                       onTap: pickImage,
                       child: CircleAvatar(
@@ -149,21 +156,25 @@ class _ChangePicturePageState extends State<ChangePicturePage> {
                   ],
                 ),
                 SizedBox(height: 10.h),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // * Note bottom last profile picture
                     MyText(
                       text: "Your last profile picture",
                       textColor: Theme.of(context).colorScheme.onSurface,
-                      textSize: 12.sp,
+                      textSize: 12.r,
                     ),
+
+                    // * Note bottom new profile picture
                     MyText(
                       text: isPickedFile
                           ? "Preview your profile image"
                           : "You haven't picked new picture",
                       bold: true,
                       textColor: Theme.of(context).colorScheme.onSurface,
-                      textSize: 12.sp,
+                      textSize: 12.r,
                     ),
                   ],
                 ),

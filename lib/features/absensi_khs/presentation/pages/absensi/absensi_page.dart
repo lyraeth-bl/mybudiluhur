@@ -46,7 +46,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
 
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15).r,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
         children: [
           for (final entry in groupedAbsensi.entries) ...[
             Padding(
@@ -54,7 +54,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
               child: Row(
                 children: [
                   MyContainer(
-                    color: Colors.blueGrey[100],
+                    color: Theme.of(context).colorScheme.surface,
                     padding: const EdgeInsets.symmetric(
                       vertical: 5,
                       horizontal: 10,
@@ -62,8 +62,8 @@ class _AbsensiPageState extends State<AbsensiPage> {
                     child: MyText(
                       text: entry.key,
                       bold: true,
-                      textSize: 14.sp,
-                      textColor: Colors.black,
+                      textSize: 14.r,
+                      textColor: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ],
@@ -77,6 +77,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10.0).r,
                 child: MyCard(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   color: Theme.of(context).colorScheme.surface,
                   borderColor: Theme.of(context).colorScheme.onInverseSurface,
                   child: Column(
@@ -84,7 +85,12 @@ class _AbsensiPageState extends State<AbsensiPage> {
                     children: [
                       Row(
                         children: [
+                          // * Tags
                           MyContainer(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 5,
+                            ).r,
                             color: _getStatusColor(
                               absensiUser.alasanKetidakhadiran,
                             ),
@@ -92,25 +98,30 @@ class _AbsensiPageState extends State<AbsensiPage> {
                               text: absensiUser.alasanKetidakhadiran,
                               bold: true,
                               textColor: Colors.white,
-                              textSize: 16.sp,
+                              textSize: 14.r,
                             ),
                           ),
                           SizedBox(width: 15.w),
+
+                          // * Tanggal
                           MyText(
                             text: dateText,
-                            textSize: 16.sp,
+                            textSize: 14.r,
                             bold: true,
                             textColor: Theme.of(context).colorScheme.tertiary,
                           ),
                           const Spacer(),
+
+                          // * Kelas
                           MyText(
                             text: absensiUser.kelas,
                             textColor: Theme.of(context).colorScheme.onSurface,
-                            textSize: 16.sp,
+                            textSize: 16.r,
                           ),
                         ],
                       ),
                       SizedBox(height: 10.h),
+
                       if (absensiUser.keterangan.isNotEmpty ||
                           absensiUser.jamTerlambat.isNotEmpty)
                         Padding(
@@ -118,24 +129,27 @@ class _AbsensiPageState extends State<AbsensiPage> {
                           child: Row(
                             children: [
                               if (absensiUser.keterangan.isNotEmpty)
+                                // * Keterangan
                                 Text(
                                   "Ket: ${absensiUser.keterangan}",
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.tertiary,
-                                    fontSize: 14.sp,
+                                    fontSize: 14.r,
                                   ),
                                 ),
                               if (absensiUser.jamTerlambat.isNotEmpty) ...[
                                 SizedBox(width: 16.w),
+
+                                // * Terlambar
                                 Text(
                                   "Terlambat: ${absensiUser.jamTerlambat}",
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.tertiary,
-                                    fontSize: 14.sp,
+                                    fontSize: 14.r,
                                   ),
                                 ),
                               ],

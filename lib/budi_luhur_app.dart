@@ -11,6 +11,8 @@ import 'package:mybudiluhur/features/auth/data/api_auth_repository.dart';
 import 'package:mybudiluhur/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/data/api_ekstrakulikuler_user_repository.dart';
 import 'package:mybudiluhur/features/ekstrakulikuler/presentation/cubit/ekstrakulikuler_cubit.dart';
+import 'package:mybudiluhur/features/forum/data/api_forum_app_repository.dart';
+import 'package:mybudiluhur/features/forum/presentation/cubit/forum_cubit.dart';
 import 'package:mybudiluhur/features/home/data/api_home_user_repository.dart';
 import 'package:mybudiluhur/features/home/presentation/components/bottom_menu/bloc/bottom_menu_bloc.dart';
 import 'package:mybudiluhur/features/home/presentation/cubit/home_cubit.dart';
@@ -46,6 +48,7 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
   final localDetailProfileUserRepository = LocalDetailProfileUserRepository();
   final localSettingsUserRepository = LocalSettingsUserRepository();
   final apiAbsensiUserRepository = ApiAbsensiUserRepository();
+  final apiForumAppRepository = ApiForumAppRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +121,12 @@ class _BudiLuhurAppState extends State<BudiLuhurApp> {
         BlocProvider(
           create: (context) =>
               AbsensiCubit(apiAbsensiUserRepository: apiAbsensiUserRepository),
+        ),
+
+        // Forum Cubit Providers
+        BlocProvider(
+          create: (context) =>
+              ForumCubit(apiForumAppRepository: apiForumAppRepository),
         ),
       ],
       child: ScreenUtilInit(

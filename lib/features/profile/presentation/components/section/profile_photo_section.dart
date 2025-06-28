@@ -19,6 +19,7 @@ class _ProfilePhotoSectionState extends State<ProfilePhotoSection> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // * Photo Profile
         Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -40,7 +41,7 @@ class _ProfilePhotoSectionState extends State<ProfilePhotoSection> {
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(
                     Icons.error,
-                    size: 56,
+                    size: 56.r,
                     color: Theme.of(context).colorScheme.error,
                   ),
                 ),
@@ -48,24 +49,32 @@ class _ProfilePhotoSectionState extends State<ProfilePhotoSection> {
             ),
           ),
         ),
+
+        // * Batas
         SizedBox(height: 20.h),
+
+        // * Nama
         MyText(
           text: widget.profileUser.nama,
           bold: true,
-          textSize: 20.sp,
+          textSize: 20.r,
           textColor: Theme.of(context).colorScheme.onSurface,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 5.h),
+
+        // * Email
         MyText(
           text: widget.profileUser.email,
-          textSize: 16.sp,
+          textSize: 16.r,
           textColor: Theme.of(context).colorScheme.tertiary,
         ),
         SizedBox(height: 5.h),
+
+        // * Kelas
         MyText(
           text: widget.profileUser.kelasSaatIni,
-          textSize: 16.sp,
+          textSize: 16.r,
           textColor: Theme.of(context).colorScheme.tertiary,
         ),
       ],

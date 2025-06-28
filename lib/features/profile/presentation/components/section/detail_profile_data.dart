@@ -23,16 +23,19 @@ class _DetailProfileDataState extends State<DetailProfileData> {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // * Title
                 MyText(
                   text: widget.detailProfileUser.toMap().keys.elementAt(index),
                   bold: true,
-                  textSize: 18.sp,
+                  textSize: 20.r,
                 ),
                 SizedBox(height: 10.h),
               ],
             ),
+
+            // * Value Textfield
             subtitle: MyCard(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5).r,
               color: Theme.of(context).colorScheme.surface,
               borderColor: Theme.of(context).colorScheme.onInverseSurface,
               child: MyText(
@@ -47,12 +50,14 @@ class _DetailProfileDataState extends State<DetailProfileData> {
                 textColor: Theme.of(context).colorScheme.onSurface,
                 textOverflow: TextOverflow.visible,
                 maxLines: null,
+                textSize: 14.r,
               ),
             ),
           ),
         );
       },
-      separatorBuilder: (context, index) => const MyDivider(),
+      separatorBuilder: (context, index) =>
+          MyDivider(color: Theme.of(context).colorScheme.onInverseSurface),
       itemCount: widget.detailProfileUser.toMap().length,
     );
   }

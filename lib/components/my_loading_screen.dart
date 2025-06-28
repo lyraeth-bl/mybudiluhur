@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 
 class MyLoadingScreen extends StatelessWidget {
@@ -10,9 +11,9 @@ class MyLoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: MyText(text: title ?? '', bold: true),
-        backgroundColor: Colors.lightBlue[400],
-        foregroundColor: Colors.white,
+        title: MyText(text: title ?? '', bold: true, textSize: 20.r),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         centerTitle: true,
       ),
       body: Center(
@@ -20,8 +21,8 @@ class MyLoadingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(),
-            SizedBox(height: 10),
-            MyText(text: text),
+            SizedBox(height: 10.h),
+            MyText(text: text, textSize: 14.r),
           ],
         ),
       ),

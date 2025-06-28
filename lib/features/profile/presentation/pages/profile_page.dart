@@ -43,9 +43,10 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               CustomScrollView(
                 slivers: [
+                  // * App Bar
                   SliverAppBar(
                     pinned: true,
-                    title: MyText(text: "Profile", bold: true),
+                    title: MyText(text: "Profile", bold: true, textSize: 20.r),
                     centerTitle: true,
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -53,31 +54,31 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-                  // Profile Photo
+                  // * Profile Photo
                   SliverToBoxAdapter(
                     child: ProfilePhotoSection(profileUser: user),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-                  // Change Profile and Password
+                  // * Change Profile and Password
                   SliverToBoxAdapter(
                     child: ProfileBottonEdit(profileUser: user),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-                  // Student Card
+                  // * Student Card
                   SliverToBoxAdapter(
                     child: ProfileStudentCardSection(profileUser: user),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-                  // Profile Summary
+                  // * Profile Summary
                   SliverToBoxAdapter(
                     child: ProfileSummarySection(profileUser: user),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
-                  // Logout Button
+                  // * Logout Button
                   SliverToBoxAdapter(child: ProfileLogoutSection()),
 
                   SliverToBoxAdapter(child: SizedBox(height: 30.h)),

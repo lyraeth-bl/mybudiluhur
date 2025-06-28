@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyContainer extends StatelessWidget {
   final Widget child;
@@ -17,7 +18,7 @@ class MyContainer extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: color ?? Colors.black87,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15).r,
       ),
       child: child,
     );

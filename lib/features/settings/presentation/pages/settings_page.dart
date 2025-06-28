@@ -17,7 +17,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  // Cubit
   late final settingsCubit = context.read<SettingsCubit>();
   late final authCubit = context.read<AuthCubit>().currentUser;
 
@@ -30,6 +29,9 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.watch<ThemeCubit>();
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         if (state is SettingsLoading) {
@@ -38,14 +40,14 @@ class _SettingsPageState extends State<SettingsPage> {
             title: "Settings",
           );
         } else if (state is SettingsLoaded) {
-          // Convert string to bool safely
           bool isDark = state.settingsUser.theme == "true";
           bool isNotif = state.settingsUser.notification == "true";
 
           return ListView(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15).r,
+            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
             children: [
-              _buildAnimatedCard(
+              _buildSettingCard(
+                context: context,
                 icon: Icons.dark_mode,
                 title: "Mode Gelap",
                 subtitle: isDark ? "Tema gelap aktif" : "Tema terang aktif",
@@ -54,47 +56,61 @@ class _SettingsPageState extends State<SettingsPage> {
                   context.read<SettingsCubit>().changeThemeMode();
                   themeCubit.toggleTheme();
                 },
-                color: Colors.indigoAccent,
+                iconColor: isDarkMode
+                    ? Colors.indigo.shade200
+                    : Colors.indigo.shade700,
               ),
-              SizedBox(height: 5.h),
-              _buildAnimatedCard(
+              SizedBox(height: 12.h),
+              _buildSettingCard(
+                context: context,
                 icon: Icons.notifications_active,
                 title: "Notifikasi",
                 subtitle: isNotif ? "Notifikasi aktif" : "Notifikasi nonaktif",
                 value: isNotif,
                 onChanged: (_) =>
                     context.read<SettingsCubit>().changeNotification(),
-                color: Colors.orangeAccent,
+                iconColor: isDarkMode
+                    ? Colors.orange.shade200
+                    : Colors.orange.shade700,
               ),
               SizedBox(height: 32.h),
               Center(
                 child: MyText(
                   text: "Stay awesome, Budi Luhur squad! 😎",
-                  textSize: 15.sp,
+                  textSize: 15.r,
                   bold: true,
-                  textColor: Theme.of(context).colorScheme.onSurface,
+                  textColor: colorScheme.onSurface.withValues(alpha: 0.8),
                 ),
               ),
             ],
           );
         } else if (state is SettingsError) {
           return Center(
-            child: MyText(text: state.message, textColor: Colors.red),
+            child: MyText(
+              text: state.message,
+              textColor: colorScheme.error,
+              textSize: 16.r,
+            ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return Center(
+          child: CircularProgressIndicator(color: colorScheme.primary),
+        );
       },
     );
   }
 
-  Widget _buildAnimatedCard({
+  Widget _buildSettingCard({
+    required BuildContext context,
     required IconData icon,
     required String title,
     required String subtitle,
     required bool value,
     required void Function(bool) onChanged,
-    required Color color,
+    required Color iconColor,
   }) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return TweenAnimationBuilder<double>(
       duration: const Duration(milliseconds: 450),
       tween: Tween<double>(begin: 0.97, end: 1.0),
@@ -102,20 +118,31 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (context, scale, child) =>
           Transform.scale(scale: scale, child: child),
       child: MyContainer(
-        color: Theme.of(context).colorScheme.surface,
+        color: colorScheme.surface,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: color,
-            child: Icon(icon, color: Theme.of(context).colorScheme.onPrimary),
+            backgroundColor: iconColor.withValues(alpha: 0.2),
+            child: Icon(icon, color: iconColor, size: 24.r),
           ),
-          title: MyText(text: title, textSize: 20.sp, bold: true),
-
-          subtitle: MyText(text: subtitle, textSize: 12.sp),
+          title: MyText(
+            text: title,
+            textSize: 18.r,
+            bold: true,
+            textColor: colorScheme.onSurface,
+          ),
+          subtitle: MyText(
+            text: subtitle,
+            textSize: 14.r,
+            textColor: colorScheme.tertiary,
+          ),
           trailing: Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            inactiveThumbColor: Theme.of(context).colorScheme.onSurface,
+            activeColor: colorScheme.primary,
+            inactiveTrackColor: colorScheme.onInverseSurface,
+            inactiveThumbColor: colorScheme.onSurface.withValues(alpha: 0.7),
           ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         ),
       ),
     );

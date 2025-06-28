@@ -34,15 +34,18 @@ class _ProfileLogoutSectionState extends State<ProfileLogoutSection> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          MyContainer(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10).r,
-            color: Theme.of(context).colorScheme.error,
-            child: GestureDetector(
-              onTap: logout,
+          GestureDetector(
+            onTap: logout,
+            child: MyContainer(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 7,
+              ).r,
+              color: Theme.of(context).colorScheme.error,
               child: MyText(
                 text: "Logout",
                 textColor: Theme.of(context).colorScheme.onError,
-                textSize: 16.sp,
+                textSize: 14.r,
               ),
             ),
           ),

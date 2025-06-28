@@ -109,7 +109,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         final isPasswordVerified = passwordState is PasswordCheckSuccess;
         return Scaffold(
           appBar: AppBar(
-            title: MyText(text: "Change Password", bold: true),
+            title: MyText(text: "Change Password", bold: true, textSize: 20.r),
             centerTitle: true,
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -124,6 +124,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   SizedBox(height: 10.h),
                   Row(
                     children: [
+                      // * TextField Old Password and Check Password
                       Expanded(
                         child: MyTextField(
                           controller: oldPasswordController,
@@ -141,7 +142,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             child: Icon(
                               LucideIcons.check,
                               color: Theme.of(context).colorScheme.onPrimary,
-                              size: 30,
+                              size: 30.r,
                             ),
                           ),
                         ),

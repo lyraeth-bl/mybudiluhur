@@ -56,7 +56,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           body: RefreshIndicator(
             onRefresh: _refresh,
             backgroundColor: Theme.of(context).colorScheme.primary,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
             strokeWidth: 3,
             displacement: 95,
             triggerMode: RefreshIndicatorTriggerMode.onEdge,

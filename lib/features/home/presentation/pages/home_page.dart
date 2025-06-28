@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mybudiluhur/components/my_cupertino_alert_dialog.dart';
-import 'package:mybudiluhur/components/my_divider.dart';
 import 'package:mybudiluhur/components/my_layout.dart';
 import 'package:mybudiluhur/components/my_loading_screen.dart';
 import 'package:mybudiluhur/components/my_null_data_page.dart';
@@ -34,7 +33,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(360, 690));
     return BlocConsumer<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoaded) {
@@ -44,33 +42,37 @@ class HomePageState extends State<HomePage> {
                 slivers: [
                   SliverAppBar(
                     pinned: true,
-                    title: MyText(text: "MyBudiLuhur", bold: true),
+                    title: MyText(
+                      text: "MyBudiLuhur",
+                      bold: true,
+                      textSize: 20.r,
+                    ),
                     centerTitle: true,
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
 
-                  // Greetings Section
+                  // * Greetings Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ).r,
                       child: GreetingsSection(),
                     ),
                   ),
 
-                  SliverToBoxAdapter(
-                    child: MyDivider(padding: EdgeInsetsGeometry.zero),
-                  ),
-
-                  // Checkin & Checkout Section
+                  // * Checkin & Checkout Section
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10).h,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ).r,
                       child: TodayAttendanceSection(),
                     ),
                   ),
-
-                  SliverToBoxAdapter(child: MyDivider()),
                 ],
               ),
             ],

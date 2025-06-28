@@ -66,26 +66,29 @@ class _AuthPageState extends State<AuthPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo BL
+              // * Logo BL
               Image.asset(
                 "assets/image/bl_logo.png",
-                width: 180.w,
-                height: 180.h,
+                width: 150.r,
+                height: 150.r,
               ),
               SizedBox(height: 20.h),
+
+              // * Welcome text
               MyText(
                 text: "Selamat datang di MyBudiLuhur",
-                textSize: 20.sp,
-                textColor: Colors.lightBlue[400],
+                textSize: 22.r,
+                textColor: Theme.of(context).colorScheme.primary,
                 bold: true,
               ),
               SizedBox(height: 20.h),
 
+              // * Textfield
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30).r,
                 child: Column(
                   children: [
-                    // NIS Text Field
+                    // * NIS Text Field
                     LoginTextField(
                       controller: nisController,
                       labelText: "NIS",
@@ -96,7 +99,7 @@ class _AuthPageState extends State<AuthPage> {
 
                     SizedBox(height: 10.h),
 
-                    // Password Text Field
+                    // * Password Text Field
                     LoginTextField(
                       controller: passwordController,
                       labelText: "Password",
@@ -114,6 +117,7 @@ class _AuthPageState extends State<AuthPage> {
 
                     SizedBox(height: 10.h),
 
+                    // * Forget Password
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -121,15 +125,17 @@ class _AuthPageState extends State<AuthPage> {
                           children: [
                             MyText(
                               text: "Forget Password?",
-                              textSize: 12.sp,
-                              textColor: Colors.grey[700],
+                              textSize: 12.r,
+                              textColor: Theme.of(
+                                context,
+                              ).colorScheme.onSurface,
                             ),
                             SizedBox(height: 20.h),
                           ],
                         ),
                       ],
                     ),
-                    LoginButton(onPressed: _handleLogin, text: "Login"),
+                    LoginButton(onTap: _handleLogin, text: "Login"),
                   ],
                 ),
               ),

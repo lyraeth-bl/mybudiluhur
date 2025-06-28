@@ -32,15 +32,15 @@ class _EkstrakulikulerPageState extends State<EkstrakulikulerPage> {
                 Expanded(
                   child: Row(
                     children: [
-                      // Icon
+                      // * Icon
                       Icon(
                         _getIconByKegiatan(ekstrakulikuler.namaKegiatan),
-                        size: 50,
+                        size: 35.r,
                         color: Theme.of(context).colorScheme.primary,
                       ),
-                      SizedBox(width: 10.w),
+                      SizedBox(width: 20.w),
 
-                      // Nama
+                      // * Nama
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -48,16 +48,16 @@ class _EkstrakulikulerPageState extends State<EkstrakulikulerPage> {
                           MyText(
                             text: ekstrakulikuler.namaKegiatan,
                             bold: true,
-                            textSize: 20.sp,
+                            textSize: 18.r,
                             textColor: Theme.of(context).colorScheme.primary,
                           ),
                           SizedBox(height: 8.h),
 
-                          // Kelas
+                          // * Kelas
                           MyText(
                             text:
                                 '${ekstrakulikuler.nomorKelas} ${ekstrakulikuler.kelas}',
-                            textSize: 15.sp,
+                            textSize: 14.r,
                             textColor: Theme.of(context).colorScheme.onSurface,
                           ),
                           SizedBox(width: 20.w),
@@ -66,9 +66,11 @@ class _EkstrakulikulerPageState extends State<EkstrakulikulerPage> {
                     ],
                   ),
                 ),
+
+                // * Nilai
                 MyText(
                   text: ekstrakulikuler.nilai,
-                  textSize: 30.sp,
+                  textSize: 20.r,
                   bold: true,
                   textColor: Theme.of(context).colorScheme.onSurface,
                 ),

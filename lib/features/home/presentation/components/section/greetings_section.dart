@@ -15,55 +15,51 @@ class GreetingsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeUser? homeUser = context.read<HomeCubit>().currentHomeUser;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15).r,
-      child: Container(
-        padding: const EdgeInsets.all(5).r,
-        // decoration: BoxDecoration(border: Border.all(color: Colors.black87)),
-        child: Row(
-          children: [
-            AnimatedWavingHand(),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  BlocBuilder<GreetingsCubit, String>(
-                    builder: (context, state) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          MyText(
-                            text: '$state ',
-                            textSize: 18.sp,
-                            textColor: Theme.of(context).colorScheme.onSurface,
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: [
+          AnimatedWavingHand(),
+          SizedBox(width: 10.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                BlocBuilder<GreetingsCubit, String>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        MyText(
+                          text: '$state ',
+                          textSize: 18.r,
+                          textColor: Theme.of(context).colorScheme.onSurface,
+                        ),
+                        MyContainer(
+                          color: Theme.of(context).colorScheme.secondary,
+                          child: MyText(
+                            text: '${homeUser!.nama.split(" ").first}!',
+                            bold: true,
+                            textSize: 18.r,
+                            textColor: Theme.of(
+                              context,
+                            ).colorScheme.onSecondary,
                           ),
-                          MyContainer(
-                            color: Theme.of(context).colorScheme.secondary,
-                            child: MyText(
-                              text: '${homeUser!.nama.split(" ").first}!',
-                              bold: true,
-                              textSize: 18.sp,
-                              textColor: Theme.of(
-                                context,
-                              ).colorScheme.onSecondary,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  SizedBox(height: 5.h),
-                  MyText(
-                    text: "Welcome back!, What's next?",
-                    textSize: 14.sp,
-                    textColor: Theme.of(context).colorScheme.onSurface,
-                  ),
-                ],
-              ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                SizedBox(height: 5.h),
+                MyText(
+                  text: "Welcome back!, What's next?",
+                  textSize: 14.r,
+                  textColor: Theme.of(context).colorScheme.onSurface,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
