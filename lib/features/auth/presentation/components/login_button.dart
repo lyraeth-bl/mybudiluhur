@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mybudiluhur/components/my_container.dart';
 import 'package:mybudiluhur/components/my_text.dart';
 
 class LoginButton extends StatelessWidget {
-  final void Function()? onPressed;
+  final void Function()? onTap;
   final String text;
-  const LoginButton({super.key, required this.onPressed, required this.text});
+  const LoginButton({super.key, required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.lightBlue[400],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12).r,
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10).r,
-          elevation: 4,
-        ),
+    return MyContainer(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      color: Theme.of(context).colorScheme.primary,
+      child: GestureDetector(
+        onTap: onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyText(text: "Login", textSize: 16.sp, textColor: Colors.white),
+            MyText(text: "Login", textSize: 16.r, textColor: Colors.white),
             SizedBox(width: 10.w),
-            Icon(LucideIcons.logIn, color: Colors.white),
+            Icon(LucideIcons.logIn, color: Colors.white, size: 20.r),
           ],
         ),
       ),

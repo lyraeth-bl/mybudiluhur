@@ -53,7 +53,10 @@ class LoginTextField extends StatelessWidget {
           filled: true,
           suffixIcon: GestureDetector(onTap: onTap, child: Icon(suffixIcon)),
           suffixIconColor: suffixIconColor,
-          labelStyle: TextStyle(color: Colors.black),
+          labelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: 14.r,
+          ),
           labelText: labelText,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
         ),
